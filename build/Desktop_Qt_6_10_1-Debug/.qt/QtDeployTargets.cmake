@@ -1,0 +1,2 @@
+set(__QT_DEPLOY_TARGET_appsampleUI_FILE /home/sabarish/sampleUI/build/Desktop_Qt_6_10_1-Debug/appsampleUI)
+set(__QT_DEPLOY_TARGET_appsampleUI_TYPE EXECUTABLE)

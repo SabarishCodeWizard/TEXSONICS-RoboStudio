@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/qt/qml/sampleUI/">
+    <file alias="Main.qml">/home/sabarish/sampleUI/Main.qml</file>
+  </qresource>
+</RCC>
+

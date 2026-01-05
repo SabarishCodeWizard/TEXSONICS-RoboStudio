@@ -1,0 +1,6 @@
+module sampleUI
+typeinfo appsampleUI.qmltypes
+prefer :/qt/qml/sampleUI/
+Main 254.0 Main.qml
+depends QtQuick
+

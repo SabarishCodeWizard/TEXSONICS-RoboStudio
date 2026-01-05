@@ -1,0 +1,12 @@
+--bare
+-I
+/home/sabarish/sampleUI/build/Desktop_Qt_6_10_1-Debug
+-I
+/home/sabarish/Qt/6.10.1/gcc_64/qml
+--resource
+/home/sabarish/sampleUI/build/Desktop_Qt_6_10_1-Debug/.qt/rcc/qmake_sampleUI.qrc
+--resource
+/home/sabarish/sampleUI/build/Desktop_Qt_6_10_1-Debug/.qt/rcc/appsampleUI_raw_qml_0.qrc
+/home/sabarish/sampleUI/Main.qml
+--json
+/home/sabarish/sampleUI/build/Desktop_Qt_6_10_1-Debug/appsampleUI_qmllint.json
