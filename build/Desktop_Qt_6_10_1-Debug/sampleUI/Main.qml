@@ -7,36 +7,45 @@ ApplicationWindow {
     visible: true
     width: 1400
     height: 900
-    title: "Robot Control Interface - Professional Edition"
-    color: "#eaeff2" // Professional Light Grey Background (reduces glare)
+    title: "Robot Control Interface - TEXSONICS"
+    color: "#1E1E2E" // Deep Dark Background (IDE Style)
 
     // --- THEME PROPERTIES ---
-    property color primaryColor: "#0277BD"      // Deep Brand Blue
-    property color accentColor: "#26A69A"       // Teal for highlights
-    property color dangerColor: "#D32F2F"       // Professional Red
-    property color successColor: "#388E3C"      // Professional Green
-    property color neutralDark: "#37474F"       // Dark Blue-Grey for text
-    property color neutralLight: "#CFD8DC"      // Light Grey for borders
-    property color panelBg: "#FFFFFF"           // White panel background
+    property color primaryColor: "#40C4FF"      // Electric Blue
+    property color accentColor: "#69F0AE"       // Neon Green
+    property color dangerColor: "#FF5252"       // Bright Red
+    property color successColor: "#00E676"      // Matrix Green
+    property color warningColor: "#FFAB40"      // Amber
+
+    // Text Colors
+    property color textMain: "#FFFFFF"          // Pure White
+    property color textSec: "#B0BEC5"           // Blue Grey (Labels)
+    property color textDark: "#1E1E2E"          // For text on bright buttons
+
+    // Surface Colors
+    property color panelBg: "#27273A"           // Card Background
+    property color inputBg: "#151520"           // Deepest dark for inputs
+    property color borderColor: "#3B3B50"       // Subtle borders
+    property color hoverColor: "#32324A"        // Light hover state
+
     property var  fontFamily: "Segoe UI"        // Clean system font
 
     // --- REUSABLE COMPONENTS ---
 
-    // 1. Professional Label-Input Pair (For Settings)
+    // 1. Professional Label-Input Pair
     component ValueBox: RowLayout {
         property string labelText: "Label"
         property string valueText: "0"
-        property color btnColor: "#f5f7f9" // Lighter default background
-        spacing: 0 // Connected look
+        property color btnColor: "#2F2F40"
+        spacing: 0
 
         Rectangle {
             Layout.preferredWidth: 50
             Layout.preferredHeight: 28
             color: btnColor
-            border.color: "#d0d7de"
+            border.color: borderColor
             border.width: 1
 
-            // Left rounded corners only
             radius: 3
             Rectangle {
                 width: 5; height: parent.height
@@ -47,7 +56,7 @@ ApplicationWindow {
             Text {
                 text: labelText
                 anchors.centerIn: parent
-                color: "#455a64"
+                color: textSec
                 font.family: fontFamily
                 font.bold: true
                 font.pixelSize: 11
@@ -58,18 +67,19 @@ ApplicationWindow {
             text: valueText
             Layout.fillWidth: true
             Layout.preferredHeight: 28
-            color: "#263238"
+            color: textMain
+            selectedTextColor: textDark
+            selectionColor: primaryColor
 
             background: Rectangle {
-                color: "white"
-                border.color: parent.activeFocus ? primaryColor : "#d0d7de"
+                color: inputBg
+                border.color: parent.activeFocus ? primaryColor : borderColor
                 border.width: 1
-                // Right rounded corners only
                 radius: 3
                 Rectangle {
                     width: 5; height: parent.height
                     anchors.left: parent.left
-                    color: "white"
+                    color: parent.color
                 }
             }
             font.family: fontFamily
@@ -81,13 +91,14 @@ ApplicationWindow {
         }
     }
 
-    // 2. New Axis Control (Label Left - Input Center - Label Right)
+    // 2. New Axis Control
     component AxisControl: RowLayout {
         property string labelStart: "X"
         property string labelEnd: "X-"
         property string valueText: "0.00"
-        property color colorStart: "#E3F2FD"
-        property color colorEnd: "#fafafa"
+        property color colorStart: "#2F2F40"
+        property color colorEnd: "#2F2F40"
+        property color labelColor: textSec
         spacing: 0
 
         // Left Label (+)
@@ -95,11 +106,10 @@ ApplicationWindow {
             Layout.preferredWidth: 40
             Layout.preferredHeight: 28
             color: colorStart
-            border.color: "#d0d7de"
+            border.color: borderColor
             radius: 3
-            // Fix corners (Left Rounded Only)
             Rectangle { width: 5; height: parent.height; anchors.right: parent.right; color: parent.color }
-            Text { text: labelStart; anchors.centerIn: parent; font.pixelSize: 11; font.bold: true; color: "#455a64" }
+            Text { text: labelStart; anchors.centerIn: parent; font.pixelSize: 11; font.bold: true; color: labelColor }
         }
 
         // Center Input
@@ -108,10 +118,14 @@ ApplicationWindow {
             Layout.fillWidth: true
             Layout.preferredHeight: 28
             selectByMouse: true
+            color: primaryColor // Highlight values in blue
+            font.bold: true
+            selectedTextColor: textDark
+            selectionColor: primaryColor
+
             background: Rectangle {
-                color: "white"
-                border.color: parent.activeFocus ? primaryColor : "#d0d7de"
-                // No radius (Square connections)
+                color: inputBg
+                border.color: parent.activeFocus ? primaryColor : borderColor
             }
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
@@ -124,54 +138,50 @@ ApplicationWindow {
             Layout.preferredWidth: 40
             Layout.preferredHeight: 28
             color: colorEnd
-            border.color: "#d0d7de"
+            border.color: borderColor
             radius: 3
-            // Fix corners (Right Rounded Only)
             Rectangle { width: 5; height: parent.height; anchors.left: parent.left; color: parent.color }
-            Text { text: labelEnd; anchors.centerIn: parent; font.pixelSize: 11; font.bold: true; color: "#78909c" }
+            Text { text: labelEnd; anchors.centerIn: parent; font.pixelSize: 11; font.bold: true; color: labelColor }
         }
     }
 
-    // 3. Professional Status Button
+    // 3. Professional Status Button (Colored)
     component StatusButton: Button {
         property color baseColor: successColor
         property bool isCritical: false
 
         background: Rectangle {
-            color: parent.down ? Qt.darker(baseColor, 1.1) : (parent.hovered ? Qt.lighter(baseColor, 1.1) : baseColor)
+            color: parent.down ? Qt.darker(baseColor, 1.2) : (parent.hovered ? Qt.lighter(baseColor, 1.1) : Qt.darker(baseColor, 1.1))
             radius: 4
-            border.color: Qt.darker(baseColor, 1.2)
+            border.color: baseColor
             border.width: 1
-
-            // Subtle gradient effect for depth
-            gradient: Gradient {
-                GradientStop { position: 0.0; color: Qt.lighter(baseColor, 1.05) }
-                GradientStop { position: 1.0; color: baseColor }
-            }
+            opacity: parent.down ? 0.8 : 1.0
         }
         contentItem: Text {
             text: parent.text
-            color: "white"
+            color: textMain // White text on colored buttons
             font.family: fontFamily
             font.bold: true
-            font.pixelSize: 12
+            font.pixelSize: 11
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             elide: Text.ElideRight
+            style: Text.Outline
+            styleColor: "#222" // Slight text shadow for readability
         }
     }
 
-    // 4. Standard Action Button (Grey)
+    // 4. Standard Action Button (Dark Grey)
     component ActionButton: Button {
         background: Rectangle {
-            color: parent.down ? "#cfd8dc" : (parent.hovered ? "#eceff1" : "white")
+            color: parent.down ? "#22222E" : (parent.hovered ? hoverColor : "#2F2F40")
             radius: 4
-            border.color: "#b0bec5"
+            border.color: borderColor
             border.width: 1
         }
         contentItem: Text {
             text: parent.text
-            color: "#37474F"
+            color: textSec
             font.family: fontFamily
             font.pixelSize: 12
             horizontalAlignment: Text.AlignHCenter
@@ -183,18 +193,8 @@ ApplicationWindow {
     component PanelCard: Rectangle {
         color: panelBg
         radius: 6
-        border.color: "#dce1e6"
+        border.color: borderColor
         border.width: 1
-        // Subtle shadow simulation
-        Rectangle {
-            z: -1
-            anchors.fill: parent
-            anchors.topMargin: 2
-            anchors.leftMargin: 2
-            color: "#000000"
-            opacity: 0.05
-            radius: 6
-        }
     }
 
     // --- MAIN LAYOUT ---
@@ -232,7 +232,7 @@ ApplicationWindow {
                         text: "ROBOT CONTROLLER V1.0"
                         font.family: fontFamily
                         font.pixelSize: 10
-                        color: "#90a4ae"
+                        color: textSec
                     }
                 }
             }
@@ -242,16 +242,12 @@ ApplicationWindow {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 clip: true
+                color: "#fff5ee" // Even darker for viewport
 
-                Image {
-                    source: "" // Placeholder
-                    anchors.centerIn: parent
-                }
-
-                // Grid background
+                // Grid background (Inverted for Dark Mode)
                 Grid {
                     anchors.fill: parent
-                    opacity: 0.08
+                    opacity: 0.15
                     rows: 20; columns: 20
                     Repeater {
                         model: 400
@@ -259,7 +255,7 @@ ApplicationWindow {
                             Layout.fillWidth: true
                             width: parent.width/20
                             height: parent.height/20
-                            border.color: "#37474F"
+                            border.color: "#696969" // White lines, low opacity
                             color: "transparent"
                         }
                     }
@@ -269,16 +265,16 @@ ApplicationWindow {
                 Rectangle {
                     anchors.left: parent.left; anchors.top: parent.top
                     anchors.margins: 10
-                    color: "#ccffffff" // semi-transparent white
+                    color: "#AA1E1E2E" // semi-transparent dark
                     radius: 4
                     width: 100; height: 24
-                    border.color: "#ddd"
+                    border.color: borderColor
                     Text {
                         text: "▶ Live View"
                         anchors.centerIn: parent
                         font.pixelSize: 11
                         font.bold: true
-                        color: "#555"
+                        color: successColor
                     }
                 }
             }
@@ -296,28 +292,29 @@ ApplicationWindow {
                     columnSpacing: 8
 
                     StatusButton { text: "Sim"; baseColor: successColor; Layout.fillWidth: true }
-                    StatusButton { text: "Real"; baseColor: "#78909c"; Layout.fillWidth: true } // Grey for inactive/real
+                    StatusButton { text: "Real"; baseColor: "#546E7A"; Layout.fillWidth: true } // Grey for inactive/real
 
                     ActionButton { text: "On/Off"; Layout.fillWidth: true }
                     ActionButton { text: "Error Clr"; Layout.fillWidth: true }
                     ActionButton { text: "Mark Clr"; Layout.fillWidth: true }
                     StatusButton { text: "Home"; baseColor: primaryColor; Layout.fillWidth: true }
 
-                    StatusButton { text: "Pause/Run"; baseColor: "#FFA000"; Layout.fillWidth: true } // Amber
+                    StatusButton { text: "Pause/Run"; baseColor: warningColor; Layout.fillWidth: true }
                     StatusButton { text: "Start/Stop"; baseColor: dangerColor; Layout.fillWidth: true }
-                    StatusButton { text: "Exit"; baseColor: "#546E7A"; Layout.fillWidth: true }
+                    StatusButton { text: "Exit"; baseColor: "#78909c"; Layout.fillWidth: true }
                     ActionButton { text: "Close"; Layout.fillWidth: true }
 
                     // Speed Control
                     RowLayout {
                         Layout.columnSpan: 2
                         spacing: 5
-                        Text { text: "Speed:"; font.pixelSize: 11; color: "#555" }
+                        Text { text: "Speed:"; font.pixelSize: 11; color: textSec }
                         TextField {
                             text: "0.05";
                             Layout.fillWidth: true;
                             Layout.preferredHeight: 28
-                            background: Rectangle { border.color: "#ccc"; radius: 3 }
+                            color: textMain
+                            background: Rectangle { color: inputBg; border.color: borderColor; radius: 3 }
                             font.pixelSize: 12
                             horizontalAlignment: Text.AlignHCenter
                         }
@@ -325,7 +322,9 @@ ApplicationWindow {
 
                     // Status Bar
                     Rectangle {
-                        color: "#2e7d32" // Darker green for success message
+                        color: Qt.darker(successColor, 1.8) // Dark Green background
+                        border.color: successColor
+                        border.width: 1
                         radius: 4
                         Layout.columnSpan: 2
                         Layout.fillWidth: true
@@ -334,8 +333,8 @@ ApplicationWindow {
                         RowLayout {
                             anchors.centerIn: parent
                             spacing: 5
-                            Text { text: "✓"; color: "white"; font.bold: true }
-                            Text { text: "System Ready"; color: "white"; font.bold: true; font.pixelSize: 12 }
+                            Text { text: "✓"; color: successColor; font.bold: true }
+                            Text { text: "System Ready"; color: successColor; font.bold: true; font.pixelSize: 12 }
                         }
                     }
 
@@ -343,9 +342,11 @@ ApplicationWindow {
                     ActionButton { text: "Tool IP" }
                     TextField {
                         placeholderText: "Tool ID..."
+                        placeholderTextColor: "#555"
+                        color: textMain
                         Layout.fillWidth: true
                         Layout.preferredHeight: 30
-                        background: Rectangle { border.color: "#ccc"; radius: 3 }
+                        background: Rectangle { color: inputBg; border.color: borderColor; radius: 3 }
                     }
                     StatusButton { text: "ETH RST"; baseColor: "#00897B"; } // Teal
                 }
@@ -370,7 +371,7 @@ ApplicationWindow {
                     StatusButton { text: "EMERGENCY STOP"; baseColor: dangerColor; Layout.preferredWidth: 140 }
                     StatusButton { text: "MOVE"; baseColor: "#D84315"; Layout.preferredWidth: 80 } // Deep Orange
 
-                    Rectangle { width: 1; height: 30; color: "#ddd" } // Separator
+                    Rectangle { width: 1; height: 30; color: borderColor } // Separator
 
                     ActionButton { text: "Jog"; Layout.preferredWidth: 70 }
                     ActionButton { text: "Auto"; Layout.preferredWidth: 70 }
@@ -379,7 +380,7 @@ ApplicationWindow {
                 }
             }
 
-            // Coordinates Grid (UPDATED SECTION)
+            // Coordinates Grid
             PanelCard {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 220
@@ -405,28 +406,52 @@ ApplicationWindow {
                             value: 0.5
                             Layout.fillWidth: true
                             Layout.preferredHeight: 20
+                            background: Rectangle {
+                                x: parent.leftPadding
+                                y: parent.topPadding + parent.availableHeight / 2 - height / 2
+                                implicitWidth: 200
+                                implicitHeight: 4
+                                width: parent.availableWidth
+                                height: implicitHeight
+                                radius: 2
+                                color: "#3e3e50"
+                                Rectangle {
+                                    width: parent.visualPosition * parent.width
+                                    height: parent.height
+                                    color: primaryColor
+                                    radius: 2
+                                }
+                            }
+                            handle: Rectangle {
+                                x: parent.leftPadding + parent.visualPosition * (parent.availableWidth - width)
+                                y: parent.topPadding + parent.availableHeight / 2 - height / 2
+                                implicitWidth: 16
+                                implicitHeight: 16
+                                radius: 8
+                                color: primaryColor
+                            }
                         }
                         RowLayout {
-                            Text { text: "Ovr:"; font.pixelSize: 10; color: "#777" }
+                            Text { text: "Ovr:"; font.pixelSize: 10; color: textSec }
                             TextField {
                                 text: "100%";
                                 Layout.fillWidth: true;
                                 Layout.preferredHeight: 24
                                 font.pixelSize: 11
-                                background: Rectangle { border.color: "#ddd"; radius: 2 }
+                                color: textMain
+                                background: Rectangle { color: inputBg; border.color: borderColor; radius: 2 }
                             }
                         }
                     }
 
-                    Rectangle { width: 1; Layout.fillHeight: true; color: "#eee" } // Divider
+                    Rectangle { width: 1; Layout.fillHeight: true; color: borderColor } // Divider
 
-                    // Col 2: Cartesian (Merged)
+                    // Col 2: Cartesian
                     ColumnLayout {
                         Layout.alignment: Qt.AlignTop
                         Layout.fillWidth: true
                         Text { text: "CARTESIAN (Jog)"; color: primaryColor; font.bold: true; font.pixelSize: 11 }
 
-                        // Using new AxisControl for X+ Input X- layout
                         AxisControl { labelStart: "X"; valueText: "795.5"; labelEnd: "X-" }
                         AxisControl { labelStart: "Y"; valueText: "0.00"; labelEnd: "Y-" }
                         AxisControl { labelStart: "Z"; valueText: "1174.0"; labelEnd: "Z-" }
@@ -435,21 +460,21 @@ ApplicationWindow {
                         AxisControl { labelStart: "Rz"; valueText: "0.00"; labelEnd: "Rz-" }
                     }
 
-                    Rectangle { width: 1; Layout.fillHeight: true; color: "#eee" } // Divider
+                    Rectangle { width: 1; Layout.fillHeight: true; color: borderColor } // Divider
 
-                    // Col 3: Joints (Merged)
+                    // Col 3: Joints
                     ColumnLayout {
                         Layout.alignment: Qt.AlignTop
                         Layout.fillWidth: true
                         Text { text: "JOINTS (Jog)"; color: successColor; font.bold: true; font.pixelSize: 11 }
 
-                        // Green theme for Joints
-                        AxisControl { labelStart: "J1"; valueText: "0.00"; labelEnd: "J1-"; colorStart: "#E8F5E9" }
-                        AxisControl { labelStart: "J2"; valueText: "0.00"; labelEnd: "J2-"; colorStart: "#E8F5E9" }
-                        AxisControl { labelStart: "J3"; valueText: "0.00"; labelEnd: "J3-"; colorStart: "#E8F5E9" }
-                        AxisControl { labelStart: "J4"; valueText: "0.00"; labelEnd: "J4-"; colorStart: "#E8F5E9" }
-                        AxisControl { labelStart: "J5"; valueText: "89.99"; labelEnd: "J5-"; colorStart: "#E8F5E9" }
-                        AxisControl { labelStart: "J6"; valueText: "0.00"; labelEnd: "J6-"; colorStart: "#E8F5E9" }
+                        // Green theme logic handled by property, using darker bg for labels
+                        AxisControl { labelStart: "J1"; valueText: "0.00"; labelEnd: "J1-"; labelColor: accentColor }
+                        AxisControl { labelStart: "J2"; valueText: "0.00"; labelEnd: "J2-"; labelColor: accentColor }
+                        AxisControl { labelStart: "J3"; valueText: "0.00"; labelEnd: "J3-"; labelColor: accentColor }
+                        AxisControl { labelStart: "J4"; valueText: "0.00"; labelEnd: "J4-"; labelColor: accentColor }
+                        AxisControl { labelStart: "J5"; valueText: "89.99"; labelEnd: "J5-"; labelColor: accentColor }
+                        AxisControl { labelStart: "J6"; valueText: "0.00"; labelEnd: "J6-"; labelColor: accentColor }
                     }
                 }
             }
@@ -463,27 +488,26 @@ ApplicationWindow {
                     anchors.centerIn: parent
                     spacing: 15
 
-                    // Helper for mini inputs
                     component MiniInput: Row {
                         property string label: ""
                         property string val: ""
                         spacing: 2
-                        Rectangle { width: 25; height: 24; color: "#eee"; radius: 2;
+                        Rectangle { width: 25; height: 24; color: "#2F2F40"; radius: 2; border.color: borderColor
                             Text {
                                 text: parent.label !== undefined ? parent.label : ""
                                 anchors.centerIn: parent
                                 font.pixelSize: 11
+                                color: textSec
                             }
-
                         }
                         TextField {
                             text: parent.val !== undefined ? parent.val : ""
                             width: 50
                             height: 24
-                            background: Rectangle { border.color: "#ccc"; radius: 2 }
+                            color: textMain
+                            background: Rectangle { color: inputBg; border.color: borderColor; radius: 2 }
                             font.pixelSize: 11
                         }
-
                     }
 
                     MiniInput { label: "a"; val: "0" }
@@ -494,8 +518,8 @@ ApplicationWindow {
                 }
             }
 
-            // Tab Bar
             TabBar {
+                id: tabBar
                 Layout.fillWidth: true
                 contentHeight: 35
                 background: Rectangle { color: "transparent" }
@@ -504,39 +528,41 @@ ApplicationWindow {
                     model: ["Program", "Error Pos", "Encoder Offset", "Mech Setting"]
                     TabButton {
                         text: modelData
-                        checked: false   // <--- Add this
+                        checked: tabBar.currentIndex === index // bind to TabBar's currentIndex
                         width: implicitWidth + 20
+
+                        onClicked: tabBar.currentIndex = index // change active tab when clicked
 
                         contentItem: Text {
                             text: parent.text
                             font.family: fontFamily
                             font.pixelSize: 12
-                            font.bold: parent.checked !== undefined && parent.checked
-                            color: parent.checked !== undefined && parent.checked ? primaryColor : "#666"
+                            font.bold: parent.checked
+                            color: parent.checked ? primaryColor : textSec
                             horizontalAlignment: Text.AlignHCenter
                             verticalAlignment: Text.AlignVCenter
                         }
 
                         background: Rectangle {
-                            color: parent.checked !== undefined && parent.checked ? "white" : "#e0e0e0"
-                            border.color: "#ccc"
+                            color: parent.checked ? panelBg : "transparent"
+                            border.color: parent.checked ? borderColor : "transparent"
                             border.width: 1
                             radius: 4
-
                             Rectangle {
-                                visible: parent.checked !== undefined && parent.checked
+                                visible: tabBar.currentIndex === index
                                 height: 2
-                                anchors.bottom: parent.bottom
+                                anchors.top: parent.top
                                 anchors.left: parent.left
                                 anchors.right: parent.right
                                 anchors.margins: 1
-                                color: "white"
+                                color: primaryColor
                             }
+
                         }
                     }
-
                 }
             }
+
 
             // Data Tables
             RowLayout {
@@ -558,14 +584,12 @@ ApplicationWindow {
                         Rectangle {
                             Layout.fillWidth: true
                             height: 30
-                            color: "#f5f5f5"
-                            border.width: 0
-                            Rectangle { height: 1; anchors.bottom: parent.bottom; width: parent.width; color: "#ddd" }
+                            color: "#32324A" // Header specific color
                             Text {
                                 text: "Name        Value        Deg"
                                 anchors.verticalCenter: parent.verticalCenter
                                 x: 10
-                                font.bold: true; color: "#555"; font.pixelSize: 11
+                                font.bold: true; color: textSec; font.pixelSize: 11
                             }
                         }
 
@@ -573,19 +597,19 @@ ApplicationWindow {
                         Rectangle {
                             Layout.fillWidth: true
                             height: 30
-                            color: Qt.lighter(primaryColor, 1.8) // Selected Row Highlight
+                            color: "#1A40C4FF" // Transparent Blue highlight
 
                             Text {
-                                text: "13   usr_fr   x=749...   0"
+                                text: ""
                                 anchors.verticalCenter: parent.verticalCenter
                                 x: 10
                                 font.family: "Consolas"
                                 font.pixelSize: 12
-                                color: "#000"
+                                color: textMain
                             }
-                            Rectangle { width: 3; height: parent.height; color: primaryColor } // Selection indicator
+                            Rectangle { width: 3; height: parent.height; color: primaryColor }
                         }
-                        Item { Layout.fillHeight: true } // Spacer
+                        Item { Layout.fillHeight: true }
                     }
                 }
 
@@ -603,12 +627,11 @@ ApplicationWindow {
                         Rectangle {
                             Layout.fillWidth: true
                             height: 30
-                            color: "#f5f5f5"
-                            Rectangle { height: 1; anchors.bottom: parent.bottom; width: parent.width; color: "#ddd" }
+                            color: "#32324A"
                             Text {
                                 text: "   Inst    Name    Value    Deg    Speed"
                                 anchors.verticalCenter: parent.verticalCenter
-                                font.bold: true; color: "#555"; font.pixelSize: 11
+                                font.bold: true; color: textSec; font.pixelSize: 11
                             }
                         }
 
@@ -620,15 +643,15 @@ ApplicationWindow {
                                 Rectangle {
                                     width: parent.width
                                     height: 28
-                                    color: index % 2 === 0 ? "white" : "#fafafa" // Zebra striping
+                                    color: index % 2 === 0 ? "transparent" : "#32324A" // Zebra striping
                                     Text {
                                         text: (index + 1)
                                         anchors.verticalCenter: parent.verticalCenter
                                         x: 15
-                                        color: "#555"
+                                        color: textSec
                                         font.pixelSize: 12
                                     }
-                                    Rectangle { height: 1; width: parent.width; color: "#f0f0f0"; anchors.bottom: parent.bottom }
+                                    Rectangle { height: 1; width: parent.width; color: borderColor; anchors.bottom: parent.bottom; opacity: 0.5 }
                                 }
                             }
                         }
@@ -669,27 +692,41 @@ ApplicationWindow {
             PanelCard {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 50
-                color: "#f1f3f4" // Slightly darker for footer
+                color: "#181825" // Darker footer
 
                 RowLayout {
                     anchors.fill: parent
                     anchors.margins: 10
                     spacing: 10
 
-                    Text { text: "IP PG:"; font.bold: true; color: "#555" }
+                    Text { text: "IP PG:"; font.bold: true; color: textSec }
                     TextField {
                         placeholderText: "tpn..."
+                        placeholderTextColor: "#555"
                         Layout.preferredWidth: 100
-                        background: Rectangle { color: "white"; border.color: "#ccc"; radius: 3 }
+                        color: textMain
+                        background: Rectangle { color: inputBg; border.color: borderColor; radius: 3 }
                     }
 
                     TabBar {
                         Layout.fillWidth: true
                         Layout.preferredHeight: 30
                         background: Rectangle { color: "transparent" }
-                        TabButton { text: "Inst"; width: 80 }
-                        TabButton { text: "Debug"; width: 80 }
-                        TabButton { text: "Jog Deg"; width: 80 }
+                        TabButton {
+                            text: "Inst"; width: 80
+                            contentItem: Text { text: parent.text; color: textSec; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
+                            background: Rectangle { color: "transparent"; border.color: borderColor; radius: 3 }
+                        }
+                        TabButton {
+                            text: "Debug"; width: 80
+                            contentItem: Text { text: parent.text; color: textSec; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
+                            background: Rectangle { color: "transparent"; border.color: borderColor; radius: 3 }
+                        }
+                        TabButton {
+                            text: "Jog Deg"; width: 80
+                            contentItem: Text { text: parent.text; color: textSec; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
+                            background: Rectangle { color: "transparent"; border.color: borderColor; radius: 3 }
+                        }
                     }
                 }
             }

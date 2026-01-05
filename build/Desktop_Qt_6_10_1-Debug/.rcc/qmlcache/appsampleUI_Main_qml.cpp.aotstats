@@ -8,49 +8,65 @@
                         {
                             "codegenResult": 2,
                             "column": 20,
-                            "durationMicroseconds": 36,
+                            "durationMicroseconds": 35,
                             "functionName": "color",
-                            "line": 35,
+                            "line": 45,
                             "message": "Cannot access value for name btnColor"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 27,
+                            "durationMicroseconds": 12,
+                            "functionName": "color",
+                            "line": 46,
+                            "message": "Cannot access value for name borderColor"
                         },
                         {
                             "codegenResult": 0,
                             "column": 35,
-                            "durationMicroseconds": 76,
+                            "durationMicroseconds": 75,
                             "functionName": "height",
-                            "line": 42,
+                            "line": 51,
                             "message": ""
                         },
                         {
                             "codegenResult": 2,
                             "column": 24,
-                            "durationMicroseconds": 35,
+                            "durationMicroseconds": 34,
                             "functionName": "color",
-                            "line": 44,
+                            "line": 53,
                             "message": "Cannot load property color from (component in /home/sabarish/sampleUI/Main.qml)::parent with type QQuickItem."
                         },
                         {
                             "codegenResult": 0,
                             "column": 32,
-                            "durationMicroseconds": 53,
+                            "durationMicroseconds": 52,
                             "functionName": "right",
-                            "line": 43,
+                            "line": 52,
                             "message": ""
                         },
                         {
                             "codegenResult": 2,
                             "column": 23,
-                            "durationMicroseconds": 15,
+                            "durationMicroseconds": 16,
                             "functionName": "text",
-                            "line": 48,
+                            "line": 57,
                             "message": "Cannot access value for name labelText"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 24,
+                            "durationMicroseconds": 10,
+                            "functionName": "color",
+                            "line": 59,
+                            "message": "Cannot access value for name textSec"
                         },
                         {
                             "codegenResult": 0,
                             "column": 35,
                             "durationMicroseconds": 28,
                             "functionName": "centerIn",
-                            "line": 49,
+                            "line": 58,
                             "message": ""
                         },
                         {
@@ -58,7 +74,7 @@
                             "column": 30,
                             "durationMicroseconds": 13,
                             "functionName": "family",
-                            "line": 51,
+                            "line": 60,
                             "message": "Cannot access value for name fontFamily"
                         },
                         {
@@ -66,15 +82,39 @@
                             "column": 19,
                             "durationMicroseconds": 0,
                             "functionName": "text",
-                            "line": 58,
+                            "line": 67,
                             "message": "Could not find property \"text\"."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 20,
+                            "durationMicroseconds": 0,
+                            "functionName": "color",
+                            "line": 70,
+                            "message": "Could not find property \"color\"."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 32,
+                            "durationMicroseconds": 0,
+                            "functionName": "selectedTextColor",
+                            "line": 71,
+                            "message": "Could not find property \"selectedTextColor\"."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 29,
+                            "durationMicroseconds": 0,
+                            "functionName": "selectionColor",
+                            "line": 72,
+                            "message": "Could not find property \"selectionColor\"."
                         },
                         {
                             "codegenResult": 2,
                             "column": 34,
                             "durationMicroseconds": 0,
                             "functionName": "horizontalAlignment",
-                            "line": 79,
+                            "line": 89,
                             "message": "Could not find property \"horizontalAlignment\"."
                         },
                         {
@@ -82,31 +122,47 @@
                             "column": 32,
                             "durationMicroseconds": 0,
                             "functionName": "verticalAlignment",
-                            "line": 80,
+                            "line": 90,
                             "message": "Could not find property \"verticalAlignment\"."
                         },
                         {
                             "codegenResult": 2,
-                            "column": 31,
-                            "durationMicroseconds": 24,
+                            "column": 24,
+                            "durationMicroseconds": 11,
                             "functionName": "color",
-                            "line": 65,
+                            "line": 75,
+                            "message": "Cannot access value for name inputBg"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 31,
+                            "durationMicroseconds": 30,
+                            "functionName": "color",
+                            "line": 76,
                             "message": "Cannot access value for name primaryColor"
                         },
                         {
                             "codegenResult": 0,
                             "column": 39,
-                            "durationMicroseconds": 45,
+                            "durationMicroseconds": 41,
                             "functionName": "height",
-                            "line": 70,
+                            "line": 80,
                             "message": ""
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 28,
+                            "durationMicroseconds": 29,
+                            "functionName": "color",
+                            "line": 82,
+                            "message": "Cannot load property color from (component in /home/sabarish/sampleUI/Main.qml)::parent with type QQuickItem."
                         },
                         {
                             "codegenResult": 0,
                             "column": 35,
-                            "durationMicroseconds": 42,
+                            "durationMicroseconds": 41,
                             "functionName": "left",
-                            "line": 71,
+                            "line": 81,
                             "message": ""
                         },
                         {
@@ -114,39 +170,55 @@
                             "column": 26,
                             "durationMicroseconds": 0,
                             "functionName": "family",
-                            "line": 75,
+                            "line": 85,
                             "message": "Could not find property \"family\"."
                         },
                         {
                             "codegenResult": 2,
-                            "column": 20,
+                            "column": 36,
                             "durationMicroseconds": 13,
+                            "functionName": "labelColor",
+                            "line": 101,
+                            "message": "Cannot access value for name textSec"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 20,
+                            "durationMicroseconds": 11,
                             "functionName": "color",
-                            "line": 97,
+                            "line": 108,
                             "message": "Cannot access value for name colorStart"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 27,
+                            "durationMicroseconds": 10,
+                            "functionName": "color",
+                            "line": 109,
+                            "message": "Cannot access value for name borderColor"
                         },
                         {
                             "codegenResult": 0,
                             "column": 43,
-                            "durationMicroseconds": 35,
+                            "durationMicroseconds": 37,
                             "functionName": "height",
-                            "line": 101,
+                            "line": 111,
                             "message": ""
                         },
                         {
                             "codegenResult": 2,
                             "column": 94,
-                            "durationMicroseconds": 29,
+                            "durationMicroseconds": 26,
                             "functionName": "color",
-                            "line": 101,
+                            "line": 111,
                             "message": "Cannot load property color from (component in /home/sabarish/sampleUI/Main.qml)::parent with type QQuickItem."
                         },
                         {
                             "codegenResult": 0,
                             "column": 73,
-                            "durationMicroseconds": 41,
+                            "durationMicroseconds": 40,
                             "functionName": "right",
-                            "line": 101,
+                            "line": 111,
                             "message": ""
                         },
                         {
@@ -154,15 +226,23 @@
                             "column": 26,
                             "durationMicroseconds": 14,
                             "functionName": "text",
-                            "line": 102,
+                            "line": 112,
                             "message": "Cannot access value for name labelStart"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 108,
+                            "durationMicroseconds": 9,
+                            "functionName": "color",
+                            "line": 112,
+                            "message": "Cannot access value for name labelColor"
                         },
                         {
                             "codegenResult": 0,
                             "column": 56,
                             "durationMicroseconds": 26,
                             "functionName": "centerIn",
-                            "line": 102,
+                            "line": 112,
                             "message": ""
                         },
                         {
@@ -170,15 +250,39 @@
                             "column": 19,
                             "durationMicroseconds": 0,
                             "functionName": "text",
-                            "line": 107,
+                            "line": 117,
                             "message": "Could not find property \"text\"."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 20,
+                            "durationMicroseconds": 0,
+                            "functionName": "color",
+                            "line": 121,
+                            "message": "Could not find property \"color\"."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 32,
+                            "durationMicroseconds": 0,
+                            "functionName": "selectedTextColor",
+                            "line": 123,
+                            "message": "Could not find property \"selectedTextColor\"."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 29,
+                            "durationMicroseconds": 0,
+                            "functionName": "selectionColor",
+                            "line": 124,
+                            "message": "Could not find property \"selectionColor\"."
                         },
                         {
                             "codegenResult": 2,
                             "column": 34,
                             "durationMicroseconds": 0,
                             "functionName": "horizontalAlignment",
-                            "line": 116,
+                            "line": 130,
                             "message": "Could not find property \"horizontalAlignment\"."
                         },
                         {
@@ -186,71 +290,95 @@
                             "column": 32,
                             "durationMicroseconds": 0,
                             "functionName": "verticalAlignment",
-                            "line": 117,
+                            "line": 131,
                             "message": "Could not find property \"verticalAlignment\"."
-                        },
-                        {
-                            "codegenResult": 2,
-                            "column": 31,
-                            "durationMicroseconds": 23,
-                            "functionName": "color",
-                            "line": 113,
-                            "message": "Cannot access value for name primaryColor"
                         },
                         {
                             "codegenResult": 2,
                             "column": 26,
                             "durationMicroseconds": 0,
                             "functionName": "family",
-                            "line": 118,
+                            "line": 132,
                             "message": "Could not find property \"family\"."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 24,
+                            "durationMicroseconds": 14,
+                            "functionName": "color",
+                            "line": 127,
+                            "message": "Cannot access value for name inputBg"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 31,
+                            "durationMicroseconds": 27,
+                            "functionName": "color",
+                            "line": 128,
+                            "message": "Cannot access value for name primaryColor"
                         },
                         {
                             "codegenResult": 2,
                             "column": 20,
                             "durationMicroseconds": 10,
                             "functionName": "color",
-                            "line": 126,
+                            "line": 140,
                             "message": "Cannot access value for name colorEnd"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 27,
+                            "durationMicroseconds": 9,
+                            "functionName": "color",
+                            "line": 141,
+                            "message": "Cannot access value for name borderColor"
                         },
                         {
                             "codegenResult": 0,
                             "column": 43,
                             "durationMicroseconds": 36,
                             "functionName": "height",
-                            "line": 130,
+                            "line": 143,
                             "message": ""
                         },
                         {
                             "codegenResult": 2,
                             "column": 92,
-                            "durationMicroseconds": 27,
+                            "durationMicroseconds": 26,
                             "functionName": "color",
-                            "line": 130,
+                            "line": 143,
                             "message": "Cannot load property color from (component in /home/sabarish/sampleUI/Main.qml)::parent with type QQuickItem."
                         },
                         {
                             "codegenResult": 0,
                             "column": 72,
-                            "durationMicroseconds": 41,
+                            "durationMicroseconds": 39,
                             "functionName": "left",
-                            "line": 130,
+                            "line": 143,
                             "message": ""
                         },
                         {
                             "codegenResult": 2,
                             "column": 26,
-                            "durationMicroseconds": 14,
+                            "durationMicroseconds": 13,
                             "functionName": "text",
-                            "line": 131,
+                            "line": 144,
                             "message": "Cannot access value for name labelEnd"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 106,
+                            "durationMicroseconds": 9,
+                            "functionName": "color",
+                            "line": 144,
+                            "message": "Cannot access value for name labelColor"
                         },
                         {
                             "codegenResult": 0,
                             "column": 54,
                             "durationMicroseconds": 27,
                             "functionName": "centerIn",
-                            "line": 131,
+                            "line": 144,
                             "message": ""
                         },
                         {
@@ -258,55 +386,55 @@
                             "column": 35,
                             "durationMicroseconds": 10,
                             "functionName": "baseColor",
-                            "line": 137,
+                            "line": 150,
                             "message": "Cannot access value for name successColor"
                         },
                         {
                             "codegenResult": 2,
                             "column": 20,
-                            "durationMicroseconds": 116,
+                            "durationMicroseconds": 113,
                             "functionName": "color",
-                            "line": 141,
+                            "line": 154,
+                            "message": "Cannot load property down from (component in /home/sabarish/sampleUI/Main.qml)::parent with type QQuickItem."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 22,
+                            "durationMicroseconds": 26,
+                            "functionName": "opacity",
+                            "line": 158,
                             "message": "Cannot load property down from (component in /home/sabarish/sampleUI/Main.qml)::parent with type QQuickItem."
                         },
                         {
                             "codegenResult": 2,
                             "column": 27,
-                            "durationMicroseconds": 19,
-                            "functionName": "color",
-                            "line": 143,
-                            "message": "Cannot access value for name baseColor"
-                        },
-                        {
-                            "codegenResult": 2,
-                            "column": 54,
-                            "durationMicroseconds": 18,
-                            "functionName": "color",
-                            "line": 148,
-                            "message": "Cannot access value for name baseColor"
-                        },
-                        {
-                            "codegenResult": 2,
-                            "column": 54,
                             "durationMicroseconds": 10,
                             "functionName": "color",
-                            "line": 149,
+                            "line": 156,
                             "message": "Cannot access value for name baseColor"
                         },
                         {
                             "codegenResult": 2,
                             "column": 19,
-                            "durationMicroseconds": 26,
+                            "durationMicroseconds": 25,
                             "functionName": "text",
-                            "line": 153,
+                            "line": 161,
                             "message": "Cannot load property text from (component in /home/sabarish/sampleUI/Main.qml)::parent with type QQuickItem."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 20,
+                            "durationMicroseconds": 10,
+                            "functionName": "color",
+                            "line": 162,
+                            "message": "Cannot access value for name textMain"
                         },
                         {
                             "codegenResult": 0,
                             "column": 34,
-                            "durationMicroseconds": 38,
+                            "durationMicroseconds": 44,
                             "functionName": "horizontalAlignment",
-                            "line": 158,
+                            "line": 166,
                             "message": ""
                         },
                         {
@@ -314,47 +442,71 @@
                             "column": 32,
                             "durationMicroseconds": 29,
                             "functionName": "verticalAlignment",
-                            "line": 159,
+                            "line": 167,
                             "message": ""
                         },
                         {
                             "codegenResult": 0,
                             "column": 20,
-                            "durationMicroseconds": 35,
+                            "durationMicroseconds": 26,
                             "functionName": "elide",
-                            "line": 160,
+                            "line": 168,
+                            "message": ""
+                        },
+                        {
+                            "codegenResult": 0,
+                            "column": 20,
+                            "durationMicroseconds": 25,
+                            "functionName": "style",
+                            "line": 169,
                             "message": ""
                         },
                         {
                             "codegenResult": 2,
                             "column": 26,
-                            "durationMicroseconds": 13,
+                            "durationMicroseconds": 17,
                             "functionName": "family",
-                            "line": 155,
+                            "line": 163,
                             "message": "Cannot access value for name fontFamily"
                         },
                         {
                             "codegenResult": 2,
                             "column": 20,
-                            "durationMicroseconds": 57,
+                            "durationMicroseconds": 61,
                             "functionName": "color",
-                            "line": 167,
+                            "line": 177,
                             "message": "Cannot load property down from (component in /home/sabarish/sampleUI/Main.qml)::parent with type QQuickItem."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 27,
+                            "durationMicroseconds": 10,
+                            "functionName": "color",
+                            "line": 179,
+                            "message": "Cannot access value for name borderColor"
                         },
                         {
                             "codegenResult": 2,
                             "column": 19,
                             "durationMicroseconds": 23,
                             "functionName": "text",
-                            "line": 173,
+                            "line": 183,
                             "message": "Cannot load property text from (component in /home/sabarish/sampleUI/Main.qml)::parent with type QQuickItem."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 20,
+                            "durationMicroseconds": 9,
+                            "functionName": "color",
+                            "line": 184,
+                            "message": "Cannot access value for name textSec"
                         },
                         {
                             "codegenResult": 0,
                             "column": 34,
-                            "durationMicroseconds": 32,
+                            "durationMicroseconds": 33,
                             "functionName": "horizontalAlignment",
-                            "line": 177,
+                            "line": 187,
                             "message": ""
                         },
                         {
@@ -362,15 +514,15 @@
                             "column": 32,
                             "durationMicroseconds": 27,
                             "functionName": "verticalAlignment",
-                            "line": 178,
+                            "line": 188,
                             "message": ""
                         },
                         {
                             "codegenResult": 2,
                             "column": 26,
-                            "durationMicroseconds": 12,
+                            "durationMicroseconds": 13,
                             "functionName": "family",
-                            "line": 175,
+                            "line": 185,
                             "message": "Cannot access value for name fontFamily"
                         },
                         {
@@ -378,21 +530,21 @@
                             "column": 16,
                             "durationMicroseconds": 9,
                             "functionName": "color",
-                            "line": 184,
+                            "line": 194,
                             "message": "Cannot access value for name panelBg"
                         },
                         {
-                            "codegenResult": 0,
-                            "column": 27,
-                            "durationMicroseconds": 27,
-                            "functionName": "fill",
-                            "line": 191,
-                            "message": ""
+                            "codegenResult": 2,
+                            "column": 23,
+                            "durationMicroseconds": 9,
+                            "functionName": "color",
+                            "line": 196,
+                            "message": "Cannot access value for name borderColor"
                         },
                         {
                             "codegenResult": 0,
                             "column": 23,
-                            "durationMicroseconds": 25,
+                            "durationMicroseconds": 27,
                             "functionName": "fill",
                             "line": 203,
                             "message": ""
@@ -431,6 +583,14 @@
                         },
                         {
                             "codegenResult": 2,
+                            "column": 32,
+                            "durationMicroseconds": 11,
+                            "functionName": "color",
+                            "line": 235,
+                            "message": "Cannot access value for name textSec"
+                        },
+                        {
+                            "codegenResult": 2,
                             "column": 38,
                             "durationMicroseconds": 11,
                             "functionName": "family",
@@ -439,42 +599,34 @@
                         },
                         {
                             "codegenResult": 0,
-                            "column": 39,
-                            "durationMicroseconds": 26,
-                            "functionName": "centerIn",
-                            "line": 248,
-                            "message": ""
-                        },
-                        {
-                            "codegenResult": 0,
                             "column": 35,
-                            "durationMicroseconds": 24,
+                            "durationMicroseconds": 27,
                             "functionName": "fill",
-                            "line": 253,
+                            "line": 249,
                             "message": ""
                         },
                         {
                             "codegenResult": 0,
                             "column": 36,
-                            "durationMicroseconds": 54,
+                            "durationMicroseconds": 53,
                             "functionName": "width",
-                            "line": 260,
+                            "line": 256,
                             "message": ""
                         },
                         {
                             "codegenResult": 0,
                             "column": 37,
-                            "durationMicroseconds": 48,
+                            "durationMicroseconds": 46,
                             "functionName": "height",
-                            "line": 261,
+                            "line": 257,
                             "message": ""
                         },
                         {
                             "codegenResult": 0,
                             "column": 35,
-                            "durationMicroseconds": 41,
+                            "durationMicroseconds": 43,
                             "functionName": "left",
-                            "line": 270,
+                            "line": 266,
                             "message": ""
                         },
                         {
@@ -482,15 +634,31 @@
                             "column": 61,
                             "durationMicroseconds": 36,
                             "functionName": "top",
-                            "line": 270,
+                            "line": 266,
                             "message": ""
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 35,
+                            "durationMicroseconds": 15,
+                            "functionName": "color",
+                            "line": 271,
+                            "message": "Cannot access value for name borderColor"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 32,
+                            "durationMicroseconds": 12,
+                            "functionName": "color",
+                            "line": 277,
+                            "message": "Cannot access value for name successColor"
                         },
                         {
                             "codegenResult": 0,
                             "column": 43,
-                            "durationMicroseconds": 25,
+                            "durationMicroseconds": 26,
                             "functionName": "centerIn",
-                            "line": 278,
+                            "line": 274,
                             "message": ""
                         },
                         {
@@ -498,15 +666,15 @@
                             "column": 35,
                             "durationMicroseconds": 24,
                             "functionName": "fill",
-                            "line": 292,
+                            "line": 288,
                             "message": ""
                         },
                         {
                             "codegenResult": 2,
                             "column": 60,
-                            "durationMicroseconds": 15,
+                            "durationMicroseconds": 14,
                             "functionName": "baseColor",
-                            "line": 298,
+                            "line": 294,
                             "message": "Cannot access value for name successColor"
                         },
                         {
@@ -514,39 +682,135 @@
                             "column": 61,
                             "durationMicroseconds": 11,
                             "functionName": "baseColor",
-                            "line": 304,
+                            "line": 300,
                             "message": "Cannot access value for name primaryColor"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 66,
+                            "durationMicroseconds": 10,
+                            "functionName": "baseColor",
+                            "line": 302,
+                            "message": "Cannot access value for name warningColor"
                         },
                         {
                             "codegenResult": 2,
                             "column": 67,
                             "durationMicroseconds": 10,
                             "functionName": "baseColor",
-                            "line": 307,
+                            "line": 303,
                             "message": "Cannot access value for name dangerColor"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 75,
+                            "durationMicroseconds": 12,
+                            "functionName": "color",
+                            "line": 311,
+                            "message": "Cannot access value for name textSec"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 36,
+                            "durationMicroseconds": 0,
+                            "functionName": "color",
+                            "line": 316,
+                            "message": "Could not find property \"color\"."
                         },
                         {
                             "codegenResult": 2,
                             "column": 50,
                             "durationMicroseconds": 0,
                             "functionName": "horizontalAlignment",
-                            "line": 322,
+                            "line": 319,
                             "message": "Could not find property \"horizontalAlignment\"."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 60,
+                            "durationMicroseconds": 13,
+                            "functionName": "color",
+                            "line": 317,
+                            "message": "Cannot access value for name inputBg"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 83,
+                            "durationMicroseconds": 12,
+                            "functionName": "color",
+                            "line": 317,
+                            "message": "Cannot access value for name borderColor"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 32,
+                            "durationMicroseconds": 23,
+                            "functionName": "color",
+                            "line": 325,
+                            "message": "Cannot access value for name successColor"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 39,
+                            "durationMicroseconds": 12,
+                            "functionName": "color",
+                            "line": 326,
+                            "message": "Cannot access value for name successColor"
                         },
                         {
                             "codegenResult": 0,
                             "column": 47,
                             "durationMicroseconds": 28,
                             "functionName": "centerIn",
-                            "line": 335,
+                            "line": 334,
                             "message": ""
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 54,
+                            "durationMicroseconds": 16,
+                            "functionName": "color",
+                            "line": 336,
+                            "message": "Cannot access value for name successColor"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 65,
+                            "durationMicroseconds": 12,
+                            "functionName": "color",
+                            "line": 337,
+                            "message": "Cannot access value for name successColor"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 32,
+                            "durationMicroseconds": 0,
+                            "functionName": "color",
+                            "line": 346,
+                            "message": "Could not find property \"color\"."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 56,
+                            "durationMicroseconds": 12,
+                            "functionName": "color",
+                            "line": 349,
+                            "message": "Cannot access value for name inputBg"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 79,
+                            "durationMicroseconds": 11,
+                            "functionName": "color",
+                            "line": 349,
+                            "message": "Cannot access value for name borderColor"
                         },
                         {
                             "codegenResult": 0,
                             "column": 35,
-                            "durationMicroseconds": 25,
+                            "durationMicroseconds": 26,
                             "functionName": "fill",
-                            "line": 366,
+                            "line": 367,
                             "message": ""
                         },
                         {
@@ -554,31 +818,39 @@
                             "column": 71,
                             "durationMicroseconds": 13,
                             "functionName": "baseColor",
-                            "line": 370,
+                            "line": 371,
                             "message": "Cannot access value for name dangerColor"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 62,
+                            "durationMicroseconds": 11,
+                            "functionName": "color",
+                            "line": 374,
+                            "message": "Cannot access value for name borderColor"
                         },
                         {
                             "codegenResult": 2,
                             "column": 63,
                             "durationMicroseconds": 10,
                             "functionName": "baseColor",
-                            "line": 377,
+                            "line": 378,
                             "message": "Cannot access value for name successColor"
                         },
                         {
                             "codegenResult": 0,
                             "column": 35,
-                            "durationMicroseconds": 26,
+                            "durationMicroseconds": 25,
                             "functionName": "fill",
-                            "line": 388,
+                            "line": 389,
                             "message": ""
                         },
                         {
                             "codegenResult": 0,
                             "column": 43,
-                            "durationMicroseconds": 35,
+                            "durationMicroseconds": 36,
                             "functionName": "alignment",
-                            "line": 394,
+                            "line": 395,
                             "message": ""
                         },
                         {
@@ -586,63 +858,255 @@
                             "column": 57,
                             "durationMicroseconds": 16,
                             "functionName": "color",
-                            "line": 395,
+                            "line": 396,
                             "message": "Cannot access value for name primaryColor"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 36,
+                            "durationMicroseconds": 35,
+                            "functionName": "x",
+                            "line": 410,
+                            "message": "Cannot load property leftPadding from (component in /home/sabarish/sampleUI/Main.qml)::parent with type QQuickItem."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 36,
+                            "durationMicroseconds": 65,
+                            "functionName": "y",
+                            "line": 411,
+                            "message": "Cannot load property topPadding from (component in /home/sabarish/sampleUI/Main.qml)::parent with type QQuickItem."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 40,
+                            "durationMicroseconds": 27,
+                            "functionName": "width",
+                            "line": 414,
+                            "message": "Cannot load property availableWidth from (component in /home/sabarish/sampleUI/Main.qml)::parent with type QQuickItem."
+                        },
+                        {
+                            "codegenResult": 0,
+                            "column": 41,
+                            "durationMicroseconds": 25,
+                            "functionName": "height",
+                            "line": 415,
+                            "message": ""
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 44,
+                            "durationMicroseconds": 40,
+                            "functionName": "width",
+                            "line": 419,
+                            "message": "Cannot load property visualPosition from (component in /home/sabarish/sampleUI/Main.qml)::parent with type QQuickItem."
+                        },
+                        {
+                            "codegenResult": 0,
+                            "column": 45,
+                            "durationMicroseconds": 34,
+                            "functionName": "height",
+                            "line": 420,
+                            "message": ""
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 44,
+                            "durationMicroseconds": 15,
+                            "functionName": "color",
+                            "line": 421,
+                            "message": "Cannot access value for name primaryColor"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 36,
+                            "durationMicroseconds": 91,
+                            "functionName": "x",
+                            "line": 426,
+                            "message": "Cannot load property leftPadding from (component in /home/sabarish/sampleUI/Main.qml)::parent with type QQuickItem."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 36,
+                            "durationMicroseconds": 59,
+                            "functionName": "y",
+                            "line": 427,
+                            "message": "Cannot load property topPadding from (component in /home/sabarish/sampleUI/Main.qml)::parent with type QQuickItem."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 40,
+                            "durationMicroseconds": 13,
+                            "functionName": "color",
+                            "line": 431,
+                            "message": "Cannot access value for name primaryColor"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 77,
+                            "durationMicroseconds": 13,
+                            "functionName": "color",
+                            "line": 435,
+                            "message": "Cannot access value for name textSec"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 40,
+                            "durationMicroseconds": 0,
+                            "functionName": "color",
+                            "line": 441,
+                            "message": "Could not find property \"color\"."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 64,
+                            "durationMicroseconds": 14,
+                            "functionName": "color",
+                            "line": 442,
+                            "message": "Cannot access value for name inputBg"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 87,
+                            "durationMicroseconds": 12,
+                            "functionName": "color",
+                            "line": 442,
+                            "message": "Cannot access value for name borderColor"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 75,
+                            "durationMicroseconds": 11,
+                            "functionName": "color",
+                            "line": 447,
+                            "message": "Cannot access value for name borderColor"
                         },
                         {
                             "codegenResult": 0,
                             "column": 43,
-                            "durationMicroseconds": 33,
+                            "durationMicroseconds": 37,
                             "functionName": "alignment",
-                            "line": 425,
+                            "line": 451,
                             "message": ""
                         },
                         {
                             "codegenResult": 2,
                             "column": 64,
-                            "durationMicroseconds": 15,
+                            "durationMicroseconds": 17,
                             "functionName": "color",
-                            "line": 427,
+                            "line": 453,
                             "message": "Cannot access value for name primaryColor"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 75,
+                            "durationMicroseconds": 12,
+                            "functionName": "color",
+                            "line": 463,
+                            "message": "Cannot access value for name borderColor"
                         },
                         {
                             "codegenResult": 0,
                             "column": 43,
-                            "durationMicroseconds": 31,
+                            "durationMicroseconds": 34,
                             "functionName": "alignment",
-                            "line": 442,
+                            "line": 467,
                             "message": ""
                         },
                         {
                             "codegenResult": 2,
                             "column": 61,
-                            "durationMicroseconds": 15,
+                            "durationMicroseconds": 16,
                             "functionName": "color",
-                            "line": 444,
+                            "line": 469,
                             "message": "Cannot access value for name successColor"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 105,
+                            "durationMicroseconds": 13,
+                            "functionName": "labelColor",
+                            "line": 472,
+                            "message": "Cannot access value for name accentColor"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 105,
+                            "durationMicroseconds": 13,
+                            "functionName": "labelColor",
+                            "line": 473,
+                            "message": "Cannot access value for name accentColor"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 105,
+                            "durationMicroseconds": 13,
+                            "functionName": "labelColor",
+                            "line": 474,
+                            "message": "Cannot access value for name accentColor"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 105,
+                            "durationMicroseconds": 12,
+                            "functionName": "labelColor",
+                            "line": 475,
+                            "message": "Cannot access value for name accentColor"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 106,
+                            "durationMicroseconds": 13,
+                            "functionName": "labelColor",
+                            "line": 476,
+                            "message": "Cannot access value for name accentColor"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 105,
+                            "durationMicroseconds": 12,
+                            "functionName": "labelColor",
+                            "line": 477,
+                            "message": "Cannot access value for name accentColor"
                         },
                         {
                             "codegenResult": 0,
                             "column": 39,
-                            "durationMicroseconds": 27,
+                            "durationMicroseconds": 37,
                             "functionName": "centerIn",
-                            "line": 463,
+                            "line": 488,
                             "message": ""
                         },
                         {
                             "codegenResult": 2,
+                            "column": 103,
+                            "durationMicroseconds": 16,
+                            "functionName": "color",
+                            "line": 495,
+                            "message": "Cannot access value for name borderColor"
+                        },
+                        {
+                            "codegenResult": 2,
                             "column": 39,
-                            "durationMicroseconds": 62,
+                            "durationMicroseconds": 71,
                             "functionName": "text",
-                            "line": 473,
+                            "line": 497,
                             "message": "Cannot load property label from (component in /home/sabarish/sampleUI/Main.qml)::parent with type QQuickItem."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 40,
+                            "durationMicroseconds": 14,
+                            "functionName": "color",
+                            "line": 500,
+                            "message": "Cannot access value for name textSec"
                         },
                         {
                             "codegenResult": 0,
                             "column": 51,
-                            "durationMicroseconds": 27,
+                            "durationMicroseconds": 33,
                             "functionName": "centerIn",
-                            "line": 474,
+                            "line": 498,
                             "message": ""
                         },
                         {
@@ -650,15 +1114,39 @@
                             "column": 35,
                             "durationMicroseconds": 0,
                             "functionName": "text",
-                            "line": 480,
+                            "line": 504,
                             "message": "Could not find property \"text\"."
                         },
                         {
                             "codegenResult": 2,
+                            "column": 36,
+                            "durationMicroseconds": 0,
+                            "functionName": "color",
+                            "line": 507,
+                            "message": "Could not find property \"color\"."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 60,
+                            "durationMicroseconds": 16,
+                            "functionName": "color",
+                            "line": 508,
+                            "message": "Cannot access value for name inputBg"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 83,
+                            "durationMicroseconds": 13,
+                            "functionName": "color",
+                            "line": 508,
+                            "message": "Cannot access value for name borderColor"
+                        },
+                        {
+                            "codegenResult": 2,
                             "column": 28,
-                            "durationMicroseconds": 78,
+                            "durationMicroseconds": 109,
                             "functionName": "model",
-                            "line": 504,
+                            "line": 528,
                             "message": "Cannot generate efficient code for storing an array in a non-sequence type"
                         },
                         {
@@ -666,31 +1154,47 @@
                             "column": 31,
                             "durationMicroseconds": 0,
                             "functionName": "text",
-                            "line": 506,
+                            "line": 530,
                             "message": "Could not find property \"text\"."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 34,
+                            "durationMicroseconds": 0,
+                            "functionName": "checked",
+                            "line": 531,
+                            "message": "Could not find property \"checked\"."
                         },
                         {
                             "codegenResult": 2,
                             "column": 32,
                             "durationMicroseconds": 0,
                             "functionName": "width",
-                            "line": 508,
+                            "line": 532,
                             "message": "Could not find property \"width\"."
                         },
                         {
                             "codegenResult": 2,
+                            "column": 36,
+                            "durationMicroseconds": 0,
+                            "functionName": "onClicked",
+                            "line": 534,
+                            "message": "Could not find signal \"clicked\"."
+                        },
+                        {
+                            "codegenResult": 2,
                             "column": 35,
-                            "durationMicroseconds": 36,
+                            "durationMicroseconds": 50,
                             "functionName": "text",
-                            "line": 511,
+                            "line": 537,
                             "message": "Cannot load property text from (component in /home/sabarish/sampleUI/Main.qml)::parent with type QQuickItem."
                         },
                         {
                             "codegenResult": 2,
                             "column": 36,
-                            "durationMicroseconds": 66,
+                            "durationMicroseconds": 52,
                             "functionName": "color",
-                            "line": 515,
+                            "line": 541,
                             "message": "Cannot load property checked from (component in /home/sabarish/sampleUI/Main.qml)::parent with type QQuickItem."
                         },
                         {
@@ -698,15 +1202,15 @@
                             "column": 50,
                             "durationMicroseconds": 36,
                             "functionName": "horizontalAlignment",
-                            "line": 516,
+                            "line": 542,
                             "message": ""
                         },
                         {
                             "codegenResult": 0,
                             "column": 48,
-                            "durationMicroseconds": 29,
+                            "durationMicroseconds": 36,
                             "functionName": "verticalAlignment",
-                            "line": 517,
+                            "line": 543,
                             "message": ""
                         },
                         {
@@ -714,39 +1218,55 @@
                             "column": 42,
                             "durationMicroseconds": 16,
                             "functionName": "family",
-                            "line": 512,
+                            "line": 538,
                             "message": "Cannot access value for name fontFamily"
                         },
                         {
                             "codegenResult": 2,
                             "column": 40,
-                            "durationMicroseconds": 51,
+                            "durationMicroseconds": 33,
                             "functionName": "bold",
-                            "line": 514,
+                            "line": 540,
                             "message": "Cannot load property checked from (component in /home/sabarish/sampleUI/Main.qml)::parent with type QQuickItem."
                         },
                         {
                             "codegenResult": 2,
                             "column": 36,
-                            "durationMicroseconds": 51,
+                            "durationMicroseconds": 45,
                             "functionName": "color",
-                            "line": 521,
+                            "line": 547,
+                            "message": "Cannot load property checked from (component in /home/sabarish/sampleUI/Main.qml)::parent with type QQuickItem."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 43,
+                            "durationMicroseconds": 43,
+                            "functionName": "color",
+                            "line": 548,
                             "message": "Cannot load property checked from (component in /home/sabarish/sampleUI/Main.qml)::parent with type QQuickItem."
                         },
                         {
                             "codegenResult": 2,
                             "column": 42,
-                            "durationMicroseconds": 45,
+                            "durationMicroseconds": 113,
                             "functionName": "visible",
-                            "line": 527,
-                            "message": "Cannot load property checked from (component in /home/sabarish/sampleUI/Main.qml)::parent with type QQuickItem."
+                            "line": 552,
+                            "message": "Cannot access value for name tabBar"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 40,
+                            "durationMicroseconds": 12,
+                            "functionName": "color",
+                            "line": 558,
+                            "message": "Cannot access value for name primaryColor"
                         },
                         {
                             "codegenResult": 0,
-                            "column": 49,
-                            "durationMicroseconds": 46,
-                            "functionName": "bottom",
-                            "line": 529,
+                            "column": 46,
+                            "durationMicroseconds": 54,
+                            "functionName": "top",
+                            "line": 554,
                             "message": ""
                         },
                         {
@@ -754,184 +1274,336 @@
                             "column": 47,
                             "durationMicroseconds": 38,
                             "functionName": "left",
-                            "line": 530,
+                            "line": 555,
                             "message": ""
                         },
                         {
                             "codegenResult": 0,
                             "column": 48,
-                            "durationMicroseconds": 36,
+                            "durationMicroseconds": 46,
                             "functionName": "right",
-                            "line": 531,
+                            "line": 556,
                             "message": ""
                         },
                         {
                             "codegenResult": 0,
                             "column": 39,
-                            "durationMicroseconds": 26,
+                            "durationMicroseconds": 33,
                             "functionName": "fill",
-                            "line": 554,
-                            "message": ""
-                        },
-                        {
-                            "codegenResult": 0,
-                            "column": 90,
-                            "durationMicroseconds": 34,
-                            "functionName": "width",
-                            "line": 563,
-                            "message": ""
-                        },
-                        {
-                            "codegenResult": 0,
-                            "column": 68,
-                            "durationMicroseconds": 40,
-                            "functionName": "bottom",
-                            "line": 563,
-                            "message": ""
-                        },
-                        {
-                            "codegenResult": 0,
-                            "column": 57,
-                            "durationMicroseconds": 50,
-                            "functionName": "verticalCenter",
-                            "line": 566,
+                            "line": 580,
                             "message": ""
                         },
                         {
                             "codegenResult": 2,
-                            "column": 36,
-                            "durationMicroseconds": 28,
+                            "column": 57,
+                            "durationMicroseconds": 18,
                             "functionName": "color",
-                            "line": 576,
-                            "message": "Cannot access value for name primaryColor"
+                            "line": 592,
+                            "message": "Cannot access value for name textSec"
                         },
                         {
                             "codegenResult": 0,
                             "column": 57,
                             "durationMicroseconds": 57,
                             "functionName": "verticalCenter",
-                            "line": 580,
+                            "line": 590,
+                            "message": ""
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 40,
+                            "durationMicroseconds": 18,
+                            "functionName": "color",
+                            "line": 608,
+                            "message": "Cannot access value for name textMain"
+                        },
+                        {
+                            "codegenResult": 0,
+                            "column": 57,
+                            "durationMicroseconds": 51,
+                            "functionName": "verticalCenter",
+                            "line": 604,
                             "message": ""
                         },
                         {
                             "codegenResult": 0,
                             "column": 59,
-                            "durationMicroseconds": 54,
+                            "durationMicroseconds": 44,
                             "functionName": "height",
-                            "line": 586,
+                            "line": 610,
                             "message": ""
                         },
                         {
                             "codegenResult": 2,
                             "column": 81,
-                            "durationMicroseconds": 17,
+                            "durationMicroseconds": 16,
                             "functionName": "color",
-                            "line": 586,
+                            "line": 610,
                             "message": "Cannot access value for name primaryColor"
                         },
                         {
                             "codegenResult": 0,
                             "column": 39,
-                            "durationMicroseconds": 32,
+                            "durationMicroseconds": 35,
                             "functionName": "fill",
-                            "line": 599,
+                            "line": 623,
                             "message": ""
                         },
                         {
-                            "codegenResult": 0,
-                            "column": 90,
-                            "durationMicroseconds": 41,
-                            "functionName": "width",
-                            "line": 607,
-                            "message": ""
-                        },
-                        {
-                            "codegenResult": 0,
-                            "column": 68,
-                            "durationMicroseconds": 51,
-                            "functionName": "bottom",
-                            "line": 607,
-                            "message": ""
+                            "codegenResult": 2,
+                            "column": 57,
+                            "durationMicroseconds": 17,
+                            "functionName": "color",
+                            "line": 634,
+                            "message": "Cannot access value for name textSec"
                         },
                         {
                             "codegenResult": 0,
                             "column": 57,
-                            "durationMicroseconds": 62,
+                            "durationMicroseconds": 57,
                             "functionName": "verticalCenter",
-                            "line": 610,
+                            "line": 633,
                             "message": ""
                         },
                         {
                             "codegenResult": 0,
                             "column": 44,
-                            "durationMicroseconds": 39,
+                            "durationMicroseconds": 45,
                             "functionName": "width",
-                            "line": 621,
+                            "line": 644,
                             "message": ""
                         },
                         {
                             "codegenResult": 2,
                             "column": 44,
-                            "durationMicroseconds": 27,
+                            "durationMicroseconds": 26,
                             "functionName": "color",
-                            "line": 623,
+                            "line": 646,
                             "message": "Cannot access value for name index"
                         },
                         {
                             "codegenResult": 2,
                             "column": 47,
-                            "durationMicroseconds": 150,
+                            "durationMicroseconds": 141,
                             "functionName": "text",
-                            "line": 625,
+                            "line": 648,
                             "message": "Cannot access value for name index"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 48,
+                            "durationMicroseconds": 14,
+                            "functionName": "color",
+                            "line": 651,
+                            "message": "Cannot access value for name textSec"
                         },
                         {
                             "codegenResult": 0,
                             "column": 65,
-                            "durationMicroseconds": 44,
+                            "durationMicroseconds": 49,
                             "functionName": "verticalCenter",
-                            "line": 626,
+                            "line": 649,
                             "message": ""
                         },
                         {
                             "codegenResult": 0,
                             "column": 67,
-                            "durationMicroseconds": 33,
+                            "durationMicroseconds": 35,
                             "functionName": "width",
-                            "line": 631,
+                            "line": 654,
                             "message": ""
                         },
                         {
+                            "codegenResult": 2,
+                            "column": 88,
+                            "durationMicroseconds": 17,
+                            "functionName": "color",
+                            "line": 654,
+                            "message": "Cannot access value for name borderColor"
+                        },
+                        {
                             "codegenResult": 0,
-                            "column": 115,
-                            "durationMicroseconds": 37,
+                            "column": 117,
+                            "durationMicroseconds": 42,
                             "functionName": "bottom",
-                            "line": 631,
+                            "line": 654,
                             "message": ""
                         },
                         {
                             "codegenResult": 0,
                             "column": 35,
-                            "durationMicroseconds": 25,
+                            "durationMicroseconds": 31,
                             "functionName": "fill",
-                            "line": 646,
+                            "line": 669,
                             "message": ""
                         },
                         {
                             "codegenResult": 2,
                             "column": 65,
-                            "durationMicroseconds": 22,
+                            "durationMicroseconds": 15,
                             "functionName": "baseColor",
-                            "line": 657,
+                            "line": 680,
                             "message": "Cannot access value for name primaryColor"
                         },
                         {
                             "codegenResult": 0,
                             "column": 35,
-                            "durationMicroseconds": 30,
+                            "durationMicroseconds": 37,
                             "functionName": "fill",
-                            "line": 675,
+                            "line": 698,
                             "message": ""
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 68,
+                            "durationMicroseconds": 16,
+                            "functionName": "color",
+                            "line": 702,
+                            "message": "Cannot access value for name textSec"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 32,
+                            "durationMicroseconds": 0,
+                            "functionName": "color",
+                            "line": 707,
+                            "message": "Could not find property \"color\"."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 56,
+                            "durationMicroseconds": 15,
+                            "functionName": "color",
+                            "line": 708,
+                            "message": "Cannot access value for name inputBg"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 79,
+                            "durationMicroseconds": 12,
+                            "functionName": "color",
+                            "line": 708,
+                            "message": "Cannot access value for name borderColor"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 55,
+                            "durationMicroseconds": 39,
+                            "functionName": "text",
+                            "line": 717,
+                            "message": "Cannot load property text from (component in /home/sabarish/sampleUI/Main.qml)::parent with type QQuickItem."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 75,
+                            "durationMicroseconds": 12,
+                            "functionName": "color",
+                            "line": 717,
+                            "message": "Cannot access value for name textSec"
+                        },
+                        {
+                            "codegenResult": 0,
+                            "column": 105,
+                            "durationMicroseconds": 41,
+                            "functionName": "horizontalAlignment",
+                            "line": 717,
+                            "message": ""
+                        },
+                        {
+                            "codegenResult": 0,
+                            "column": 143,
+                            "durationMicroseconds": 39,
+                            "functionName": "verticalAlignment",
+                            "line": 717,
+                            "message": ""
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 89,
+                            "durationMicroseconds": 16,
+                            "functionName": "color",
+                            "line": 718,
+                            "message": "Cannot access value for name borderColor"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 55,
+                            "durationMicroseconds": 36,
+                            "functionName": "text",
+                            "line": 722,
+                            "message": "Cannot load property text from (component in /home/sabarish/sampleUI/Main.qml)::parent with type QQuickItem."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 75,
+                            "durationMicroseconds": 12,
+                            "functionName": "color",
+                            "line": 722,
+                            "message": "Cannot access value for name textSec"
+                        },
+                        {
+                            "codegenResult": 0,
+                            "column": 105,
+                            "durationMicroseconds": 41,
+                            "functionName": "horizontalAlignment",
+                            "line": 722,
+                            "message": ""
+                        },
+                        {
+                            "codegenResult": 0,
+                            "column": 143,
+                            "durationMicroseconds": 34,
+                            "functionName": "verticalAlignment",
+                            "line": 722,
+                            "message": ""
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 89,
+                            "durationMicroseconds": 16,
+                            "functionName": "color",
+                            "line": 723,
+                            "message": "Cannot access value for name borderColor"
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 55,
+                            "durationMicroseconds": 30,
+                            "functionName": "text",
+                            "line": 727,
+                            "message": "Cannot load property text from (component in /home/sabarish/sampleUI/Main.qml)::parent with type QQuickItem."
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 75,
+                            "durationMicroseconds": 12,
+                            "functionName": "color",
+                            "line": 727,
+                            "message": "Cannot access value for name textSec"
+                        },
+                        {
+                            "codegenResult": 0,
+                            "column": 105,
+                            "durationMicroseconds": 37,
+                            "functionName": "horizontalAlignment",
+                            "line": 727,
+                            "message": ""
+                        },
+                        {
+                            "codegenResult": 0,
+                            "column": 143,
+                            "durationMicroseconds": 35,
+                            "functionName": "verticalAlignment",
+                            "line": 727,
+                            "message": ""
+                        },
+                        {
+                            "codegenResult": 2,
+                            "column": 89,
+                            "durationMicroseconds": 15,
+                            "functionName": "color",
+                            "line": 728,
+                            "message": "Cannot access value for name borderColor"
                         }
                     ],
                     "filePath": "/home/sabarish/sampleUI/Main.qml"
