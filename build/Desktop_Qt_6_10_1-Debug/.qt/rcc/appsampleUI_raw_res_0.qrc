@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="/qt/qml/sampleUI/">
+    <file alias="README.md">/home/sabarish/sampleUI/README.md</file>
+    <file alias=".gitignore">/home/sabarish/sampleUI/.gitignore</file>
+  </qresource>
+</RCC>
+

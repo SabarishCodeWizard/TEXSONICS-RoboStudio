@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-d8bf929b245a8955c562.json",
+					"jsonFile" : "directory-.-Debug-218f40536aa5f88413c0.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -107,7 +107,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "appsampleUI::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-appsampleUI-Debug-204dc27069e72eb9ae35.json",
+					"jsonFile" : "target-appsampleUI-Debug-ad4e05f3cf8ef82c5aed.json",
 					"name" : "appsampleUI",
 					"projectIndex" : 0
 				},
