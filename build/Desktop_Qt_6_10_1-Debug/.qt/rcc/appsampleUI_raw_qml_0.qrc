@@ -1,6 +1,17 @@
 <RCC>
   <qresource prefix="/qt/qml/sampleUI/">
     <file alias="Main.qml">/home/sabarish/sampleUI/Main.qml</file>
+    <file alias="LeftPanel.qml">/home/sabarish/sampleUI/LeftPanel.qml</file>
+    <file alias="RightPanel.qml">/home/sabarish/sampleUI/RightPanel.qml</file>
+    <file alias="PanelCard.qml">/home/sabarish/sampleUI/PanelCard.qml</file>
+    <file alias="StatusButton.qml">/home/sabarish/sampleUI/StatusButton.qml</file>
+    <file alias="ActionButton.qml">/home/sabarish/sampleUI/ActionButton.qml</file>
+    <file alias="AxisControl.qml">/home/sabarish/sampleUI/AxisControl.qml</file>
+    <file alias="ValueBox.qml">/home/sabarish/sampleUI/ValueBox.qml</file>
+    <file alias="MiniInput.qml">/home/sabarish/sampleUI/MiniInput.qml</file>
+    <file alias="CameraController.qml">/home/sabarish/sampleUI/CameraController.qml</file>
+    <file alias="GridEnvironment.qml">/home/sabarish/sampleUI/GridEnvironment.qml</file>
+    <file alias="RobotArm.qml">/home/sabarish/sampleUI/RobotArm.qml</file>
   </qresource>
 </RCC>
 

@@ -16,10 +16,9 @@
 #endif
 Q_QMLTYPE_EXPORT void qml_register_types_sampleUI()
 {
-    qmlRegisterModule("sampleUI", 254, 0);
     QT_WARNING_PUSH QT_WARNING_DISABLE_DEPRECATED
     QT_WARNING_POP
-    qmlRegisterModule("sampleUI", 254, 254);
+    qmlRegisterModule("sampleUI", 1, 0);
 }
 
 static const QQmlModuleRegistration sampleUIRegistration("sampleUI", qml_register_types_sampleUI);

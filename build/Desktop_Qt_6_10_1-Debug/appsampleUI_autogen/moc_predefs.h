@@ -142,6 +142,7 @@
 #define __INTPTR_WIDTH__ 64
 #define __FLT64X_HAS_INFINITY__ 1
 #define __UINT_LEAST32_MAX__ 0xffffffffU
+#define QT_QUICK3DRUNTIMERENDER_LIB 1
 #define __FLT32X_HAS_DENORM__ 1
 #define __INT_FAST16_TYPE__ long int
 #define __MMX_WITH_SSE__ 1
@@ -184,6 +185,7 @@
 #define __FLT128_EPSILON__ 1.92592994438723585305597794258492732e-34F128
 #define __FLT64X_NORM_MAX__ 1.18973149535723176502126385303097021e+4932F64x
 #define __SIZEOF_POINTER__ 8
+#define QT_QUICK3DUTILS_LIB 1
 #define __LP64__ 1
 #define __DBL_HAS_QUIET_NAN__ 1
 #define __FLT32X_EPSILON__ 2.22044604925031308084726333618164062e-16F32x
@@ -223,6 +225,7 @@
 #define __ORDER_PDP_ENDIAN__ 3412
 #define __DEC128_MIN_EXP__ (-6142)
 #define __INT_FAST32_TYPE__ long int
+#define QT_CONCURRENT_LIB 1
 #define __UINT_LEAST16_TYPE__ short unsigned int
 #define unix 1
 #define __DBL_HAS_DENORM__ 1
@@ -255,6 +258,7 @@
 #define __DEC32_SUBNORMAL_MIN__ 0.000001E-95DF
 #define __INT_FAST16_MAX__ 0x7fffffffffffffffL
 #define __FLT64_DIG__ 15
+#define QT_QUICK3D_LIB 1
 #define __UINT_FAST32_MAX__ 0xffffffffffffffffUL
 #define __UINT_LEAST64_TYPE__ long unsigned int
 #define __FLT_HAS_QUIET_NAN__ 1
@@ -361,6 +365,7 @@
 #define __INTMAX_MAX__ 0x7fffffffffffffffL
 #define __INT_FAST8_TYPE__ signed char
 #define __cpp_namespace_attributes 201411L
+#define QT_SHADERTOOLS_LIB 1
 #define __FLT64X_MIN__ 3.36210314311209350626267781732175260e-4932F64x
 #define __STDCPP_THREADS__ 1
 #define __GNUC_STDC_INLINE__ 1

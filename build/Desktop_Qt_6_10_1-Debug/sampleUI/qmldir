@@ -1,6 +1,17 @@
 module sampleUI
 typeinfo appsampleUI.qmltypes
 prefer :/qt/qml/sampleUI/
-Main 254.0 Main.qml
+Main 1.0 Main.qml
+LeftPanel 1.0 LeftPanel.qml
+RightPanel 1.0 RightPanel.qml
+PanelCard 1.0 PanelCard.qml
+StatusButton 1.0 StatusButton.qml
+ActionButton 1.0 ActionButton.qml
+AxisControl 1.0 AxisControl.qml
+ValueBox 1.0 ValueBox.qml
+MiniInput 1.0 MiniInput.qml
+CameraController 1.0 CameraController.qml
+GridEnvironment 1.0 GridEnvironment.qml
+RobotArm 1.0 RobotArm.qml
 depends QtQuick
 

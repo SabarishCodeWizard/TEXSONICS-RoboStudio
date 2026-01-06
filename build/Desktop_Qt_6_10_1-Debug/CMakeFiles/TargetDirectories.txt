@@ -15,9 +15,5 @@
 /home/sabarish/sampleUI/build/Desktop_Qt_6_10_1-Debug/CMakeFiles/appsampleUI_qmlimportscan.dir
 /home/sabarish/sampleUI/build/Desktop_Qt_6_10_1-Debug/CMakeFiles/edit_cache.dir
 /home/sabarish/sampleUI/build/Desktop_Qt_6_10_1-Debug/CMakeFiles/rebuild_cache.dir
-/home/sabarish/sampleUI/build/Desktop_Qt_6_10_1-Debug/CMakeFiles/list_install_components.dir
-/home/sabarish/sampleUI/build/Desktop_Qt_6_10_1-Debug/CMakeFiles/install.dir
-/home/sabarish/sampleUI/build/Desktop_Qt_6_10_1-Debug/CMakeFiles/install/local.dir
-/home/sabarish/sampleUI/build/Desktop_Qt_6_10_1-Debug/CMakeFiles/install/strip.dir
 /home/sabarish/sampleUI/build/Desktop_Qt_6_10_1-Debug/CMakeFiles/appsampleUI_autogen_timestamp_deps.dir
 /home/sabarish/sampleUI/build/Desktop_Qt_6_10_1-Debug/CMakeFiles/appsampleUI_autogen.dir

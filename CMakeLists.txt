@@ -1,43 +1,40 @@
 cmake_minimum_required(VERSION 3.16)
-
-project(sampleUI VERSION 0.1 LANGUAGES CXX)
+project(appsampleUI VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Quick)
-
+find_package(Qt6 REQUIRED COMPONENTS Quick Quick3D)
 qt_standard_project_setup(REQUIRES 6.8)
 
-qt_add_executable(appsampleUI
-    main.cpp
-)
+qt_add_executable(appsampleUI main.cpp)
 
 qt_add_qml_module(appsampleUI
     URI sampleUI
+    VERSION 1.0
     QML_FILES
         Main.qml
-        RESOURCES README.md
-        RESOURCES .gitignore
+        LeftPanel.qml
+        RightPanel.qml
+        PanelCard.qml
+        StatusButton.qml
+        ActionButton.qml
+        AxisControl.qml
+        ValueBox.qml
+        MiniInput.qml
+        CameraController.qml
+        GridEnvironment.qml
+        RobotArm.qml
 )
 
-# Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
-# If you are developing for iOS or macOS you should consider setting an
-# explicit, fixed bundle identifier manually though.
-set_target_properties(appsampleUI PROPERTIES
-#    MACOSX_BUNDLE_GUI_IDENTIFIER com.example.appsampleUI
-    MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
-    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-    MACOSX_BUNDLE TRUE
-    WIN32_EXECUTABLE TRUE
+# Using "assets" as the second argument adds :/assets/ to the path
+qt_add_resources(appsampleUI "assets"
+    FILES
+        meshes/link0.mesh
+        meshes/link1.mesh
+        meshes/link2.mesh
+        meshes/link3.mesh
+        meshes/link4.mesh
+        meshes/link5.mesh
 )
 
-target_link_libraries(appsampleUI
-    PRIVATE Qt6::Quick
-)
-
-include(GNUInstallDirs)
-install(TARGETS appsampleUI
-    BUNDLE DESTINATION .
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-)
+target_link_libraries(appsampleUI PRIVATE Qt6::Quick Qt6::Quick3D)

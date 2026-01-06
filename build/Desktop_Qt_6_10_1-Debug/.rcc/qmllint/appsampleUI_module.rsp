@@ -7,6 +7,6 @@
 --resource
 /home/sabarish/sampleUI/build/Desktop_Qt_6_10_1-Debug/.qt/rcc/appsampleUI_raw_qml_0.qrc
 --resource
-/home/sabarish/sampleUI/build/Desktop_Qt_6_10_1-Debug/.qt/rcc/appsampleUI_raw_res_0.qrc
+/home/sabarish/sampleUI/build/Desktop_Qt_6_10_1-Debug/.qt/rcc/assets.qrc
 --module
 sampleUI
