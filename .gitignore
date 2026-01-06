@@ -1,1 +1,19 @@
-build
+# Build directories
+build/
+build-*/
+cmake-build-*/
+
+# Qt Creator
+*.user
+*.qmlc
+*.jsc
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# OS
+.DS_Store
+Thumbs.db

@@ -24,7 +24,10 @@ qt_add_qml_module(appsampleUI
         CameraController.qml
         GridEnvironment.qml
         RobotArm.qml
-)
+    SOURCES
+        RESOURCES .gitignore
+        RESOURCES README.md
+    )
 
 # Using "assets" as the second argument adds :/assets/ to the path
 qt_add_resources(appsampleUI "assets"
