@@ -148,7 +148,7 @@ Rectangle {
             RowLayout {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Layout.preferredHeight: parent.height * 0.4 // 30% of total height
+                Layout.preferredHeight: rightPanel.height * 0.3 // Fixed 30% ratio
                 spacing: 15
 
                 // --- SECTION 1: TOP-LEFT (Width: 20%) ---
@@ -189,17 +189,15 @@ Rectangle {
                         anchors.fill: parent
                         spacing: 5
 
-                        // *** REMOVED INLINE SUB-TABS TO PREVENT OVERLAP ***
-                        // Only the grid remains below
-
                         // Cartesian Grid
                         GridLayout {
                             visible: jogTab === "Cartesian"
-                            columns: 2; rowSpacing: 2; columnSpacing: 2
+                            columns: 2; rowSpacing: 4; columnSpacing: 4
                             Layout.fillWidth: true
+                            Layout.fillHeight: true
 
-                            Text { text: "NEG"; color: "#EF5350"; font.bold: true; font.pixelSize: 9; Layout.alignment: Qt.AlignHCenter }
-                            Text { text: "POS"; color: "#00E676"; font.bold: true; font.pixelSize: 9; Layout.alignment: Qt.AlignHCenter }
+                            Text { text: "NEG"; color: "#EF5350"; font.bold: true; font.pixelSize: 10; Layout.alignment: Qt.AlignHCenter }
+                            Text { text: "POS"; color: "#00E676"; font.bold: true; font.pixelSize: 10; Layout.alignment: Qt.AlignHCenter }
 
                             JogBtn { text: "X-" } JogBtn { text: "X+" }
                             JogBtn { text: "Y-" } JogBtn { text: "Y+" }
@@ -212,11 +210,12 @@ Rectangle {
                         // Joints Grid
                         GridLayout {
                             visible: jogTab === "Joints"
-                            columns: 2; rowSpacing: 2; columnSpacing: 2
+                            columns: 2; rowSpacing: 4; columnSpacing: 4
                             Layout.fillWidth: true
+                            Layout.fillHeight: true
 
-                            Text { text: "NEG"; color: "#EF5350"; font.bold: true; font.pixelSize: 9; Layout.alignment: Qt.AlignHCenter }
-                            Text { text: "POS"; color: "#00E676"; font.bold: true; font.pixelSize: 9; Layout.alignment: Qt.AlignHCenter }
+                            Text { text: "NEG"; color: "#EF5350"; font.bold: true; font.pixelSize: 10; Layout.alignment: Qt.AlignHCenter }
+                            Text { text: "POS"; color: "#00E676"; font.bold: true; font.pixelSize: 10; Layout.alignment: Qt.AlignHCenter }
 
                             JogBtn { text: "J1-" } JogBtn { text: "J1+" }
                             JogBtn { text: "J2-" } JogBtn { text: "J2+" }
@@ -325,7 +324,7 @@ Rectangle {
             Rectangle {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Layout.preferredHeight: parent.height * 0.6
+                Layout.preferredHeight: rightPanel.height * 0.7 // Fixed 70% ratio
                 color: "#151520"
                 border.color: "#3f3f5f"
                 border.width: 1
@@ -345,11 +344,38 @@ Rectangle {
     // --- HELPER COMPONENTS ---
     component PanelCard: Rectangle { color: panelBg; radius: 8; border.color: borderColor; border.width: 1 }
 
+    // *** UPDATED JOG BUTTON (FIXED THE ERROR) ***
     component JogBtn: Button {
+        id: jogBtnControl
+        // Dynamic Size
         Layout.fillWidth: true
-        Layout.preferredHeight: 50
-        background: Rectangle { color: parent.pressed ? "#0091EA" : "#eceff1"; radius: 4 }
-        contentItem: Text { text: parent.text; color: parent.pressed ? "white" : "black"; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter; font.bold: true; font.pixelSize: 20 }
+        Layout.fillHeight: true
+
+        background: Rectangle {
+            color: jogBtnControl.pressed ? "#f5f5f5" : "#ffffff"
+            radius: 4
+            border.color: "#3f3f5f"
+            border.width: 1
+        }
+
+        contentItem: Text {
+            text: jogBtnControl.text // Corrected: Uses the button's ID
+
+            // COLOR LOGIC: Red for "-", Green for "+", White otherwise
+            color: text.indexOf("-") !== -1 ? "#FF5252" : (text.indexOf("+") !== -1 ? "#00E676" : "#FFFFFF")
+
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            font.bold: true
+
+            // DYNAMIC FONT SIZING
+            fontSizeMode: Text.Fit
+            minimumPixelSize: 10
+            font.pixelSize: 28
+
+            rightPadding: 4
+            leftPadding: 4
+        }
     }
 
     component LabelBox: Rectangle {
