@@ -16,7 +16,7 @@ qt_add_qml_module(appsampleUI
         LeftPanel.qml
         RightPanel.qml
         PanelCard.qml
-        StatusButton.qml
+        VectorButton.qml
         ActionButton.qml
         AxisControl.qml
         ValueBox.qml
@@ -27,6 +27,7 @@ qt_add_qml_module(appsampleUI
     SOURCES
         RESOURCES .gitignore
         RESOURCES README.md
+        QML_FILES IconPaths.qml
     )
 
 # Using "assets" as the second argument adds :/assets/ to the path

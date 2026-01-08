@@ -34,16 +34,18 @@ ApplicationWindow {
         anchors.margins: 12
         spacing: 12
 
-        // 1. Left Panel (Reduced size)
+        // 1. Left Panel
         LeftPanel {
-            // CHANGED: Reduced from 0.45 to 0.35 to give RightPanel more room
-            Layout.preferredWidth: parent.width * 0.25
+            Layout.preferredWidth: parent.width * 0.5
             Layout.fillHeight: true
+            // FIX: Reference the ID 'rightPanelControl' defined below
+            currentCoordinateSystem: rightPanelControl.jogTab
         }
 
-        // 2. Right Panel (Expands to fill remaining space)
+        // 2. Right Panel
         RightPanel {
-            Layout.fillWidth: true
+            id: rightPanelControl // <--- ADDED ID HERE
+            Layout.preferredWidth: parent.width * 0.5
             Layout.fillHeight: true
         }
     }
