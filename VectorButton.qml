@@ -2,6 +2,8 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Shapes 1.15
+import QtQuick.Effects
+
 
 Button {
     id: control
@@ -101,6 +103,14 @@ Button {
             style: Text.Outline
             styleColor: "#66000000"
             horizontalAlignment: Text.AlignHCenter
+            layer.enabled: true
+            // layer.effect: MultiEffect {
+            //     shadowEnabled: true
+            //     shadowHorizontalOffset: 4
+            //     shadowVerticalOffset: 4
+            //     shadowBlur: 0.25
+            //     shadowOpacity: 0.85
+            // }
         }
     }
 }

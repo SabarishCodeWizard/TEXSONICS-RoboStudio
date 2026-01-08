@@ -396,7 +396,7 @@ ColumnLayout {
             TextField { id: trField; Layout.fillWidth: true; Layout.preferredHeight: row2Height; placeholderText: "TR: None"; text: filesBtn.activeIndex === 1 ? filesBtn.lastAction : ""; horizontalAlignment: Text.AlignLeft; leftPadding: 10; font.pixelSize: 14; color: "white"; readOnly: true; background: Rectangle { color: "#11111b"; border.color: filesBtn.activeIndex === 1 ? "#673AB7" : "#3f3f5f"; border.width: filesBtn.activeIndex === 1 ? 2 : 1; radius: 6 } }
             TextField { id: tpField; Layout.fillWidth: true; Layout.preferredHeight: row2Height; placeholderText: "TP: None"; text: filesBtn.activeIndex === 2 ? filesBtn.lastAction : ""; horizontalAlignment: Text.AlignLeft; leftPadding: 10; font.pixelSize: 14; color: "white"; readOnly: true; background: Rectangle { color: "#11111b"; border.color: filesBtn.activeIndex === 2 ? "#00796B" : "#3f3f5f"; border.width: filesBtn.activeIndex === 2 ? 2 : 1; radius: 6 } }
             VectorButton {
-                Layout.fillWidth: true; Layout.preferredHeight: row3Height; label: "Add Tool"; pathData: "M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"; baseColor: "#00E676"
+                Layout.fillWidth: true; Layout.preferredHeight: row3Height; label: "Tools"; pathData: "M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"; baseColor: "#00E676"
                 onClicked: { if(toolNameInput.text !== "") { console.log("Added Tool: " + toolNameInput.text); toolNameInput.text = ""; } }
             }
             TextField { id: toolNameInput; Layout.fillWidth: true; Layout.preferredHeight: row3Height; placeholderText: "Tool Name..."; horizontalAlignment: Text.AlignLeft; leftPadding: 10; font.pixelSize: 14; color: "white"; background: Rectangle { color: "#11111b"; border.color: "#3f3f5f"; radius: 6 } }

@@ -15,6 +15,7 @@ Rectangle {
     property color primaryColor: "#40C4FF"
     property color textMain: "#FFFFFF"
     property color textSec: "#B0BEC5"
+    property color textSpeed: "#00ff7f"
     property color panelBg: "#27273A"
     property color borderColor: "#3B3B50"
     property color inputBg: "#151520"
@@ -143,44 +144,93 @@ Rectangle {
             spacing: 15
 
             // --------------------------------------------------------
-            // A. TOP ROW (Height: 30%) -> Split Width 20% / 80%
+            // A. TOP ROW (Height: 40%) -> Split Width 20% / 80%
             // --------------------------------------------------------
             RowLayout {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Layout.preferredHeight: rightPanel.height * 0.3 // Fixed 30% ratio
+                Layout.preferredHeight: rightPanel.height * 0.4 // Fixed 30% ratio
                 spacing: 15
 
                 // --- SECTION 1: TOP-LEFT (Width: 20%) ---
-                Item {
+                PanelCard {
                     Layout.preferredWidth: rightPanel.width * 0.2
                     Layout.fillHeight: true
                     Layout.fillWidth: true
                     clip: true
+                    color: "transparent"
+                    border.width: 0
 
-                    // VIEW A: SPEED SETTINGS
+                    // *** VIEW A: SPEED SETTINGS (HORIZONTAL LAYOUT) ***
                     ColumnLayout {
                         visible: currentTab === "Speed"
                         anchors.fill: parent
-                        spacing: 5
+                        spacing: 0
 
-                        Text { text: "SETTINGS"; color: "white"; font.bold: true; font.pixelSize: 14 }
-
-                        GridLayout {
-                            columns: 1
-                            rowSpacing: 2
-                            Layout.fillWidth: true
-
-                            LabelBox { text: "Distance"; Layout.preferredHeight: 20 }
-                            CustomComboBox { model: ["0.1", "1.0", "10", "100"]; Layout.fillWidth: true; Layout.preferredHeight: 25 }
-
-                            LabelBox { text: "Linear Spd"; Layout.preferredHeight: 20 }
-                            CustomTextField { text: "100"; Layout.fillWidth: true; Layout.preferredHeight: 25 }
-
-                            LabelBox { text: "Frame"; Layout.preferredHeight: 20 }
-                            CustomComboBox { model: ["User", "World"]; Layout.fillWidth: true; Layout.preferredHeight: 25 }
+                        Text {
+                            text: "SETTINGS"
+                            color: "white"
+                            font.bold: true
+                            font.pixelSize: 14
+                            Layout.bottomMargin: 8
                         }
-                        Item { Layout.fillHeight: true }
+
+                        ScrollView {
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+                            clip: true
+                            // Force Vertical Scroll only
+                            contentWidth: availableWidth
+                            ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+                            ScrollBar.vertical.policy: ScrollBar.AsNeeded
+
+                            ColumnLayout {
+                                width: parent.width
+                                spacing: 10
+
+                                // 1. Distance
+                                RowLayout {
+                                    Layout.fillWidth: true
+                                    spacing: 10
+                                    Text { text: "MM"; color: textSpeed; font.bold: true; font.pixelSize: 18; Layout.preferredWidth: 60; Layout.alignment: Qt.AlignVCenter }
+                                    CustomComboBox { model: ["0.1", "1.0", "10", "100"]; Layout.fillWidth: true }
+                                }
+
+                                // 2. Linear Speed
+                                RowLayout {
+                                    Layout.fillWidth: true
+                                    spacing: 10
+                                    Text { text: "MM/S"; color: textSpeed; font.bold: true; font.pixelSize: 18; Layout.preferredWidth: 60; Layout.alignment: Qt.AlignVCenter }
+                                    CustomTextField { text: "100"; Layout.fillWidth: true }
+                                }
+
+                                // 3. Angle Unit
+                                RowLayout {
+                                    Layout.fillWidth: true
+                                    spacing: 10
+                                    Text { text: "Deg"; color: textSpeed; font.bold: true; font.pixelSize: 18; Layout.preferredWidth: 60; Layout.alignment: Qt.AlignVCenter }
+                                    CustomComboBox { model: ["Deg", "Rad"]; Layout.fillWidth: true }
+                                }
+
+                                // 4. Angular Speed
+                                RowLayout {
+                                    Layout.fillWidth: true
+                                    spacing: 10
+                                    Text { text: "Deg/S"; color: textSpeed; font.bold: true; font.pixelSize: 18; Layout.preferredWidth: 60; Layout.alignment: Qt.AlignVCenter }
+                                    CustomTextField { text: "10"; Layout.fillWidth: true }
+                                }
+
+                                // 5. Coord Frame
+                                RowLayout {
+                                    Layout.fillWidth: true
+                                    spacing: 10
+                                    Text { text: "Frame"; color: textSpeed; font.bold: true; font.pixelSize: 18; Layout.preferredWidth: 60; Layout.alignment: Qt.AlignVCenter }
+                                    CustomComboBox { model: ["User", "World", "Tool"]; Layout.fillWidth: true }
+                                }
+
+                                Item { Layout.fillHeight: true } // Pusher
+                            }
+                        }
                     }
 
                     // VIEW B: JOG BUTTONS
@@ -274,11 +324,6 @@ Rectangle {
                             // --- TAB 1: INST ---
                             Rectangle {
                                 color: "transparent"
-                                component FooterCell: Rectangle {
-                                    property string txt: ""; property int w: 80; property bool header: false
-                                    width: w; height: 26; color: header ? "#32324A" : "transparent"; border.color: borderColor
-                                    Text { text: parent.txt; anchors.centerIn: parent; color: parent.header ? textSec : textMain; font.bold: parent.header; font.pixelSize: 11 }
-                                }
                                 ScrollView {
                                     anchors.fill: parent; clip: true
                                     ScrollBar.horizontal.policy: ScrollBar.AlwaysOn
@@ -319,23 +364,205 @@ Rectangle {
             }
 
             // --------------------------------------------------------
-            // B. BOTTOM ROW (Height: 70%) -> Combined Sections 3 & 4
+            // B. BOTTOM ROW (Height: 60%) -> Panel Space Panel Space
             // --------------------------------------------------------
-            Rectangle {
+            ColumnLayout {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Layout.preferredHeight: rightPanel.height * 0.7 // Fixed 70% ratio
-                color: "#151520"
-                border.color: "#3f3f5f"
-                border.width: 1
-                radius: 8
+                Layout.preferredHeight: rightPanel.height * 0.6 // Fixed 70% ratio
+                spacing: 15
 
-                Text {
-                    text: "COMBINED BOTTOM SECTION (70% HEIGHT)"
-                    color: "#555"
-                    anchors.centerIn: parent
-                    font.bold: true
-                    font.pixelSize: 20
+                // --- 1. PANELCARD (30% of this container) ---
+                PanelCard {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: parent.height * 0.45
+                    clip: true
+
+                    ColumnLayout {
+                        anchors.fill: parent
+                        spacing: 0
+
+                        // 1. Footer Tab Bar (Middle)
+                        Rectangle {
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 30
+                            color: "#1e1e2d"
+
+                            RowLayout {
+                                anchors.fill: parent
+                                spacing: 1
+                                Repeater {
+                                    model: ["Inst", "Debug", "Jog Deg"]
+                                    Rectangle {
+                                        Layout.preferredWidth: 90
+                                        Layout.fillHeight: true
+                                        color: middleStack.currentIndex === index ? panelBg : "transparent"
+                                        border.color: borderColor
+                                        border.width: 1
+                                        Rectangle { visible: middleStack.currentIndex === index; height: 2; width: parent.width; anchors.top: parent.top; color: primaryColor }
+                                        Text { text: modelData; anchors.centerIn: parent; color: middleStack.currentIndex === index ? primaryColor : textSec; font.bold: middleStack.currentIndex === index; font.pixelSize: 12 }
+                                        MouseArea { anchors.fill: parent; onClicked: middleStack.currentIndex = index }
+                                    }
+                                }
+                                Item { Layout.fillWidth: true }
+                            }
+                        }
+
+                        // 2. Content Area (Middle)
+                        StackLayout {
+                            id: middleStack
+                            currentIndex: 0
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+
+                            // Tab 1
+                            Rectangle {
+                                color: "transparent"
+                                ScrollView {
+                                    anchors.fill: parent; clip: true
+                                    ScrollBar.horizontal.policy: ScrollBar.AlwaysOn
+                                    ScrollBar.vertical.policy: ScrollBar.AlwaysOn
+                                    Column {
+                                        Row {
+                                            FooterCell { txt: "Sl No"; w: 50; header: true }
+                                            FooterCell { txt: "Inst"; w: 60; header: true }
+                                            FooterCell { txt: "Name"; w: 80; header: true }
+                                            FooterCell { txt: "Value_1"; w: 80; header: true }
+                                            FooterCell { txt: "Deg_1"; w: 60; header: true }
+                                            FooterCell { txt: "Name"; w: 80; header: true }
+                                            FooterCell { txt: "Value_2"; w: 80; header: true }
+                                            FooterCell { txt: "Deg_2"; w: 60; header: true }
+                                            FooterCell { txt: "Inst"; w: 60; header: true }
+                                            FooterCell { txt: "Name"; w: 80; header: true }
+                                        }
+                                        Repeater {
+                                            model: 5
+                                            Row {
+                                                FooterCell { txt: (index + 1).toString(); w: 50 }
+                                                FooterCell { txt: ""; w: 60 }
+                                                FooterCell { txt: ""; w: 80 }
+                                                FooterCell { txt: ""; w: 80 }
+                                                FooterCell { txt: ""; w: 60 }
+                                                FooterCell { txt: ""; w: 80 }
+                                                FooterCell { txt: ""; w: 80 }
+                                                FooterCell { txt: ""; w: 60 }
+                                                FooterCell { txt: ""; w: 60 }
+                                                FooterCell { txt: ""; w: 80 }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Rectangle { color: "transparent"; Text { text: "Debug View"; color: textSec; anchors.centerIn: parent } }
+                            Rectangle { color: "transparent"; Text { text: "Jog Degrees View"; color: textSec; anchors.centerIn: parent } }
+                        }
+                    }
+                }
+
+                // --- 2. SPACE (Spacer) ---
+                Item {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true // Shares remaining space
+                }
+
+                // --- 3. PANELCARD (20% of this container) ---
+                PanelCard {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: parent.height * 0.35
+                    clip: true
+
+                    ColumnLayout {
+                        anchors.fill: parent
+                        spacing: 0
+
+                        // 1. Footer Tab Bar (Bottom)
+                        Rectangle {
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 30
+                            color: "#1e1e2d"
+
+                            RowLayout {
+                                anchors.fill: parent
+                                spacing: 1
+                                Repeater {
+                                    model: ["Inst", "Debug", "Jog Deg"]
+                                    Rectangle {
+                                        Layout.preferredWidth: 90
+                                        Layout.fillHeight: true
+                                        color: bottomStack.currentIndex === index ? panelBg : "transparent"
+                                        border.color: borderColor
+                                        border.width: 1
+                                        Rectangle { visible: bottomStack.currentIndex === index; height: 2; width: parent.width; anchors.top: parent.top; color: primaryColor }
+                                        Text { text: modelData; anchors.centerIn: parent; color: bottomStack.currentIndex === index ? primaryColor : textSec; font.bold: bottomStack.currentIndex === index; font.pixelSize: 12 }
+                                        MouseArea { anchors.fill: parent; onClicked: bottomStack.currentIndex = index }
+                                    }
+                                }
+                                Item { Layout.fillWidth: true }
+                            }
+                        }
+
+                        // 2. Content Area (Bottom)
+                        StackLayout {
+                            id: bottomStack
+                            currentIndex: 0
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+
+                            // Tab 1
+                            Rectangle {
+                                color: "transparent"
+                                ScrollView {
+                                    anchors.fill: parent; clip: true
+                                    ScrollBar.horizontal.policy: ScrollBar.AlwaysOn
+                                    ScrollBar.vertical.policy: ScrollBar.AlwaysOn
+                                    Column {
+                                        Row {
+                                            FooterCell { txt: "Sl No"; w: 50; header: true }
+                                            FooterCell { txt: "Inst"; w: 60; header: true }
+                                            FooterCell { txt: "Name"; w: 80; header: true }
+                                            FooterCell { txt: "Value_1"; w: 80; header: true }
+                                            FooterCell { txt: "Deg_1"; w: 60; header: true }
+                                            FooterCell { txt: "Name"; w: 80; header: true }
+                                            FooterCell { txt: "Value_2"; w: 80; header: true }
+                                            FooterCell { txt: "Deg_2"; w: 60; header: true }
+                                            FooterCell { txt: "Inst"; w: 60; header: true }
+                                            FooterCell { txt: "Name"; w: 80; header: true }
+                                            FooterCell { txt: "Value_1"; w: 80; header: true }
+                                            FooterCell { txt: "Deg_1"; w: 60; header: true }
+                                            FooterCell { txt: "Name"; w: 80; header: true }
+
+                                        }
+                                        Repeater {
+                                            model: 3
+                                            Row {
+                                                FooterCell { txt: (index + 1).toString(); w: 50 }
+                                                FooterCell { txt: ""; w: 60 }
+                                                FooterCell { txt: ""; w: 80 }
+                                                FooterCell { txt: ""; w: 80 }
+                                                FooterCell { txt: ""; w: 60 }
+                                                FooterCell { txt: ""; w: 80 }
+                                                FooterCell { txt: ""; w: 80 }
+                                                FooterCell { txt: ""; w: 60 }
+                                                FooterCell { txt: ""; w: 60 }
+                                                FooterCell { txt: ""; w: 80 }
+                                                FooterCell { txt: ""; w: 80 }
+                                                FooterCell { txt: ""; w: 60 }
+                                                FooterCell { txt: ""; w: 80 }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Rectangle { color: "transparent"; Text { text: "Debug View"; color: textSec; anchors.centerIn: parent } }
+                            Rectangle { color: "transparent"; Text { text: "Jog Degrees View"; color: textSec; anchors.centerIn: parent } }
+                        }
+                    }
+                }
+
+                // --- 4. SPACE (Spacer) ---
+                Item {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true // Shares remaining space
                 }
             }
         }
@@ -344,55 +571,91 @@ Rectangle {
     // --- HELPER COMPONENTS ---
     component PanelCard: Rectangle { color: panelBg; radius: 8; border.color: borderColor; border.width: 1 }
 
-    // *** UPDATED JOG BUTTON (FIXED THE ERROR) ***
+    // Table Cell Component (Moved here to avoid scope issues)
+    component FooterCell: Rectangle {
+        property string txt: ""
+        property int w: 200
+        property bool header: false
+        width: w; height: 80
+        color: header ? "#32324A" : "transparent"
+        border.color: borderColor
+        Text {
+            text: parent.txt
+            anchors.centerIn: parent
+            color: parent.header ? textSec : textMain
+            font.bold: parent.header
+            font.pixelSize: 16
+        }
+    }
+
+    // *** JOG BUTTON ***
     component JogBtn: Button {
         id: jogBtnControl
-        // Dynamic Size
         Layout.fillWidth: true
         Layout.fillHeight: true
-
         background: Rectangle {
             color: jogBtnControl.pressed ? "#f5f5f5" : "#ffffff"
             radius: 4
             border.color: "#3f3f5f"
             border.width: 1
         }
-
         contentItem: Text {
-            text: jogBtnControl.text // Corrected: Uses the button's ID
-
+            text: jogBtnControl.text
             // COLOR LOGIC: Red for "-", Green for "+", White otherwise
-            color: text.indexOf("-") !== -1 ? "#FF5252" : (text.indexOf("+") !== -1 ? "#00E676" : "#FFFFFF")
-
+            color: text.indexOf("-") !== -1 ? "#FF5252" : (text.indexOf("+") !== -1 ? "#3cb371" : "#FFFFFF")
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             font.bold: true
-
-            // DYNAMIC FONT SIZING
             fontSizeMode: Text.Fit
             minimumPixelSize: 10
             font.pixelSize: 28
-
             rightPadding: 4
             leftPadding: 4
         }
     }
 
-    component LabelBox: Rectangle {
-        Layout.fillWidth: true; Layout.preferredHeight: 25; color: "transparent"
-        property alias text: lbl.text
-        Text { id: lbl; anchors.verticalCenter: parent.verticalCenter; anchors.left: parent.left; font.bold: true; color: "#ccc"; font.pixelSize: 12 }
-    }
-
+    // *** STYLIZED COMBO BOX ***
     component CustomComboBox: ComboBox {
         Layout.preferredHeight: 30
-        model: ["Option"]; background: Rectangle { color: "#2b2b3b"; border.color: "#3f3f5f"; radius: 4 }
-        contentItem: Text { text: parent.displayText; color: "white"; verticalAlignment: Text.AlignVCenter; leftPadding: 10; font.pixelSize: 12 }
+        model: ["Option"]
+
+        delegate: ItemDelegate {
+            width: parent.width
+            contentItem: Text {
+                text: modelData
+                color: "black"
+                font.pixelSize: 18
+                elide: Text.ElideRight
+                verticalAlignment: Text.AlignVCenter
+            }
+            background: Rectangle { color: highlighted ? "#40C4FF" : "#ffffff" }
+        }
+
+        background: Rectangle {
+            color: "#ffffff" // Light input bg
+            border.color: "#3B3B50"
+            radius: 4
+        }
+        contentItem: Text {
+            text: parent.displayText
+            color: "black"
+            verticalAlignment: Text.AlignVCenter
+            leftPadding: 10
+            font.pixelSize: 18
+        }
     }
 
+    // *** STYLIZED TEXT FIELD ***
     component CustomTextField: TextField {
         Layout.preferredHeight: 30
-        background: Rectangle { color: "#2b2b3b"; border.color: "#3f3f5f"; radius: 4 }
-        color: "white"; verticalAlignment: Text.AlignVCenter; font.pixelSize: 12
+        background: Rectangle {
+            color: "#ffffff" // Light input bg
+            border.color: "#3B3B50"
+            radius: 4
+        }
+        color: "black"
+        verticalAlignment: Text.AlignVCenter
+        font.pixelSize: 18
+        leftPadding: 10
     }
 }
