@@ -1,11 +1,15 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Shapes
 
 Rectangle {
     id: rightPanel
     color: "#1e1e2e" // Dark theme background
     radius: 8
+
+    // --- ACCESS ICONS ---
+    IconPaths { id: icons }
 
     // --- STATE MANAGEMENT ---
     property string currentTab: "Jog"
@@ -19,8 +23,15 @@ Rectangle {
     property color panelBg: "#27273A"
     property color borderColor: "#3B3B50"
     property color inputBg: "#151520"
-    property color btnLabelColor: "#455A64" // For non-primary action buttons
     property string fontFamily: "Segoe UI"
+
+    // --- BUTTON PALETTE (Professional Colors) ---
+    property color btnBlue: "#0288D1"
+    property color btnGreen: "#2E7D32"
+    property color btnPurple: "#7B1FA2"
+    property color btnSlate: "#455A64"  // For Labels acting as buttons
+    property color btnTeal: "#00897B"
+    property color btnDark: "#37474F"
 
     ColumnLayout {
         anchors.fill: parent
@@ -35,40 +46,86 @@ Rectangle {
             spacing: 8
 
             component StatusButton: Button {
+                id: statusBtnRoot
                 Layout.fillWidth: true
                 Layout.preferredHeight: 50
                 property color baseColor: "#546E7A"
                 property color txtColor: "white"
                 property bool isActive: false
+                property string pathData: ""
 
                 background: Rectangle {
-                    color: parent.isActive ? Qt.lighter(parent.baseColor, 1.3) : parent.baseColor
+                    id: bgRect
                     radius: 6
-                    border.width: parent.isActive ? 2 : 0
-                    border.color: "white"
+                    // --- YOUR SPECIFIC GRADIENT STYLING ---
+                    gradient: Gradient {
+                        GradientStop {
+                            position: 0.0
+                            color: statusBtnRoot.pressed ? Qt.darker(statusBtnRoot.baseColor, 1.2) : Qt.lighter(statusBtnRoot.baseColor, 1.3)
+                            Behavior on color { ColorAnimation { duration: 150 } }
+                        }
+                        GradientStop {
+                            position: 1.0
+                            color: statusBtnRoot.pressed ? Qt.darker(statusBtnRoot.baseColor, 1.4) : statusBtnRoot.baseColor
+                            Behavior on color { ColorAnimation { duration: 150 } }
+                        }
+                    }
+                    // --- BORDER STYLING ---
+                    border.color: statusBtnRoot.isActive ? "white" : Qt.lighter(statusBtnRoot.baseColor, 1.5)
+                    border.width: statusBtnRoot.hovered || statusBtnRoot.isActive ? 2 : 1
+                    Behavior on border.width { NumberAnimation { duration: 100 } }
                 }
-                contentItem: Text {
-                    text: parent.text
-                    color: parent.txtColor
-                    font.bold: true
-                    font.capitalization: Font.AllUppercase
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                    fontSizeMode: Text.Fit
-                    minimumPixelSize: 10
-                    font.pixelSize: 18
-                    leftPadding: 4; rightPadding: 4
+
+                contentItem: RowLayout {
+                    id: contentLayout
+                    spacing: 8
+                    // Center the entire row inside the button
+                    anchors.centerIn: parent
+
+                    // Icon Shape
+                    Shape {
+                        visible: statusBtnRoot.pathData !== ""
+                        Layout.preferredWidth: 20
+                        Layout.preferredHeight: 20
+                        Layout.alignment: Qt.AlignVCenter
+                        ShapePath {
+                            strokeWidth: 0
+                            fillColor: statusBtnRoot.txtColor
+                            PathSvg { path: statusBtnRoot.pathData }
+                        }
+                        scale: 18/24
+                        transformOrigin: Item.Center
+                    }
+
+                    // Dynamic Text Alignment
+                    Text {
+                        text: statusBtnRoot.text
+                        color: statusBtnRoot.txtColor
+                        font.bold: true
+                        font.capitalization: Font.AllUppercase
+
+                        // Layout properties for dynamic centering
+                        Layout.fillWidth: true
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+
+                        fontSizeMode: Text.Fit
+                        minimumPixelSize: 10
+                        font.pixelSize: 18
+                    }
                 }
                 onClicked: rightPanel.currentTab = text
             }
 
-            StatusButton { text: "Speed"; baseColor: "#546E7A"; isActive: currentTab === "Speed" }
+            // --- BUTTON INSTANCES ---
 
-            // --- JOG BUTTON WITH POPUP ---
+            StatusButton { text: "Speed"; baseColor: "#546E7A"; isActive: currentTab === "Speed"; pathData: icons.gauge }
+
             StatusButton {
                 text: "Jog"
-                baseColor: "#0288D1"
+                baseColor: btnBlue
                 isActive: currentTab === "Jog"
+                pathData: icons.robot
                 onClicked: jogPopup.open()
 
                 Popup {
@@ -97,11 +154,11 @@ Rectangle {
                 }
             }
 
-            // --- MOVE BUTTON WITH POPUP ---
             StatusButton {
                 text: "Move"
-                baseColor: "#2E7D32"
+                baseColor: btnGreen
                 isActive: currentTab === "Move"
+                pathData: icons.target
                 onClicked: movePopup.open()
 
                 Popup {
@@ -130,12 +187,11 @@ Rectangle {
                 }
             }
 
-            StatusButton { text: "Auto"; baseColor: "#6A1B9A"; isActive: currentTab === "Auto" }
-            StatusButton { text: "Manual"; baseColor: "#4527A0"; isActive: currentTab === "Manual" }
-            StatusButton { text: "Remote"; baseColor: "#283593"; isActive: currentTab === "Remote" }
-            StatusButton { text: "Emergency"; baseColor: "#C62828"; isActive: currentTab === "Emergency" }
+            StatusButton { text: "Auto"; baseColor: "#6A1B9A"; isActive: currentTab === "Auto"; pathData: icons.refresh }
+            StatusButton { text: "Manual"; baseColor: "#4527A0"; isActive: currentTab === "Manual"; pathData: icons.settings }
+            StatusButton { text: "Remote"; baseColor: "#283593"; isActive: currentTab === "Remote"; pathData: icons.network }
+            StatusButton { text: "Emergency"; baseColor: "#C62828"; isActive: currentTab === "Emergency"; pathData: icons.power }
         }
-
         // ============================================================
         // 2. CONTENT AREA (Split Top 40% / Bottom 60%)
         // ============================================================
@@ -145,7 +201,7 @@ Rectangle {
             spacing: 15
 
             // --------------------------------------------------------
-            // A. TOP ROW (Height: 40%) -> Split Width 20% / 80%
+            // A. TOP ROW (Height: 40%)
             // --------------------------------------------------------
             RowLayout {
                 Layout.fillWidth: true
@@ -188,38 +244,28 @@ Rectangle {
                                 width: parent.width
                                 spacing: 10
 
-                                // 1. Distance
                                 RowLayout {
-                                    Layout.fillWidth: true
-                                    spacing: 10
+                                    Layout.fillWidth: true; spacing: 10
                                     Text { text: "MM"; color: textSpeed; font.bold: true; font.pixelSize: 18; Layout.preferredWidth: 60; Layout.alignment: Qt.AlignVCenter }
                                     CustomComboBox { model: ["0.1", "1.0", "10", "100"]; Layout.fillWidth: true }
                                 }
-                                // 2. Linear Speed
                                 RowLayout {
-                                    Layout.fillWidth: true
-                                    spacing: 10
+                                    Layout.fillWidth: true; spacing: 10
                                     Text { text: "MM/S"; color: textSpeed; font.bold: true; font.pixelSize: 18; Layout.preferredWidth: 60; Layout.alignment: Qt.AlignVCenter }
                                     CustomTextField { text: "100"; Layout.fillWidth: true }
                                 }
-                                // 3. Angle Unit
                                 RowLayout {
-                                    Layout.fillWidth: true
-                                    spacing: 10
+                                    Layout.fillWidth: true; spacing: 10
                                     Text { text: "Deg"; color: textSpeed; font.bold: true; font.pixelSize: 18; Layout.preferredWidth: 60; Layout.alignment: Qt.AlignVCenter }
                                     CustomComboBox { model: ["Deg", "Rad"]; Layout.fillWidth: true }
                                 }
-                                // 4. Angular Speed
                                 RowLayout {
-                                    Layout.fillWidth: true
-                                    spacing: 10
+                                    Layout.fillWidth: true; spacing: 10
                                     Text { text: "Deg/S"; color: textSpeed; font.bold: true; font.pixelSize: 18; Layout.preferredWidth: 60; Layout.alignment: Qt.AlignVCenter }
                                     CustomTextField { text: "10"; Layout.fillWidth: true }
                                 }
-                                // 5. Coord Frame
                                 RowLayout {
-                                    Layout.fillWidth: true
-                                    spacing: 10
+                                    Layout.fillWidth: true; spacing: 10
                                     Text { text: "Frame"; color: textSpeed; font.bold: true; font.pixelSize: 18; Layout.preferredWidth: 60; Layout.alignment: Qt.AlignVCenter }
                                     CustomComboBox { model: ["User", "World", "Tool"]; Layout.fillWidth: true }
                                 }
@@ -238,12 +284,9 @@ Rectangle {
                         GridLayout {
                             visible: jogTab === "Cartesian"
                             columns: 2; rowSpacing: 4; columnSpacing: 4
-                            Layout.fillWidth: true
-                            Layout.fillHeight: true
-
+                            Layout.fillWidth: true; Layout.fillHeight: true
                             Text { text: "NEG"; color: "#EF5350"; font.bold: true; font.pixelSize: 10; Layout.alignment: Qt.AlignHCenter }
                             Text { text: "POS"; color: "#00E676"; font.bold: true; font.pixelSize: 10; Layout.alignment: Qt.AlignHCenter }
-
                             JogBtn { text: "X-" } JogBtn { text: "X+" }
                             JogBtn { text: "Y-" } JogBtn { text: "Y+" }
                             JogBtn { text: "Z-" } JogBtn { text: "Z+" }
@@ -256,12 +299,9 @@ Rectangle {
                         GridLayout {
                             visible: jogTab === "Joints"
                             columns: 2; rowSpacing: 4; columnSpacing: 4
-                            Layout.fillWidth: true
-                            Layout.fillHeight: true
-
+                            Layout.fillWidth: true; Layout.fillHeight: true
                             Text { text: "NEG"; color: "#EF5350"; font.bold: true; font.pixelSize: 10; Layout.alignment: Qt.AlignHCenter }
                             Text { text: "POS"; color: "#00E676"; font.bold: true; font.pixelSize: 10; Layout.alignment: Qt.AlignHCenter }
-
                             JogBtn { text: "J1-" } JogBtn { text: "J1+" }
                             JogBtn { text: "J2-" } JogBtn { text: "J2+" }
                             JogBtn { text: "J3-" } JogBtn { text: "J3+" }
@@ -298,8 +338,7 @@ Rectangle {
                                         Layout.preferredWidth: 90
                                         Layout.fillHeight: true
                                         color: footerStack.currentIndex === index ? panelBg : "transparent"
-                                        border.color: borderColor
-                                        border.width: 1
+                                        border.color: borderColor; border.width: 1
                                         Rectangle { visible: footerStack.currentIndex === index; height: 2; width: parent.width; anchors.top: parent.top; color: primaryColor }
                                         Text { text: modelData; anchors.centerIn: parent; color: footerStack.currentIndex === index ? primaryColor : textSec; font.bold: footerStack.currentIndex === index; font.pixelSize: 12 }
                                         MouseArea { anchors.fill: parent; onClicked: footerStack.currentIndex = index }
@@ -368,25 +407,26 @@ Rectangle {
             }
 
             // --------------------------------------------------------
-            // B. BOTTOM ROW (Height: 60%) -> Panel Space Panel Space
+            // B. BOTTOM ROW (Height: 60%)
             // --------------------------------------------------------
             ColumnLayout {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Layout.preferredHeight: rightPanel.height * 0.6
-                spacing: 8 // Tighter vertical spacing
+                Layout.preferredHeight: rightPanel.height * 0.6 // Fixed 60% ratio
+                spacing: 10
 
-                // --- 1. PANELCARD (Top Table in Bottom Section) ---
+                // --- 1. PANELCARD (Top Table) ---
                 PanelCard {
                     Layout.fillWidth: true
-                    Layout.preferredHeight: parent.height * 0.32 // Approx 32%
+                    // FIXED: Use relative calculation from ROOT ID to prevent recursion
+                    Layout.preferredHeight: rightPanel.height * 0.6 * 0.35
                     clip: true
 
                     ColumnLayout {
                         anchors.fill: parent
                         spacing: 0
 
-                        // 1. Footer Tab Bar
+                        // 1. Footer Tab Bar (Middle)
                         Rectangle {
                             Layout.fillWidth: true
                             Layout.preferredHeight: 28
@@ -412,13 +452,14 @@ Rectangle {
                             }
                         }
 
-                        // 2. Content
+                        // 2. Content Area (Middle)
                         StackLayout {
                             id: middleStack
                             currentIndex: 0
                             Layout.fillWidth: true
                             Layout.fillHeight: true
 
+                            // Tab 1
                             Rectangle {
                                 color: "transparent"
                                 ScrollView {
@@ -442,7 +483,7 @@ Rectangle {
                                             FooterCell { txt: "Name"; w: 80; header: true }
                                         }
                                         Repeater {
-                                            model: 3
+                                            model: 5
                                             Row {
                                                 FooterCell { txt: (index + 1).toString(); w: 50 }
                                                 FooterCell { txt: ""; w: 60 }
@@ -468,18 +509,22 @@ Rectangle {
                     }
                 }
 
-                // --- 2. MIDDLE GRID (7 Columns) ---
+                // --- 2. MIDDLE ACTION BUTTONS (2 Rows x 7 Columns) ---
                 GridLayout {
                     Layout.fillWidth: true
-                    Layout.preferredHeight: parent.height * 0.12 // Approx 12%
+                    // FIXED: Use relative calculation from ROOT ID to prevent recursion
+                    Layout.preferredHeight: rightPanel.height * 0.6 * 0.15
                     columns: 7
                     rowSpacing: 8
                     columnSpacing: 8
                     uniformCellWidths: true
 
-                    // Row 1
+                    // --- ROW 1 ---
+                    // 1. Inst (Blue)
                     ActionBtn {
                         text: "Inst"
+                        baseColor: btnBlue
+                        pathData: icons.document
                         onClicked: instPopup.open()
                         Popup {
                             id: instPopup
@@ -488,15 +533,19 @@ Rectangle {
                             background: Rectangle { color: panelBg; border.color: borderColor; radius: 6 }
                             contentItem: ColumnLayout {
                                 spacing: 5
-                                ActionBtn { text: "Insert Inst"; Layout.preferredHeight: 35; onClicked: { console.log("Insert Inst"); instPopup.close() } }
-                                ActionBtn { text: "Modify Inst"; Layout.preferredHeight: 35; onClicked: { console.log("Modify Inst"); instPopup.close() } }
-                                ActionBtn { text: "Delete Inst"; Layout.preferredHeight: 35; background: Rectangle { color: parent.pressed ? "#FF5252" : panelBg; radius: 6; border.color: borderColor } onClicked: { console.log("Delete Inst"); instPopup.close() } }
+                                ActionBtn { text: "Insert Inst"; baseColor: btnBlue; pathData: icons.document; Layout.preferredHeight: 35; onClicked: { console.log("Insert Inst"); instPopup.close() } }
+                                ActionBtn { text: "Modify Inst"; baseColor: btnBlue; pathData: icons.document; Layout.preferredHeight: 35; onClicked: { console.log("Modify Inst"); instPopup.close() } }
+                                ActionBtn { text: "Delete Inst"; baseColor: "#FF5252"; pathData: icons.exit; Layout.preferredHeight: 35; onClicked: { console.log("Delete Inst"); instPopup.close() } }
                             }
                         }
                     }
-                    ActionBtn { text: "Run Inst"; onClicked: console.log("Run Inst") }
+                    // 2. Run Inst (Green)
+                    ActionBtn { text: "Run Inst"; baseColor: btnGreen; pathData: icons.play; onClicked: console.log("Run Inst") }
+                    // 3. TP (Purple)
                     ActionBtn {
                         text: "TP"
+                        baseColor: btnPurple
+                        pathData: icons.target
                         onClicked: tpPopup.open()
                         Popup {
                             id: tpPopup
@@ -505,32 +554,59 @@ Rectangle {
                             background: Rectangle { color: panelBg; border.color: borderColor; radius: 6 }
                             contentItem: ColumnLayout {
                                 spacing: 5
-                                ActionBtn { text: "Insert TP"; Layout.preferredHeight: 35; onClicked: { console.log("Insert TP"); tpPopup.close() } }
-                                ActionBtn { text: "Modify TP"; Layout.preferredHeight: 35; onClicked: { console.log("Modify TP"); tpPopup.close() } }
-                                ActionBtn { text: "Delete TP"; Layout.preferredHeight: 35; background: Rectangle { color: parent.pressed ? "#FF5252" : panelBg; radius: 6; border.color: borderColor } onClicked: { console.log("Delete TP"); tpPopup.close() } }
+                                ActionBtn { text: "Insert TP"; baseColor: btnPurple; pathData: icons.target; Layout.preferredHeight: 35; onClicked: { console.log("Insert TP"); tpPopup.close() } }
+                                ActionBtn { text: "Modify TP"; baseColor: btnPurple; pathData: icons.target; Layout.preferredHeight: 35; onClicked: { console.log("Modify TP"); tpPopup.close() } }
+                                ActionBtn { text: "Delete TP"; baseColor: "#FF5252"; pathData: icons.exit; Layout.preferredHeight: 35; onClicked: { console.log("Delete TP"); tpPopup.close() } }
                             }
                         }
                     }
-                    ActionBtn { text: "Run TP"; onClicked: console.log("Run TP") }
-                    // Reusing ActionBtn with specific color for "Label Buttons"
-                    ActionBtn { text: "Op Pg"; baseColor: btnLabelColor }
+                    // 4. Run TP (Green)
+                    ActionBtn { text: "Run TP"; baseColor: btnGreen; pathData: icons.play; onClicked: console.log("Run TP") }
+                    // 5. TP Mode (Purple)
+                    ActionBtn {
+                        text: "TP Mode"
+                        baseColor: btnPurple
+                        pathData: icons.settings
+                        onClicked: tpMode.open()
+                        Popup {
+                            id: tpMode
+                            y: parent.height + 5; x: 0; width: 150; padding: 5
+                            closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
+                            background: Rectangle { color: panelBg; border.color: borderColor; radius: 6 }
+                            contentItem: ColumnLayout {
+                                spacing: 5
+                                ActionBtn { text: "TP 1"; baseColor: btnPurple; Layout.preferredHeight: 35; onClicked: { tpMode.close() } }
+                                ActionBtn { text: "TP 2"; baseColor: btnPurple; Layout.preferredHeight: 35; onClicked: { tpMode.close() } }
+                            }
+                        }
+                    }
+                    // 6. Op Pg Label (Slate)
+                    ActionBtn { text: "Op Pg"; baseColor: btnSlate; pathData: icons.page }
+                    // 7. Input
                     GridInput { placeholderText: "0" }
-                    Item { Layout.fillWidth: true; Layout.fillHeight: true } // Spacer
 
-                    // Row 2
-                    ActionBtn { text: "Ip Pg"; baseColor: btnLabelColor }
+                    // --- ROW 2 ---
+                    // 1. Ip Pg (Slate)
+                    ActionBtn { text: "Ip Pg"; baseColor: btnSlate; pathData: icons.page }
+                    // 2. Input
                     GridInput { placeholderText: "0" }
-                    ActionBtn { text: "Tnp"; baseColor: btnLabelColor }
+                    // 3. Tnp (Slate)
+                    ActionBtn { text: "Tnp"; baseColor: btnSlate; pathData: icons.tag }
+                    // 4. Input
                     GridInput { placeholderText: "0" }
-                    ActionBtn { text: "Com"; baseColor: btnLabelColor }
+                    // 5. Com (Slate)
+                    ActionBtn { text: "Com"; baseColor: btnSlate; pathData: icons.network }
+                    // 6. Input
                     GridInput { placeholderText: "0" }
-                    ActionBtn { text: "Calc Traj"; onClicked: console.log("Calc Trajectory") }
+                    // 7. Calc Traj (Teal)
+                    ActionBtn { text: "Calc Traj"; baseColor: btnTeal; pathData: icons.calculator; onClicked: console.log("Calc Trajectory") }
                 }
 
                 // --- 3. PANELCARD (Bottom Table) ---
                 PanelCard {
                     Layout.fillWidth: true
-                    Layout.preferredHeight: parent.height * 0.32 // Approx 32%
+                    // FIXED: Use relative calculation from ROOT ID to prevent recursion
+                    Layout.preferredHeight: rightPanel.height * 0.6 * 0.32
                     clip: true
 
                     ColumnLayout {
@@ -623,36 +699,37 @@ Rectangle {
                 // --- 4. BOTTOM GRID (11 Columns - Matching Image) ---
                 GridLayout {
                     Layout.fillWidth: true
-                    Layout.preferredHeight: parent.height * 0.18 // Approx 18%
+                    // FIXED: Use relative calculation from ROOT ID to prevent recursion
+                    Layout.preferredHeight: rightPanel.height * 0.6 * 0.15
                     columns: 11
                     rowSpacing: 6
                     columnSpacing: 4
                     uniformCellWidths: true
 
                     // --- ROW 1 ---
-                    CustomComboBox { model: ["Inst"]; Layout.fillWidth: true }
-                    CustomComboBox { model: ["Di-1"]; Layout.fillWidth: true }
-                    CustomComboBox { model: ["Di-2"]; Layout.fillWidth: true }
-                    ActionBtn { text: "H/L"; baseColor: btnLabelColor }
-                    CustomComboBox { model: ["Dig"]; Layout.fillWidth: true }
-                    ActionBtn { text: "delay ms"; baseColor: btnLabelColor }
+                    CustomComboBox { model: ["Inst","Inst","Inst","Inst","Inst","Inst"]; Layout.fillWidth: true }
+                    CustomComboBox { model: ["Di-1","Di-1","Di-1","Di-1","Di-1","Di-1"]; Layout.fillWidth: true }
+                    CustomComboBox { model: ["Di-2","Di-2","Di-2","Di-2","Di-2","Di-2"]; Layout.fillWidth: true }
+                    ActionBtn { text: "H/L"; baseColor: btnSlate; pathData: icons.switchIcon }
+                    CustomComboBox { model: ["Dig","Dig","Dig","Dig","Dig","Dig","Dig"]; Layout.fillWidth: true }
+                    ActionBtn { text: "delay"; baseColor: btnSlate; pathData: icons.clock }
                     GridInput { placeholderText: "" }
-                    ActionBtn { text: "go to"; baseColor: btnLabelColor }
+                    ActionBtn { text: "go to"; baseColor: btnSlate; pathData: icons.arrow }
                     GridInput { placeholderText: "" }
-                    ActionBtn { text: "loop"; baseColor: btnLabelColor }
+                    ActionBtn { text: "loop"; baseColor: btnSlate; pathData: icons.loop }
                     GridInput { placeholderText: "" }
 
                     // --- ROW 2 ---
-                    ActionBtn { text: "mm/s"; baseColor: btnLabelColor }
+                    ActionBtn { text: "mm/s"; baseColor: btnSlate; pathData: icons.gauge }
                     GridInput { placeholderText: "" }
-                    ActionBtn { text: "Radius"; baseColor: btnLabelColor }
+                    ActionBtn { text: "Radius"; baseColor: btnSlate; pathData: icons.gauge }
                     GridInput { placeholderText: "" }
-                    CustomComboBox { model: ["Vr_1"]; Layout.fillWidth: true }
+                    CustomComboBox { model: ["Vr_1","Vr_1","Vr_1","Vr_1","Vr_1","Vr_1","Vr_1"]; Layout.fillWidth: true }
                     GridInput { placeholderText: "" }
-                    CustomComboBox { model: ["Vr_2"]; Layout.fillWidth: true }
-                    ActionBtn { text: "AN ip"; baseColor: btnLabelColor }
+                    CustomComboBox { model: ["Vr_2","Vr_2","Vr_2","Vr_2","Vr_2","Vr_2","Vr_2"]; Layout.fillWidth: true }
+                    ActionBtn { text: "AN ip"; baseColor: btnSlate; pathData: icons.network }
                     GridInput { placeholderText: "" }
-                    ActionBtn { text: "AN op"; baseColor: btnLabelColor }
+                    ActionBtn { text: "AN op"; baseColor: btnSlate; pathData: icons.network }
                     GridInput { placeholderText: "" }
                 }
             }
@@ -679,27 +756,50 @@ Rectangle {
     }
 
     // *** ACTION BUTTON ***
+    // FIXED: Added ID 'btnRoot' to resolve ReferenceError/TypeError
     component ActionBtn: Button {
+        id: btnRoot
         Layout.fillWidth: true
         Layout.fillHeight: true
-        Layout.preferredHeight: 35 // Ensure consistent height
-        property color baseColor: primaryColor // Default blue
+        Layout.preferredHeight: 35
+        property color baseColor: primaryColor // Default to Primary Blue
+        property string pathData: "" // Path data for icon
 
         background: Rectangle {
-            color: parent.pressed ? Qt.darker(parent.baseColor, 1.2) : (parent.baseColor === primaryColor ? primaryColor : "#2b2b3b") // Use dark grey if baseColor override isn't primary
+            color: btnRoot.pressed ? Qt.darker(btnRoot.baseColor, 1.2) : (btnRoot.baseColor === primaryColor ? primaryColor : btnRoot.baseColor)
             radius: 4
-            border.color: parent.baseColor === primaryColor ? primaryColor : borderColor
+            border.color: Qt.lighter(btnRoot.color, 1.2)
             border.width: 1
         }
-        contentItem: Text {
-            text: parent.text
-            color: "white"
-            font.bold: true
-            font.pixelSize: 12
-            fontSizeMode: Text.Fit
-            minimumPixelSize: 8
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
+        contentItem: RowLayout {
+            spacing: 4
+            // Icon
+            Shape {
+                visible: btnRoot.pathData !== ""
+                Layout.preferredWidth: 14
+                Layout.preferredHeight: 14
+                Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+                ShapePath {
+                    strokeWidth: 0
+                    fillColor: "white"
+                    PathSvg { path: btnRoot.pathData }
+                }
+                // Scale normalization if needed (assumes 24x24 icons)
+                scale: 14/24
+                transformOrigin: Item.Center
+            }
+            // Text
+            Text {
+                text: btnRoot.text
+                color: "white"
+                font.bold: true
+                font.pixelSize: 16 // Smaller font to fit grid
+                fontSizeMode: Text.Fit
+                minimumPixelSize: 8
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                Layout.fillWidth: true
+            }
         }
     }
 

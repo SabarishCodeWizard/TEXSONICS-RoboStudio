@@ -4,7 +4,6 @@ import QtQuick.Layouts 1.15
 import QtQuick.Shapes 1.15
 import QtQuick.Effects
 
-
 Button {
     id: control
 
@@ -13,15 +12,13 @@ Button {
     property string label: ""
 
     // --- SIZE CONFIGURATION ---
-    // Set to 0 for Automatic Dynamic Sizing.
-    // Set a specific number to manually override.
-    property real iconSize: 33
-    property real fontSize: 20
+    // 0 = Automatic Dynamic Sizing
+    property real iconSize: 0
+    property real fontSize: 0
 
-    // Allow parent Layout to control size
     Layout.fillWidth: true
     Layout.fillHeight: true
-    Layout.preferredHeight: 55
+    Layout.preferredHeight: 50
 
     background: Rectangle {
         id: bgRect
@@ -49,68 +46,65 @@ Button {
 
         // --- DYNAMIC CALCULATIONS ---
         property bool hasLabel: control.label !== ""
+        property bool hasIcon: control.pathData !== ""
 
-        // 1. Icon Size Logic: Manual Override OR Auto Calculation
-        property real autoIconHeight: hasLabel ? parent.height * 0.45 : parent.height * 0.6
-        property real finalIconSize: control.iconSize > 0 ? control.iconSize : Math.min(autoIconHeight, parent.width * 0.8)
+        // 1. Icon Size: Bigger now (55% of height) since it's side-by-side
+        property real autoIconHeight: parent.height * 0.55
+        property real calcIconSize: Math.min(autoIconHeight, 32)
+        property real finalIconSize: control.iconSize > 0 ? control.iconSize : calcIconSize
 
-        // 2. Vertical Offset Logic
-        property real verticalOffset: hasLabel ? -(parent.height * 0.12) : 0
+        // 2. Font Size: Larger (35% of height)
+        property real autoFontSize: parent.height * 0.35
+        property real calcFontSize: Math.min(autoFontSize, 20)
+        property real finalFontSize: control.fontSize > 0 ? control.fontSize : calcFontSize
 
-        scale: control.pressed ? 0.94 : 1.0
+        scale: control.pressed ? 0.96 : 1.0
         Behavior on scale { NumberAnimation { duration: 50; easing.type: Easing.OutQuad } }
 
-        // --- THE ICON ---
-        Shape {
-            id: iconShape
+        // --- HORIZONTAL LAYOUT (Left Icon, Right Text) ---
+        RowLayout {
             anchors.centerIn: parent
-            anchors.verticalCenterOffset: parent.verticalOffset
+            spacing: control.hasLabel ? 12 : 0 // Space between Icon and Text
 
-            width: parent.finalIconSize
-            height: parent.finalIconSize
+            // --- THE ICON ---
+            Shape {
+                visible: parent.parent.hasIcon
+                Layout.preferredWidth: parent.parent.finalIconSize
+                Layout.preferredHeight: parent.parent.finalIconSize
+                Layout.alignment: Qt.AlignVCenter
 
-            // Scaling logic: Assumes 24x24 standard SVG coordinate system
-            scale: width / 24
+                // Scaling: Assumes 24x24 SVG viewport
+                scale: width / 24
+                transformOrigin: Item.Center
 
-            ShapePath {
-                strokeWidth: 0
-                fillColor: Qt.rgba(1,1,1, 0.95)
-                PathSvg { path: control.pathData }
+                ShapePath {
+                    strokeWidth: 0
+                    fillColor: Qt.rgba(1,1,1, 0.95)
+                    PathSvg { path: control.pathData }
+                }
             }
-        }
 
-        // --- THE LABEL ---
-        Text {
-            visible: parent.hasLabel
-            text: control.label
+            // --- THE LABEL ---
+            Text {
+                visible: parent.parent.hasLabel
+                text: control.label
 
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: parent.height * 0.08
-            anchors.horizontalCenter: parent.horizontalCenter
+                Layout.alignment: Qt.AlignVCenter
 
-            width: parent.width * 0.90
+                font.pixelSize: parent.parent.finalFontSize
+                font.bold: true
+                font.capitalization: Font.AllUppercase
+                font.family: "Segoe UI"
 
-            // 3. Font Size Logic: Manual Override OR Auto Calculation
-            font.pixelSize: control.fontSize > 0 ? control.fontSize : parent.height * 0.22
+                color: "#ffffff"
+                style: Text.Outline
+                styleColor: "#80000000"
 
-            minimumPixelSize: 8
-            fontSizeMode: Text.HorizontalFit
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
 
-            font.bold: true
-            font.capitalization: Font.AllUppercase
-            font.family: "Segoe UI"
-            color: "#ffffff"
-            style: Text.Outline
-            styleColor: "#66000000"
-            horizontalAlignment: Text.AlignHCenter
-            layer.enabled: true
-            // layer.effect: MultiEffect {
-            //     shadowEnabled: true
-            //     shadowHorizontalOffset: 4
-            //     shadowVerticalOffset: 4
-            //     shadowBlur: 0.25
-            //     shadowOpacity: 0.85
-            // }
+                layer.enabled: true
+            }
         }
     }
 }
