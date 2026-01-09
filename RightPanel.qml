@@ -333,7 +333,7 @@ Rectangle {
                                 anchors.fill: parent
                                 spacing: 1
                                 Repeater {
-                                    model: ["Inst", "Debug", "Jog Deg"]
+                                    model: ["Error Pos", "Ether Cat", "IO Modules"]
                                     Rectangle {
                                         Layout.preferredWidth: 90
                                         Layout.fillHeight: true
@@ -355,52 +355,233 @@ Rectangle {
                             Layout.fillWidth: true
                             Layout.fillHeight: true
 
-                            // --- TAB 1: INST ---
+
+                            // --- TAB 1: Error pos ---
                             Rectangle {
-                                color: "transparent"
-                                ScrollView {
-                                    anchors.fill: parent; clip: true
-                                    ScrollBar.horizontal.policy: ScrollBar.AlwaysOn
-                                    ScrollBar.vertical.policy: ScrollBar.AlwaysOn
-                                    Column {
-                                        Row {
-                                            FooterCell { txt: "Sl No"; w: 50; header: true }
-                                            FooterCell { txt: "Inst"; w: 60; header: true }
-                                            FooterCell { txt: "Name"; w: 80; header: true }
-                                            FooterCell { txt: "Value_1"; w: 80; header: true }
-                                            FooterCell { txt: "Deg_1"; w: 60; header: true }
-                                            FooterCell { txt: "Name"; w: 80; header: true }
-                                            FooterCell { txt: "Value_2"; w: 80; header: true }
-                                            FooterCell { txt: "Deg_2"; w: 60; header: true }
-                                            FooterCell { txt: "Inst"; w: 60; header: true }
-                                            FooterCell { txt: "Name"; w: 80; header: true }
-                                            FooterCell { txt: "Value_1"; w: 80; header: true }
-                                            FooterCell { txt: "Deg_1"; w: 60; header: true }
-                                            FooterCell { txt: "Name"; w: 80; header: true }
+                                color: "#f4f4f4" // Light grey background like the screenshot
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+
+                                GridLayout {
+                                    anchors.fill: parent
+                                    anchors.margins: 10
+                                    columns: 7 // Based on the 7 vertical sections in your image
+                                    columnSpacing: 15
+                                    rowSpacing: 2
+
+                                    // Column 1: Cartesian Start (X-S to c-S)
+                                    ColumnLayout {
+                                        ErrorField { label: "X-S" }
+                                        ErrorField { label: "Y-S" }
+                                        ErrorField { label: "Z-S" }
+                                        ErrorField { label: "a-S" }
+                                        ErrorField { label: "b-S" }
+                                        ErrorField { label: "c-S" }
+                                    }
+
+                                    // Column 2: Joint Start (J1-S to J6-S)
+                                    ColumnLayout {
+                                        ErrorField { label: "J1-S" }
+                                        ErrorField { label: "J2-S" }
+                                        ErrorField { label: "J3-S" }
+                                        ErrorField { label: "J4-S" }
+                                        ErrorField { label: "J5-S" }
+                                        ErrorField { label: "J6-S" }
+                                    }
+
+                                    // Column 3: Cartesian End (X-E to c-E)
+                                    ColumnLayout {
+                                        ErrorField { label: "X-E" }
+                                        ErrorField { label: "Y-E" }
+                                        ErrorField { label: "Z-E" }
+                                        ErrorField { label: "a-E" }
+                                        ErrorField { label: "b-E" }
+                                        ErrorField { label: "c-E" }
+                                    }
+
+                                    // Column 4: Joint End (J1-E to J6-E)
+                                    ColumnLayout {
+                                        ErrorField { label: "J1-E" }
+                                        ErrorField { label: "J2-E" }
+                                        ErrorField { label: "J3-E" }
+                                        ErrorField { label: "J4-E" }
+                                        ErrorField { label: "J5-E" }
+                                        ErrorField { label: "J6-E" }
+                                    }
+
+                                    // Column 5: Cartesian Error (X-Er to c-Er)
+                                    ColumnLayout {
+                                        ErrorField { label: "X-Er" }
+                                        ErrorField { label: "Y-Er" }
+                                        ErrorField { label: "Z-Er" }
+                                        ErrorField { label: "a-Er" }
+                                        ErrorField { label: "b-Er" }
+                                        ErrorField { label: "c-Er" }
+                                    }
+
+                                    // Column 6: Joint Error (J1-Er to J6-Er)
+                                    ColumnLayout {
+                                        ErrorField { label: "J1-Er" }
+                                        ErrorField { label: "J2-Er" }
+                                        ErrorField { label: "J3-Er" }
+                                        ErrorField { label: "J4-Er" }
+                                        ErrorField { label: "J5-Er" }
+                                        ErrorField { label: "J6-Er" }
+                                    }
+
+                                    // Column 7: Special/Info Fields
+                                    ColumnLayout {
+                                        ErrorField { label: "Sp In" }
+                                        ErrorField { label: "fun" }
+                                        ErrorField { label: "Num" }
+                                        ErrorField { label: "Dist" }
+                                        ErrorField { label: "ms" }
+                                        ErrorField { label: "Trj" }
+                                    }
+                                }
+                            }
+
+                            // --- TAB 2: Ether Cat (Rectangle 2) ---
+                            Rectangle {
+                                color: "#f4f4f4" // Light industrial grey background
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+
+                                // Reusable component for the label + input pair
+                                component DebugField : RowLayout {
+                                    property string lblText: ""
+                                    property string valText: "0"
+                                    spacing: 8
+                                    Text {
+                                        text: lblText
+                                        font.bold: true
+                                        font.pixelSize: 13
+                                        color: "#333333"
+                                        Layout.preferredWidth: 80 // Adjust based on longest label
+                                    }
+                                    TextField {
+                                        text: valText
+                                        Layout.preferredWidth: 60
+                                        Layout.preferredHeight: 24
+                                        font.pixelSize: 12
+                                        verticalAlignment: TextInput.AlignVCenter
+                                        background: Rectangle {
+                                            border.color: "#bcbcbc"
+                                            border.width: 1
+                                            radius: 2
                                         }
-                                        Repeater {
-                                            model: 8
-                                            Row {
-                                                FooterCell { txt: (index + 1).toString(); w: 50 }
-                                                FooterCell { txt: ""; w: 60 }
-                                                FooterCell { txt: ""; w: 80 }
-                                                FooterCell { txt: ""; w: 80 }
-                                                FooterCell { txt: ""; w: 60 }
-                                                FooterCell { txt: ""; w: 80 }
-                                                FooterCell { txt: ""; w: 80 }
-                                                FooterCell { txt: ""; w: 60 }
-                                                FooterCell { txt: ""; w: 60 }
-                                                FooterCell { txt: ""; w: 80 }
-                                                FooterCell { txt: ""; w: 80 }
-                                                FooterCell { txt: ""; w: 60 }
-                                                FooterCell { txt: ""; w: 80 }
+                                    }
+                                }
+
+                                ScrollView {
+                                    anchors.fill: parent
+                                    anchors.margins: 15
+                                    clip: true
+
+                                    GridLayout {
+                                        width: parent.width
+                                        columns: 4 // Four distinct groups of data
+                                        columnSpacing: 25
+                                        rowSpacing: 2
+
+                                        // Group 1: State
+                                        ColumnLayout {
+                                            spacing: 2
+                                            Repeater {
+                                                model: 7
+                                                DebugField { lblText: "state " + (index + 1) }
+                                            }
+                                        }
+
+                                        // Group 2: AI_state
+                                        ColumnLayout {
+                                            spacing: 2
+                                            Repeater {
+                                                model: 7
+                                                DebugField { lblText: "AI_state " + (index + 1) }
+                                            }
+                                        }
+
+                                        // Group 3: Status
+                                        ColumnLayout {
+                                            spacing: 2
+                                            Repeater {
+                                                model: 7
+                                                DebugField { lblText: "status " + (index + 1) }
+                                            }
+                                        }
+
+                                        // Group 4: et_error
+                                        ColumnLayout {
+                                            spacing: 2
+                                            Repeater {
+                                                model: 7
+                                                DebugField { lblText: "et_error " + (index + 1) }
                                             }
                                         }
                                     }
                                 }
                             }
-                            Rectangle { color: "transparent"; Text { text: "Debug View"; color: textSec; anchors.centerIn: parent } }
-                            Rectangle { color: "transparent"; Text { text: "Jog Degrees View"; color: textSec; anchors.centerIn: parent } }
+
+                            // --- TAB 3: IO Modules / IO View (Rectangle 3) ---
+                            Rectangle {
+                                color: "#f8f8f8" // Light background matching the screenshot
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+
+                                // Reusable component for an IO indicator (Label + Status Box)
+                                component Indicator : Column {
+                                    property string labelText: ""
+                                    property bool isActive: true // Toggle this to change color
+                                    spacing: 5
+                                    width: 40
+
+                                    Text {
+                                        text: labelText
+                                        anchors.horizontalCenter: parent.horizontalCenter
+                                        font.pixelSize: 13
+                                        color: "#333"
+                                    }
+
+                                    Rectangle {
+                                        width: 18
+                                        height: 18
+                                        anchors.horizontalCenter: parent.horizontalCenter
+                                        color: isActive ? "#008000" : "#444" // Green if active, dark grey if off
+                                        border.color: "#222"
+                                        border.width: 1
+                                    }
+                                }
+
+                                ColumnLayout {
+                                    anchors.centerIn: parent
+                                    spacing: 20
+
+                                    // Top Row: Digital Inputs (Di1 - Di16)
+                                    RowLayout {
+                                        spacing: 12
+                                        Repeater {
+                                            model: 16
+                                            Indicator {
+                                                labelText: "Di" + (index + 1)
+                                                isActive: true // Link to your backend signal here
+                                            }
+                                        }
+                                    }
+
+                                    // Bottom Row: Digital Outputs (Do1 - Do16)
+                                    RowLayout {
+                                        spacing: 12
+                                        Repeater {
+                                            model: 16
+                                            Indicator {
+                                                labelText: "Do" + (index + 1)
+                                                isActive: true // Link to your backend signal here
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -436,7 +617,7 @@ Rectangle {
                                 anchors.fill: parent
                                 spacing: 1
                                 Repeater {
-                                    model: ["Inst", "Debug", "Jog Deg"]
+                                    model: ["Encoder Offset", "Settings View", "Data Variable","Axis Limit","Mech Settings","Display Settings"]
                                     Rectangle {
                                         Layout.preferredWidth: 90
                                         Layout.fillHeight: true
@@ -459,52 +640,426 @@ Rectangle {
                             Layout.fillWidth: true
                             Layout.fillHeight: true
 
-                            // Tab 1
+                            // --- TAB 1: Encoder Offset ---
                             Rectangle {
-                                color: "transparent"
-                                ScrollView {
-                                    anchors.fill: parent; clip: true
-                                    ScrollBar.horizontal.policy: ScrollBar.AlwaysOn
-                                    ScrollBar.vertical.policy: ScrollBar.AlwaysOn
-                                    Column {
-                                        Row {
-                                            FooterCell { txt: "Sl No"; w: 50; header: true }
-                                            FooterCell { txt: "Inst"; w: 60; header: true }
-                                            FooterCell { txt: "Name"; w: 80; header: true }
-                                            FooterCell { txt: "Value_1"; w: 80; header: true }
-                                            FooterCell { txt: "Deg_1"; w: 60; header: true }
-                                            FooterCell { txt: "Name"; w: 80; header: true }
-                                            FooterCell { txt: "Value_2"; w: 80; header: true }
-                                            FooterCell { txt: "Deg_2"; w: 60; header: true }
-                                            FooterCell { txt: "Inst"; w: 60; header: true }
-                                            FooterCell { txt: "Name"; w: 80; header: true }
-                                            FooterCell { txt: "Value_1"; w: 80; header: true }
-                                            FooterCell { txt: "Deg_1"; w: 60; header: true }
-                                            FooterCell { txt: "Name"; w: 80; header: true }
+                                color: "#b0b0b0" // Darker grey background to match the screenshot
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+
+                                // Internal helper for this specific tab's style
+                                component EncoderField : RowLayout {
+                                    property string lbl: ""
+                                    property bool isButton: false
+                                    spacing: 5
+
+                                    Text {
+                                        text: lbl
+                                        font.bold: true
+                                        font.pixelSize: 13
+                                        color: "#000000"
+                                        Layout.preferredWidth: 120 // Wider for "Encoder Offset" text
+                                    }
+
+                                    TextField {
+                                        visible: !isButton
+                                        Layout.preferredWidth: 100
+                                        Layout.preferredHeight: 28
+                                        background: Rectangle { border.color: "#999"; radius: 2 }
+                                    }
+
+                                    // Handles the "J-Zero" column which looks like buttons/labels in a box
+                                    Rectangle {
+                                        visible: isButton
+                                        Layout.preferredWidth: 80
+                                        Layout.preferredHeight: 28
+                                        color: "#ffffff"
+                                        border.color: "#999"
+                                        radius: 2
+                                        Text {
+                                            text: lbl.split("-")[0].trim() + " - Zero"
+                                            anchors.centerIn: parent
+                                            font.bold: true
+                                            font.pixelSize: 12
                                         }
-                                        Repeater {
-                                            model: 5
-                                            Row {
-                                                FooterCell { txt: (index + 1).toString(); w: 50 }
-                                                FooterCell { txt: ""; w: 60 }
-                                                FooterCell { txt: ""; w: 80 }
-                                                FooterCell { txt: ""; w: 80 }
-                                                FooterCell { txt: ""; w: 60 }
-                                                FooterCell { txt: ""; w: 80 }
-                                                FooterCell { txt: ""; w: 80 }
-                                                FooterCell { txt: ""; w: 60 }
-                                                FooterCell { txt: ""; w: 60 }
-                                                FooterCell { txt: ""; w: 80 }
-                                                FooterCell { txt: ""; w: 80 }
-                                                FooterCell { txt: ""; w: 60 }
-                                                FooterCell { txt: ""; w: 80 }
+                                    }
+                                }
+
+                                ScrollView {
+                                    anchors.fill: parent
+                                    anchors.margins: 20
+                                    clip: true
+
+                                    GridLayout {
+                                        columns: 4 // Pos, Offset, Zero Button, and the final Input column
+                                        columnSpacing: 30
+                                        rowSpacing: 5
+
+                                        // Column 1: Encoder Pos
+                                        ColumnLayout {
+                                            spacing: 4
+                                            Repeater {
+                                                model: 6
+                                                EncoderField { lbl: "J" + (index + 1) + "-Encoder Pos" }
+                                            }
+                                        }
+
+                                        // Column 2: Encoder Offset
+                                        ColumnLayout {
+                                            spacing: 4
+                                            Repeater {
+                                                model: 6
+                                                EncoderField { lbl: "J" + (index + 1) + "-Encoder Offset" }
+                                            }
+                                        }
+
+                                        // Column 3: Zero Buttons
+                                        ColumnLayout {
+                                            spacing: 4
+                                            Repeater {
+                                                model: 6
+                                                EncoderField { lbl: "J" + (index + 1); isButton: true }
+                                            }
+                                        }
+
+                                        // Column 4: Final Value Inputs
+                                        ColumnLayout {
+                                            spacing: 4
+                                            Repeater {
+                                                model: 6
+                                                TextField {
+                                                    Layout.preferredWidth: 100
+                                                    Layout.preferredHeight: 28
+                                                    background: Rectangle { border.color: "#999"; radius: 2 }
+                                                }
                                             }
                                         }
                                     }
                                 }
                             }
-                            Rectangle { color: "transparent"; Text { text: "Debug View"; color: textSec; anchors.centerIn: parent } }
-                            Rectangle { color: "transparent"; Text { text: "Jog Degrees View"; color: textSec; anchors.centerIn: parent } }
+                            // --- TAB 2: Settings View ---
+
+                            Rectangle {
+                                color: "#f5f5f5"
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+
+                                // Internal helper for the labeled percentage fields
+                                component SettingField : RowLayout {
+                                    property string lbl: ""
+                                    property string val: "0"
+                                    property bool highlighted: false
+                                    spacing: 10
+
+                                    Text {
+                                        text: lbl
+                                        font.bold: true
+                                        font.pixelSize: 13
+                                        color: "#333333"
+                                        horizontalAlignment: Text.AlignRight
+                                        Layout.preferredWidth: 80 // Slightly reduced to fit two columns
+                                    }
+
+                                    TextField {
+                                        text: val
+                                        Layout.preferredWidth: 70
+                                        Layout.preferredHeight: 28
+                                        font.pixelSize: 14
+                                        font.bold: true
+                                        selectByMouse: true
+                                        background: Rectangle {
+                                            color: highlighted ? "#00ff00" : "white"
+                                            border.color: "#999999"
+                                            border.width: 1
+                                        }
+                                    }
+                                }
+
+                                // Main Container
+                                ColumnLayout {
+                                    anchors.centerIn: parent
+                                    spacing: 30
+
+                                    // Row containing the two columns
+                                    RowLayout {
+                                        spacing: 50 // Space between the left and right groups
+
+                                        // Left Column (First 3)
+                                        ColumnLayout {
+                                            spacing: 8
+                                            SettingField { lbl: "Ace_tm %"; val: "50"; highlighted: true }
+                                            SettingField { lbl: "Dec_tm %"; val: "50" }
+                                            SettingField { lbl: "Ace sp %"; val: "100" }
+                                        }
+
+                                        // Right Column (Last 3)
+                                        ColumnLayout {
+                                            spacing: 8
+                                            SettingField { lbl: "Dec sp %"; val: "100" }
+                                            SettingField { lbl: "Init_vel %"; val: "0" }
+                                            SettingField { lbl: "end_vel %"; val: "0" }
+                                        }
+                                    }
+
+                                    // Action Button centered under the columns
+                                    Button {
+                                        text: "Ok"
+                                        Layout.alignment: Qt.AlignHCenter
+                                        Layout.preferredWidth: 120
+                                        Layout.preferredHeight: 40
+
+                                        contentItem: Text {
+                                            text: parent.text
+                                            font.bold: true
+                                            font.pixelSize: 16
+                                            horizontalAlignment: Text.AlignHCenter
+                                            verticalAlignment: Text.AlignVCenter
+                                        }
+
+                                        background: Rectangle {
+                                            color: parent.pressed ? "#d0d0d0" : "#efefef"
+                                            border.color: "#999999"
+                                            border.width: 1
+                                            radius: 4
+                                        }
+                                    }
+                                }
+                            }
+
+                            // --- TAB 3: Data Variables---
+                            Rectangle {
+                                color: "#f8f8f8"
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+
+                                RowLayout {
+                                    anchors.top: parent.top
+                                    anchors.left: parent.left
+                                    anchors.margins: 20
+                                    spacing: 40
+
+                                    // Output Section
+                                    ColumnLayout {
+                                        spacing: 10
+                                        Text { text: "Output"; font.pixelSize: 14 }
+                                        RowLayout {
+                                            ComboBox {
+                                                model: ["Vr_1", "Vr_2", "Vr_3"]
+                                                Layout.preferredWidth: 80
+                                            }
+                                            TextField {
+                                                text: "0"
+                                                Layout.preferredWidth: 60
+                                                background: Rectangle { border.color: "#ccc"; border.width: 1 }
+                                            }
+                                        }
+                                    }
+
+                                    // Input Section
+                                    ColumnLayout {
+                                        spacing: 10
+                                        Text { text: "Input"; font.pixelSize: 14 }
+                                        RowLayout {
+                                            ComboBox {
+                                                model: ["Vr_1", "Vr_2", "Vr_3"]
+                                                Layout.preferredWidth: 80
+                                            }
+                                            TextField {
+                                                text: ""
+                                                Layout.preferredWidth: 60
+                                                background: Rectangle { border.color: "#ccc"; border.width: 1 }
+                                            }
+                                        }
+                                    }
+
+                                    // Inst Number Section
+                                    RowLayout {
+                                        Layout.alignment: Qt.AlignBottom
+                                        spacing: 10
+                                        Text { text: "Inst Number"; font.pixelSize: 14 }
+                                        TextField {
+                                            text: ""
+                                            Layout.preferredWidth: 80
+                                            background: Rectangle { border.color: "#ccc"; border.width: 1 }
+                                        }
+                                    }
+                                }
+                            }
+
+                            // --- TAB 4 :Axis Limit  ---
+                            Rectangle {
+                                color: "#bcbcbc" // Grey background from final image
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+
+                                ColumnLayout {
+                                    anchors.fill: parent
+                                    anchors.margins: 10
+                                    spacing: 20
+
+                                    // Top Row: Outputs and Analogs
+                                    RowLayout {
+                                        spacing: 10
+                                        Text { text: "digital out"; font.bold: true }
+                                        TextField { Layout.preferredWidth: 80; Layout.preferredHeight: 25 }
+
+                                        Text { text: "Aanalog"; font.bold: true }
+                                        TextField { Layout.preferredWidth: 80; Layout.preferredHeight: 25 }
+
+                                        Text { text: "Aanalog"; font.bold: true }
+                                        TextField { Layout.preferredWidth: 80; Layout.preferredHeight: 25 }
+
+                                        // Small status boxes on the right
+                                        RowLayout {
+                                            spacing: 2
+                                            Repeater {
+                                                model: ["DI", "DI_Sta", "DO", "Do_Sta", "rem_h", "rem_l"]
+                                                Button {
+                                                    text: modelData
+                                                    Layout.preferredWidth: 55
+                                                    Layout.preferredHeight: 25
+                                                    font.pixelSize: 10
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    // Bottom Row: Digital Input Buttons
+                                    RowLayout {
+                                        spacing: 15
+                                        Text { text: "digital Input"; font.bold: true; Layout.preferredWidth: 100 }
+
+                                        Repeater {
+                                            model: ["High_1", "low_1", "High_2", "low_2", "test_1"]
+                                            Button {
+                                                text: modelData
+                                                Layout.preferredWidth: 90
+                                                Layout.preferredHeight: 35
+                                                background: Rectangle {
+                                                    color: "white"
+                                                    border.color: "#999"
+                                                    radius: 2
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            // --- TAB 5: Mech Setting (Fixed Version) ---
+                            Rectangle {
+                                color: "#efebe7"
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+
+                                RowLayout {
+                                    anchors.fill: parent
+                                    anchors.margins: 10
+                                    spacing: 15
+
+                                    // 1. Labels
+                                    ColumnLayout {
+                                        Layout.alignment: Qt.AlignTop
+                                        spacing: 5
+                                        Text { text: "Dh-nal"; font.bold: true; font.pixelSize: 16 }
+                                        Repeater {
+                                            model: ["l1 l+-7", "l3 l+:8", "l4 l+:8", "l6 l+:5", "l7 l5", "l5 <"]
+                                            Text { text: modelData; font.pixelSize: 14; Layout.preferredHeight: 25 }
+                                        }
+                                    }
+
+                                    // 2. Data Columns
+                                    Repeater {
+                                        id: columnRepeater
+                                        model: [
+                                            { title: "Encod", w: 70 },
+                                            { title: "Gear R", w: 70 },
+                                            { title: "couple", w: 70 },
+                                            { title: "joint min", w: 85 },
+                                            { title: "joint max", w: 85 }
+                                        ]
+
+                                        delegate: ColumnLayout {
+                                            Layout.alignment: Qt.AlignTop
+                                            spacing: 2
+
+                                            // Use 'modelData' from the 'delegate' scope safely
+                                            readonly property real colWidth: modelData.w
+
+                                            Rectangle {
+                                                Layout.preferredWidth: colWidth
+                                                Layout.preferredHeight: 25
+                                                color: "transparent"
+                                                border.color: "black"
+                                                Text { text: modelData.title; anchors.centerIn: parent; font.bold: true }
+                                            }
+
+                                            Repeater {
+                                                model: 6
+                                                TextField {
+                                                    // We use the property 'colWidth' from the parent ColumnLayout
+                                                    // to avoid 'undefined' errors from nested modelData
+                                                    Layout.preferredWidth: colWidth
+                                                    Layout.preferredHeight: 25
+                                                    background: Rectangle { border.color: "#999"; border.width: 1 }
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    // ... (Rest of your buttons)
+                                }
+                            }
+
+
+                            // --- TAB: View Selection ---
+                            Rectangle {
+                                color: "#efebe7" // Light industrial beige-grey
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+
+                                ColumnLayout {
+                                    anchors.left: parent.left
+                                    anchors.top: parent.top
+                                    anchors.margins: 20
+                                    spacing: 0 // Buttons are stacked without gaps like the image
+
+                                    Repeater {
+                                        model: ["Front", "Back", "Left", "Right", "Top", "Bottom", "Default"]
+
+                                        Button {
+                                            id: viewButton
+                                            text: modelData
+                                            Layout.preferredWidth: 100
+                                            Layout.preferredHeight: 30
+
+                                            // Custom styling to match the sharp, stacked look
+                                            background: Rectangle {
+                                                color: viewButton.pressed ? "#d0d0d0" : "#ffffff"
+                                                border.color: "#999999"
+                                                border.width: 1
+                                                // Only apply rounded corners to the very top and bottom buttons
+                                                radius: (index === 0) ? 4 : (index === 6) ? 4 : 0
+                                            }
+
+                                            contentItem: Text {
+                                                text: viewButton.text
+                                                font.bold: true
+                                                font.pixelSize: 14
+                                                horizontalAlignment: Text.AlignHCenter
+                                                verticalAlignment: Text.AlignVCenter
+                                                color: "#000000"
+                                            }
+
+                                            onClicked: {
+                                                console.log("View switched to: " + modelData)
+                                                // Add your camera logic here
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+
                         }
                     }
                 }
@@ -889,5 +1444,32 @@ Rectangle {
         verticalAlignment: Text.AlignVCenter
         font.pixelSize: 18
         leftPadding: 10
+    }
+
+
+    // Add this as a helper within your file or a separate file
+    component ErrorField : RowLayout {
+        property string label: ""
+        property string value: "0"
+        spacing: 5
+        Layout.fillWidth: true
+
+        Text {
+            text: label
+            color: "black" // Adjust based on your theme
+            font.pixelSize: 12
+            Layout.preferredWidth: 35
+        }
+        TextField {
+            text: value
+            Layout.fillWidth: true
+            Layout.preferredHeight: 25
+            selectByMouse: true
+            color: "black"
+            background: Rectangle {
+                border.color: "#999"
+                border.width: 1
+            }
+        }
     }
 }
