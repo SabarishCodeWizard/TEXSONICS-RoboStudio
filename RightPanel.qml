@@ -19,6 +19,7 @@ Rectangle {
     property color panelBg: "#27273A"
     property color borderColor: "#3B3B50"
     property color inputBg: "#151520"
+    property color btnLabelColor: "#455A64" // For non-primary action buttons
     property string fontFamily: "Segoe UI"
 
     ColumnLayout {
@@ -136,7 +137,7 @@ Rectangle {
         }
 
         // ============================================================
-        // 2. CONTENT AREA (Split Top 30% / Bottom 70%)
+        // 2. CONTENT AREA (Split Top 40% / Bottom 60%)
         // ============================================================
         ColumnLayout {
             Layout.fillWidth: true
@@ -149,7 +150,7 @@ Rectangle {
             RowLayout {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Layout.preferredHeight: rightPanel.height * 0.4 // Fixed 30% ratio
+                Layout.preferredHeight: rightPanel.height * 0.4
                 spacing: 15
 
                 // --- SECTION 1: TOP-LEFT (Width: 20%) ---
@@ -161,7 +162,7 @@ Rectangle {
                     color: "transparent"
                     border.width: 0
 
-                    // *** VIEW A: SPEED SETTINGS (HORIZONTAL LAYOUT) ***
+                    // *** VIEW A: SPEED SETTINGS ***
                     ColumnLayout {
                         visible: currentTab === "Speed"
                         anchors.fill: parent
@@ -179,7 +180,6 @@ Rectangle {
                             Layout.fillWidth: true
                             Layout.fillHeight: true
                             clip: true
-                            // Force Vertical Scroll only
                             contentWidth: availableWidth
                             ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
                             ScrollBar.vertical.policy: ScrollBar.AsNeeded
@@ -195,7 +195,6 @@ Rectangle {
                                     Text { text: "MM"; color: textSpeed; font.bold: true; font.pixelSize: 18; Layout.preferredWidth: 60; Layout.alignment: Qt.AlignVCenter }
                                     CustomComboBox { model: ["0.1", "1.0", "10", "100"]; Layout.fillWidth: true }
                                 }
-
                                 // 2. Linear Speed
                                 RowLayout {
                                     Layout.fillWidth: true
@@ -203,7 +202,6 @@ Rectangle {
                                     Text { text: "MM/S"; color: textSpeed; font.bold: true; font.pixelSize: 18; Layout.preferredWidth: 60; Layout.alignment: Qt.AlignVCenter }
                                     CustomTextField { text: "100"; Layout.fillWidth: true }
                                 }
-
                                 // 3. Angle Unit
                                 RowLayout {
                                     Layout.fillWidth: true
@@ -211,7 +209,6 @@ Rectangle {
                                     Text { text: "Deg"; color: textSpeed; font.bold: true; font.pixelSize: 18; Layout.preferredWidth: 60; Layout.alignment: Qt.AlignVCenter }
                                     CustomComboBox { model: ["Deg", "Rad"]; Layout.fillWidth: true }
                                 }
-
                                 // 4. Angular Speed
                                 RowLayout {
                                     Layout.fillWidth: true
@@ -219,7 +216,6 @@ Rectangle {
                                     Text { text: "Deg/S"; color: textSpeed; font.bold: true; font.pixelSize: 18; Layout.preferredWidth: 60; Layout.alignment: Qt.AlignVCenter }
                                     CustomTextField { text: "10"; Layout.fillWidth: true }
                                 }
-
                                 // 5. Coord Frame
                                 RowLayout {
                                     Layout.fillWidth: true
@@ -227,13 +223,12 @@ Rectangle {
                                     Text { text: "Frame"; color: textSpeed; font.bold: true; font.pixelSize: 18; Layout.preferredWidth: 60; Layout.alignment: Qt.AlignVCenter }
                                     CustomComboBox { model: ["User", "World", "Tool"]; Layout.fillWidth: true }
                                 }
-
-                                Item { Layout.fillHeight: true } // Pusher
+                                Item { Layout.fillHeight: true }
                             }
                         }
                     }
 
-                    // VIEW B: JOG BUTTONS
+                    // *** VIEW B: JOG BUTTONS ***
                     ColumnLayout {
                         visible: currentTab === "Jog" || currentTab === "Move"
                         anchors.fill: parent
@@ -338,6 +333,11 @@ Rectangle {
                                             FooterCell { txt: "Name"; w: 80; header: true }
                                             FooterCell { txt: "Value_2"; w: 80; header: true }
                                             FooterCell { txt: "Deg_2"; w: 60; header: true }
+                                            FooterCell { txt: "Inst"; w: 60; header: true }
+                                            FooterCell { txt: "Name"; w: 80; header: true }
+                                            FooterCell { txt: "Value_1"; w: 80; header: true }
+                                            FooterCell { txt: "Deg_1"; w: 60; header: true }
+                                            FooterCell { txt: "Name"; w: 80; header: true }
                                         }
                                         Repeater {
                                             model: 8
@@ -350,12 +350,16 @@ Rectangle {
                                                 FooterCell { txt: ""; w: 80 }
                                                 FooterCell { txt: ""; w: 80 }
                                                 FooterCell { txt: ""; w: 60 }
+                                                FooterCell { txt: ""; w: 60 }
+                                                FooterCell { txt: ""; w: 80 }
+                                                FooterCell { txt: ""; w: 80 }
+                                                FooterCell { txt: ""; w: 60 }
+                                                FooterCell { txt: ""; w: 80 }
                                             }
                                         }
                                     }
                                 }
                             }
-                            // --- TAB 2 & 3 ---
                             Rectangle { color: "transparent"; Text { text: "Debug View"; color: textSec; anchors.centerIn: parent } }
                             Rectangle { color: "transparent"; Text { text: "Jog Degrees View"; color: textSec; anchors.centerIn: parent } }
                         }
@@ -369,23 +373,23 @@ Rectangle {
             ColumnLayout {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Layout.preferredHeight: rightPanel.height * 0.6 // Fixed 70% ratio
-                spacing: 15
+                Layout.preferredHeight: rightPanel.height * 0.6
+                spacing: 8 // Tighter vertical spacing
 
-                // --- 1. PANELCARD (30% of this container) ---
+                // --- 1. PANELCARD (Top Table in Bottom Section) ---
                 PanelCard {
                     Layout.fillWidth: true
-                    Layout.preferredHeight: parent.height * 0.45
+                    Layout.preferredHeight: parent.height * 0.32 // Approx 32%
                     clip: true
 
                     ColumnLayout {
                         anchors.fill: parent
                         spacing: 0
 
-                        // 1. Footer Tab Bar (Middle)
+                        // 1. Footer Tab Bar
                         Rectangle {
                             Layout.fillWidth: true
-                            Layout.preferredHeight: 30
+                            Layout.preferredHeight: 28
                             color: "#1e1e2d"
 
                             RowLayout {
@@ -400,7 +404,7 @@ Rectangle {
                                         border.color: borderColor
                                         border.width: 1
                                         Rectangle { visible: middleStack.currentIndex === index; height: 2; width: parent.width; anchors.top: parent.top; color: primaryColor }
-                                        Text { text: modelData; anchors.centerIn: parent; color: middleStack.currentIndex === index ? primaryColor : textSec; font.bold: middleStack.currentIndex === index; font.pixelSize: 12 }
+                                        Text { text: modelData; anchors.centerIn: parent; color: middleStack.currentIndex === index ? primaryColor : textSec; font.bold: middleStack.currentIndex === index; font.pixelSize: 11 }
                                         MouseArea { anchors.fill: parent; onClicked: middleStack.currentIndex = index }
                                     }
                                 }
@@ -408,107 +412,13 @@ Rectangle {
                             }
                         }
 
-                        // 2. Content Area (Middle)
+                        // 2. Content
                         StackLayout {
                             id: middleStack
                             currentIndex: 0
                             Layout.fillWidth: true
                             Layout.fillHeight: true
 
-                            // Tab 1
-                            Rectangle {
-                                color: "transparent"
-                                ScrollView {
-                                    anchors.fill: parent; clip: true
-                                    ScrollBar.horizontal.policy: ScrollBar.AlwaysOn
-                                    ScrollBar.vertical.policy: ScrollBar.AlwaysOn
-                                    Column {
-                                        Row {
-                                            FooterCell { txt: "Sl No"; w: 50; header: true }
-                                            FooterCell { txt: "Inst"; w: 60; header: true }
-                                            FooterCell { txt: "Name"; w: 80; header: true }
-                                            FooterCell { txt: "Value_1"; w: 80; header: true }
-                                            FooterCell { txt: "Deg_1"; w: 60; header: true }
-                                            FooterCell { txt: "Name"; w: 80; header: true }
-                                            FooterCell { txt: "Value_2"; w: 80; header: true }
-                                            FooterCell { txt: "Deg_2"; w: 60; header: true }
-                                            FooterCell { txt: "Inst"; w: 60; header: true }
-                                            FooterCell { txt: "Name"; w: 80; header: true }
-                                        }
-                                        Repeater {
-                                            model: 5
-                                            Row {
-                                                FooterCell { txt: (index + 1).toString(); w: 50 }
-                                                FooterCell { txt: ""; w: 60 }
-                                                FooterCell { txt: ""; w: 80 }
-                                                FooterCell { txt: ""; w: 80 }
-                                                FooterCell { txt: ""; w: 60 }
-                                                FooterCell { txt: ""; w: 80 }
-                                                FooterCell { txt: ""; w: 80 }
-                                                FooterCell { txt: ""; w: 60 }
-                                                FooterCell { txt: ""; w: 60 }
-                                                FooterCell { txt: ""; w: 80 }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                            Rectangle { color: "transparent"; Text { text: "Debug View"; color: textSec; anchors.centerIn: parent } }
-                            Rectangle { color: "transparent"; Text { text: "Jog Degrees View"; color: textSec; anchors.centerIn: parent } }
-                        }
-                    }
-                }
-
-                // --- 2. SPACE (Spacer) ---
-                Item {
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true // Shares remaining space
-                }
-
-                // --- 3. PANELCARD (20% of this container) ---
-                PanelCard {
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: parent.height * 0.35
-                    clip: true
-
-                    ColumnLayout {
-                        anchors.fill: parent
-                        spacing: 0
-
-                        // 1. Footer Tab Bar (Bottom)
-                        Rectangle {
-                            Layout.fillWidth: true
-                            Layout.preferredHeight: 30
-                            color: "#1e1e2d"
-
-                            RowLayout {
-                                anchors.fill: parent
-                                spacing: 1
-                                Repeater {
-                                    model: ["Inst", "Debug", "Jog Deg"]
-                                    Rectangle {
-                                        Layout.preferredWidth: 90
-                                        Layout.fillHeight: true
-                                        color: bottomStack.currentIndex === index ? panelBg : "transparent"
-                                        border.color: borderColor
-                                        border.width: 1
-                                        Rectangle { visible: bottomStack.currentIndex === index; height: 2; width: parent.width; anchors.top: parent.top; color: primaryColor }
-                                        Text { text: modelData; anchors.centerIn: parent; color: bottomStack.currentIndex === index ? primaryColor : textSec; font.bold: bottomStack.currentIndex === index; font.pixelSize: 12 }
-                                        MouseArea { anchors.fill: parent; onClicked: bottomStack.currentIndex = index }
-                                    }
-                                }
-                                Item { Layout.fillWidth: true }
-                            }
-                        }
-
-                        // 2. Content Area (Bottom)
-                        StackLayout {
-                            id: bottomStack
-                            currentIndex: 0
-                            Layout.fillWidth: true
-                            Layout.fillHeight: true
-
-                            // Tab 1
                             Rectangle {
                                 color: "transparent"
                                 ScrollView {
@@ -530,7 +440,6 @@ Rectangle {
                                             FooterCell { txt: "Value_1"; w: 80; header: true }
                                             FooterCell { txt: "Deg_1"; w: 60; header: true }
                                             FooterCell { txt: "Name"; w: 80; header: true }
-
                                         }
                                         Repeater {
                                             model: 3
@@ -559,10 +468,192 @@ Rectangle {
                     }
                 }
 
-                // --- 4. SPACE (Spacer) ---
-                Item {
+                // --- 2. MIDDLE GRID (7 Columns) ---
+                GridLayout {
                     Layout.fillWidth: true
-                    Layout.fillHeight: true // Shares remaining space
+                    Layout.preferredHeight: parent.height * 0.12 // Approx 12%
+                    columns: 7
+                    rowSpacing: 8
+                    columnSpacing: 8
+                    uniformCellWidths: true
+
+                    // Row 1
+                    ActionBtn {
+                        text: "Inst"
+                        onClicked: instPopup.open()
+                        Popup {
+                            id: instPopup
+                            y: parent.height + 5; x: 0; width: 150; padding: 5
+                            closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
+                            background: Rectangle { color: panelBg; border.color: borderColor; radius: 6 }
+                            contentItem: ColumnLayout {
+                                spacing: 5
+                                ActionBtn { text: "Insert Inst"; Layout.preferredHeight: 35; onClicked: { console.log("Insert Inst"); instPopup.close() } }
+                                ActionBtn { text: "Modify Inst"; Layout.preferredHeight: 35; onClicked: { console.log("Modify Inst"); instPopup.close() } }
+                                ActionBtn { text: "Delete Inst"; Layout.preferredHeight: 35; background: Rectangle { color: parent.pressed ? "#FF5252" : panelBg; radius: 6; border.color: borderColor } onClicked: { console.log("Delete Inst"); instPopup.close() } }
+                            }
+                        }
+                    }
+                    ActionBtn { text: "Run Inst"; onClicked: console.log("Run Inst") }
+                    ActionBtn {
+                        text: "TP"
+                        onClicked: tpPopup.open()
+                        Popup {
+                            id: tpPopup
+                            y: parent.height + 5; x: 0; width: 150; padding: 5
+                            closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
+                            background: Rectangle { color: panelBg; border.color: borderColor; radius: 6 }
+                            contentItem: ColumnLayout {
+                                spacing: 5
+                                ActionBtn { text: "Insert TP"; Layout.preferredHeight: 35; onClicked: { console.log("Insert TP"); tpPopup.close() } }
+                                ActionBtn { text: "Modify TP"; Layout.preferredHeight: 35; onClicked: { console.log("Modify TP"); tpPopup.close() } }
+                                ActionBtn { text: "Delete TP"; Layout.preferredHeight: 35; background: Rectangle { color: parent.pressed ? "#FF5252" : panelBg; radius: 6; border.color: borderColor } onClicked: { console.log("Delete TP"); tpPopup.close() } }
+                            }
+                        }
+                    }
+                    ActionBtn { text: "Run TP"; onClicked: console.log("Run TP") }
+                    // Reusing ActionBtn with specific color for "Label Buttons"
+                    ActionBtn { text: "Op Pg"; baseColor: btnLabelColor }
+                    GridInput { placeholderText: "0" }
+                    Item { Layout.fillWidth: true; Layout.fillHeight: true } // Spacer
+
+                    // Row 2
+                    ActionBtn { text: "Ip Pg"; baseColor: btnLabelColor }
+                    GridInput { placeholderText: "0" }
+                    ActionBtn { text: "Tnp"; baseColor: btnLabelColor }
+                    GridInput { placeholderText: "0" }
+                    ActionBtn { text: "Com"; baseColor: btnLabelColor }
+                    GridInput { placeholderText: "0" }
+                    ActionBtn { text: "Calc Traj"; onClicked: console.log("Calc Trajectory") }
+                }
+
+                // --- 3. PANELCARD (Bottom Table) ---
+                PanelCard {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: parent.height * 0.32 // Approx 32%
+                    clip: true
+
+                    ColumnLayout {
+                        anchors.fill: parent
+                        spacing: 0
+
+                        // 1. Footer Tab Bar
+                        Rectangle {
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 28
+                            color: "#1e1e2d"
+
+                            RowLayout {
+                                anchors.fill: parent
+                                spacing: 1
+                                Repeater {
+                                    model: ["Inst", "Debug", "Jog Deg"]
+                                    Rectangle {
+                                        Layout.preferredWidth: 90
+                                        Layout.fillHeight: true
+                                        color: bottomStack.currentIndex === index ? panelBg : "transparent"
+                                        border.color: borderColor
+                                        border.width: 1
+                                        Rectangle { visible: bottomStack.currentIndex === index; height: 2; width: parent.width; anchors.top: parent.top; color: primaryColor }
+                                        Text { text: modelData; anchors.centerIn: parent; color: bottomStack.currentIndex === index ? primaryColor : textSec; font.bold: bottomStack.currentIndex === index; font.pixelSize: 11 }
+                                        MouseArea { anchors.fill: parent; onClicked: bottomStack.currentIndex = index }
+                                    }
+                                }
+                                Item { Layout.fillWidth: true }
+                            }
+                        }
+
+                        // 2. Content
+                        StackLayout {
+                            id: bottomStack
+                            currentIndex: 0
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+
+                            // Tab 1
+                            Rectangle {
+                                color: "transparent"
+                                ScrollView {
+                                    anchors.fill: parent; clip: true
+                                    ScrollBar.horizontal.policy: ScrollBar.AlwaysOn
+                                    ScrollBar.vertical.policy: ScrollBar.AlwaysOn
+                                    Column {
+                                        Row {
+                                            FooterCell { txt: "Sl No"; w: 50; header: true }
+                                            FooterCell { txt: "Inst"; w: 60; header: true }
+                                            FooterCell { txt: "Name"; w: 80; header: true }
+                                            FooterCell { txt: "Value_1"; w: 80; header: true }
+                                            FooterCell { txt: "Deg_1"; w: 60; header: true }
+                                            FooterCell { txt: "Name"; w: 80; header: true }
+                                            FooterCell { txt: "Value_2"; w: 80; header: true }
+                                            FooterCell { txt: "Deg_2"; w: 60; header: true }
+                                            FooterCell { txt: "Inst"; w: 60; header: true }
+                                            FooterCell { txt: "Name"; w: 80; header: true }
+                                            FooterCell { txt: "Value_1"; w: 80; header: true }
+                                            FooterCell { txt: "Deg_1"; w: 60; header: true }
+                                            FooterCell { txt: "Name"; w: 80; header: true }
+                                        }
+                                        Repeater {
+                                            model: 3
+                                            Row {
+                                                FooterCell { txt: (index + 1).toString(); w: 50 }
+                                                FooterCell { txt: ""; w: 60 }
+                                                FooterCell { txt: ""; w: 80 }
+                                                FooterCell { txt: ""; w: 80 }
+                                                FooterCell { txt: ""; w: 60 }
+                                                FooterCell { txt: ""; w: 80 }
+                                                FooterCell { txt: ""; w: 80 }
+                                                FooterCell { txt: ""; w: 60 }
+                                                FooterCell { txt: ""; w: 60 }
+                                                FooterCell { txt: ""; w: 80 }
+                                                FooterCell { txt: ""; w: 80 }
+                                                FooterCell { txt: ""; w: 60 }
+                                                FooterCell { txt: ""; w: 80 }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Rectangle { color: "transparent"; Text { text: "Debug View"; color: textSec; anchors.centerIn: parent } }
+                            Rectangle { color: "transparent"; Text { text: "Jog Degrees View"; color: textSec; anchors.centerIn: parent } }
+                        }
+                    }
+                }
+
+                // --- 4. BOTTOM GRID (11 Columns - Matching Image) ---
+                GridLayout {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: parent.height * 0.18 // Approx 18%
+                    columns: 11
+                    rowSpacing: 6
+                    columnSpacing: 4
+                    uniformCellWidths: true
+
+                    // --- ROW 1 ---
+                    CustomComboBox { model: ["Inst"]; Layout.fillWidth: true }
+                    CustomComboBox { model: ["Di-1"]; Layout.fillWidth: true }
+                    CustomComboBox { model: ["Di-2"]; Layout.fillWidth: true }
+                    ActionBtn { text: "H/L"; baseColor: btnLabelColor }
+                    CustomComboBox { model: ["Dig"]; Layout.fillWidth: true }
+                    ActionBtn { text: "delay ms"; baseColor: btnLabelColor }
+                    GridInput { placeholderText: "" }
+                    ActionBtn { text: "go to"; baseColor: btnLabelColor }
+                    GridInput { placeholderText: "" }
+                    ActionBtn { text: "loop"; baseColor: btnLabelColor }
+                    GridInput { placeholderText: "" }
+
+                    // --- ROW 2 ---
+                    ActionBtn { text: "mm/s"; baseColor: btnLabelColor }
+                    GridInput { placeholderText: "" }
+                    ActionBtn { text: "Radius"; baseColor: btnLabelColor }
+                    GridInput { placeholderText: "" }
+                    CustomComboBox { model: ["Vr_1"]; Layout.fillWidth: true }
+                    GridInput { placeholderText: "" }
+                    CustomComboBox { model: ["Vr_2"]; Layout.fillWidth: true }
+                    ActionBtn { text: "AN ip"; baseColor: btnLabelColor }
+                    GridInput { placeholderText: "" }
+                    ActionBtn { text: "AN op"; baseColor: btnLabelColor }
+                    GridInput { placeholderText: "" }
                 }
             }
         }
@@ -571,12 +662,11 @@ Rectangle {
     // --- HELPER COMPONENTS ---
     component PanelCard: Rectangle { color: panelBg; radius: 8; border.color: borderColor; border.width: 1 }
 
-    // Table Cell Component (Moved here to avoid scope issues)
     component FooterCell: Rectangle {
         property string txt: ""
         property int w: 200
         property bool header: false
-        width: w; height: 80
+        width: w; height: 30
         color: header ? "#32324A" : "transparent"
         border.color: borderColor
         Text {
@@ -584,8 +674,50 @@ Rectangle {
             anchors.centerIn: parent
             color: parent.header ? textSec : textMain
             font.bold: parent.header
-            font.pixelSize: 16
+            font.pixelSize: 12
         }
+    }
+
+    // *** ACTION BUTTON ***
+    component ActionBtn: Button {
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+        Layout.preferredHeight: 35 // Ensure consistent height
+        property color baseColor: primaryColor // Default blue
+
+        background: Rectangle {
+            color: parent.pressed ? Qt.darker(parent.baseColor, 1.2) : (parent.baseColor === primaryColor ? primaryColor : "#2b2b3b") // Use dark grey if baseColor override isn't primary
+            radius: 4
+            border.color: parent.baseColor === primaryColor ? primaryColor : borderColor
+            border.width: 1
+        }
+        contentItem: Text {
+            text: parent.text
+            color: "white"
+            font.bold: true
+            font.pixelSize: 12
+            fontSizeMode: Text.Fit
+            minimumPixelSize: 8
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+        }
+    }
+
+    // *** GRID INPUT ***
+    component GridInput: TextField {
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+        Layout.preferredHeight: 35
+        background: Rectangle {
+            color: inputBg
+            border.color: borderColor
+            radius: 4
+        }
+        color: "white"
+        font.pixelSize: 12
+        horizontalAlignment: Text.AlignHCenter
+        verticalAlignment: Text.AlignVCenter
+        leftPadding: 4; rightPadding: 4
     }
 
     // *** JOG BUTTON ***
@@ -601,8 +733,7 @@ Rectangle {
         }
         contentItem: Text {
             text: jogBtnControl.text
-            // COLOR LOGIC: Red for "-", Green for "+", White otherwise
-            color: text.indexOf("-") !== -1 ? "#FF5252" : (text.indexOf("+") !== -1 ? "#3cb371" : "#FFFFFF")
+            color: text.indexOf("-") != -1 ? "#FF5252" : (text.indexOf("+") != -1 ? "#3cb371" : "#FFFFFF")
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             font.bold: true
@@ -616,23 +747,23 @@ Rectangle {
 
     // *** STYLIZED COMBO BOX ***
     component CustomComboBox: ComboBox {
-        Layout.preferredHeight: 30
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+        Layout.preferredHeight: 35
         model: ["Option"]
-
         delegate: ItemDelegate {
             width: parent.width
             contentItem: Text {
                 text: modelData
                 color: "black"
-                font.pixelSize: 18
+                font.pixelSize: 12
                 elide: Text.ElideRight
                 verticalAlignment: Text.AlignVCenter
             }
             background: Rectangle { color: highlighted ? "#40C4FF" : "#ffffff" }
         }
-
         background: Rectangle {
-            color: "#ffffff" // Light input bg
+            color: "#ffffff"
             border.color: "#3B3B50"
             radius: 4
         }
@@ -640,8 +771,9 @@ Rectangle {
             text: parent.displayText
             color: "black"
             verticalAlignment: Text.AlignVCenter
-            leftPadding: 10
-            font.pixelSize: 18
+            leftPadding: 8
+            font.pixelSize: 12
+            elide: Text.ElideRight
         }
     }
 
@@ -649,7 +781,7 @@ Rectangle {
     component CustomTextField: TextField {
         Layout.preferredHeight: 30
         background: Rectangle {
-            color: "#ffffff" // Light input bg
+            color: "#ffffff"
             border.color: "#3B3B50"
             radius: 4
         }
