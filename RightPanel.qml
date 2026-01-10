@@ -27,7 +27,7 @@ Rectangle {
 
     // --- BUTTON PALETTE (Professional Colors) ---
     property color btnBlue: "#0288D1"
-    property color btnGreen: "#2E7D32"
+    property color btnGreen: "#00b341"
     property color btnPurple: "#7B1FA2"
     property color btnSlate: "#455A64"  // For Labels acting as buttons
     property color btnTeal: "#00897B"
@@ -112,6 +112,8 @@ Rectangle {
                         fontSizeMode: Text.Fit
                         minimumPixelSize: 10
                         font.pixelSize: 18
+                        style: Text.Outline
+                        styleColor: "#80000000"
                     }
                 }
                 onClicked: rightPanel.currentTab = text
@@ -139,15 +141,15 @@ Rectangle {
                     contentItem: RowLayout {
                         spacing: 10
                         Button {
-                            text: "Cartesian"; Layout.fillWidth: true; Layout.preferredHeight: 40
+                            text: "Cartesian"; Layout.fillWidth: true; Layout.preferredHeight: 50
                             background: Rectangle { color: "#0091EA"; radius: 4 }
-                            contentItem: Text { text: parent.text; color: "white"; font.bold: true; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
+                            contentItem: Text { text: parent.text; color: "white"; font.bold: true; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter ; style: Text.Outline;styleColor: "#80000000";font.pixelSize : 16  }
                             onClicked: { currentTab = "Jog"; jogTab = "Cartesian"; jogPopup.close() }
                         }
                         Button {
-                            text: "Joints"; Layout.fillWidth: true; Layout.preferredHeight: 40
+                            text: "Joints"; Layout.fillWidth: true; Layout.preferredHeight: 50
                             background: Rectangle { color: "#0091EA"; radius: 4 }
-                            contentItem: Text { text: parent.text; color: "white"; font.bold: true; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
+                            contentItem: Text { text: parent.text; color: "white"; font.bold: true; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter ; style: Text.Outline;styleColor: "#80000000";font.pixelSize : 16  }
                             onClicked: { currentTab = "Jog"; jogTab = "Joints"; jogPopup.close() }
                         }
                     }
@@ -172,15 +174,15 @@ Rectangle {
                     contentItem: RowLayout {
                         spacing: 10
                         Button {
-                            text: "Cartesian"; Layout.fillWidth: true; Layout.preferredHeight: 40
+                            text: "Cartesian"; Layout.fillWidth: true; Layout.preferredHeight: 50
                             background: Rectangle { color: "#2E7D32"; radius: 4 }
-                            contentItem: Text { text: parent.text; color: "white"; font.bold: true; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
+                            contentItem: Text { text: parent.text; color: "white"; font.bold: true; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter; style: Text.Outline;styleColor: "#80000000";font.pixelSize : 16 }
                             onClicked: { currentTab = "Move"; jogTab = "Cartesian"; movePopup.close() }
                         }
                         Button {
-                            text: "Joints"; Layout.fillWidth: true; Layout.preferredHeight: 40
+                            text: "Joints"; Layout.fillWidth: true; Layout.preferredHeight: 50
                             background: Rectangle { color: "#2E7D32"; radius: 4 }
-                            contentItem: Text { text: parent.text; color: "white"; font.bold: true; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
+                            contentItem: Text { text: parent.text; color: "white"; font.bold: true; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter ; style: Text.Outline;styleColor: "#80000000";font.pixelSize : 16 }
                             onClicked: { currentTab = "Move"; jogTab = "Joints"; movePopup.close() }
                         }
                     }
@@ -743,36 +745,44 @@ Rectangle {
                                 Layout.fillWidth: true
                                 Layout.fillHeight: true
 
-                                // Internal helper for the labeled percentage fields
-                                component SettingField : RowLayout {
-                                    property string lbl: ""
-                                    property string val: "0"
-                                    property bool highlighted: false
-                                    spacing: 10
+                                // *** SETTING FIELD COMPONENT (UPDATED for Tab 2) ***
+                                    component SettingField : RowLayout {
+                                        property string lbl: ""
+                                        property string val: "0"
+                                        property bool highlighted: false
+                                        spacing: 10
 
-                                    Text {
-                                        text: lbl
-                                        font.bold: true
-                                        font.pixelSize: 13
-                                        color: "#333333"
-                                        horizontalAlignment: Text.AlignRight
-                                        Layout.preferredWidth: 80 // Slightly reduced to fit two columns
-                                    }
+                                        Text {
+                                            text: lbl
+                                            font.bold: true
+                                            font.pixelSize: 13
+                                            color: "#333333"
+                                            horizontalAlignment: Text.AlignRight
+                                            Layout.preferredWidth: 80
+                                        }
 
-                                    TextField {
-                                        text: val
-                                        Layout.preferredWidth: 70
-                                        Layout.preferredHeight: 28
-                                        font.pixelSize: 14
-                                        font.bold: true
-                                        selectByMouse: true
-                                        background: Rectangle {
-                                            color: highlighted ? "#00ff00" : "white"
-                                            border.color: "#999999"
-                                            border.width: 1
+                                        TextField {
+                                            id: settingTf
+                                            text: val
+                                            Layout.preferredWidth: 70
+                                            Layout.preferredHeight: 28
+                                            font.pixelSize: 14
+                                            font.bold: true
+
+                                            background: Rectangle {
+                                                color: highlighted ? "#00ff00" : "white"
+                                                border.color: "#999999"
+                                                border.width: 1
+                                            }
+
+                                            // --- KEYPAD INTEGRATION ---
+                                            readOnly: true
+                                            MouseArea {
+                                                anchors.fill: parent
+                                                onClicked: appWindow.showKeypad(settingTf)
+                                            }
                                         }
                                     }
-                                }
 
                                 // Main Container
                                 ColumnLayout {
@@ -1350,6 +1360,8 @@ Rectangle {
                 font.bold: true
                 font.pixelSize: 16 // Smaller font to fit grid
                 fontSizeMode: Text.Fit
+                style: Text.Outline
+                styleColor: "#80000000"
                 minimumPixelSize: 8
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
@@ -1358,22 +1370,30 @@ Rectangle {
         }
     }
 
-    // *** GRID INPUT ***
-    component GridInput: TextField {
-        Layout.fillWidth: true
-        Layout.fillHeight: true
-        Layout.preferredHeight: 35
-        background: Rectangle {
-            color: inputBg
-            border.color: borderColor
-            radius: 4
+    // *** GRID INPUT (UPDATED) ***
+        component GridInput: TextField {
+            id: gridInputRoot
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            Layout.preferredHeight: 35
+            background: Rectangle {
+                color: inputBg
+                border.color: borderColor
+                radius: 4
+            }
+            color: "white"
+            font.pixelSize: 12
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            leftPadding: 4; rightPadding: 4
+
+            // --- KEYPAD INTEGRATION ---
+            readOnly: true // Prevent physical keyboard popping up on mobile/touch
+            MouseArea {
+                anchors.fill: parent
+                onClicked: appWindow.showKeypad(gridInputRoot)
+            }
         }
-        color: "white"
-        font.pixelSize: 12
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
-        leftPadding: 4; rightPadding: 4
-    }
 
     // *** JOG BUTTON ***
     component JogBtn: Button {
@@ -1394,9 +1414,11 @@ Rectangle {
             font.bold: true
             fontSizeMode: Text.Fit
             minimumPixelSize: 10
-            font.pixelSize: 28
+            font.pixelSize: 25
             rightPadding: 4
             leftPadding: 4
+            style: Text.Outline
+            styleColor: "#80000000"
         }
     }
 
@@ -1432,44 +1454,58 @@ Rectangle {
         }
     }
 
-    // *** STYLIZED TEXT FIELD ***
-    component CustomTextField: TextField {
-        Layout.preferredHeight: 30
-        background: Rectangle {
-            color: "#ffffff"
-            border.color: "#3B3B50"
-            radius: 4
-        }
-        color: "black"
-        verticalAlignment: Text.AlignVCenter
-        font.pixelSize: 18
-        leftPadding: 10
-    }
-
-
-    // Add this as a helper within your file or a separate file
-    component ErrorField : RowLayout {
-        property string label: ""
-        property string value: "0"
-        spacing: 5
-        Layout.fillWidth: true
-
-        Text {
-            text: label
-            color: "black" // Adjust based on your theme
-            font.pixelSize: 12
-            Layout.preferredWidth: 35
-        }
-        TextField {
-            text: value
-            Layout.fillWidth: true
-            Layout.preferredHeight: 25
-            selectByMouse: true
-            color: "black"
+    // *** STYLIZED TEXT FIELD (UPDATED) ***
+        component CustomTextField: TextField {
+            id: customFieldRoot
+            Layout.preferredHeight: 30
             background: Rectangle {
-                border.color: "#999"
-                border.width: 1
+                color: "#ffffff"
+                border.color: "#3B3B50"
+                radius: 4
+            }
+            color: "black"
+            verticalAlignment: Text.AlignVCenter
+            font.pixelSize: 18
+            leftPadding: 10
+
+            // --- KEYPAD INTEGRATION ---
+            readOnly: true
+            MouseArea {
+                anchors.fill: parent
+                onClicked: appWindow.showKeypad(customFieldRoot)
             }
         }
-    }
+
+    // *** ERROR FIELD COMPONENT (UPDATED) ***
+        component ErrorField : RowLayout {
+            property string label: ""
+            property string value: "0"
+            spacing: 5
+            Layout.fillWidth: true
+
+            Text {
+                text: label
+                color: "black"
+                font.pixelSize: 12
+                Layout.preferredWidth: 35
+            }
+            TextField {
+                id: errorTf
+                text: value
+                Layout.fillWidth: true
+                Layout.preferredHeight: 25
+                color: "black"
+                background: Rectangle {
+                    border.color: "#999"
+                    border.width: 1
+                }
+
+                // --- KEYPAD INTEGRATION ---
+                readOnly: true
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: appWindow.showKeypad(errorTf)
+                }
+            }
+        }
 }

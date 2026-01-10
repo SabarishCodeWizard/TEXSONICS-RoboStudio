@@ -3,7 +3,7 @@ project(appsampleUI VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Quick Quick3D)
+find_package(Qt6 REQUIRED COMPONENTS Quick Quick3D QuickEffects)
 qt_standard_project_setup(REQUIRES 6.8)
 
 qt_add_executable(appsampleUI main.cpp)
@@ -28,6 +28,7 @@ qt_add_qml_module(appsampleUI
         RESOURCES .gitignore
         RESOURCES README.md
         QML_FILES IconPaths.qml
+        QML_FILES VirtualKeypad.qml
     )
 
 # Using "assets" as the second argument adds :/assets/ to the path
@@ -41,4 +42,4 @@ qt_add_resources(appsampleUI "assets"
         meshes/link5.mesh
 )
 
-target_link_libraries(appsampleUI PRIVATE Qt6::Quick Qt6::Quick3D)
+target_link_libraries(appsampleUI PRIVATE Qt6::Quick Qt6::Quick3D Qt6::QuickEffects)

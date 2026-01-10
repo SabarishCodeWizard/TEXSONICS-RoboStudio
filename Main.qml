@@ -4,6 +4,7 @@ import QtQuick.Layouts 1.15
 import QtQuick.Window 2.15
 
 ApplicationWindow {
+    id: appWindow // <--- ADD THIS ID
     visible: true
     width: 1400
     height: 900
@@ -28,6 +29,18 @@ ApplicationWindow {
 
     property string fontFamily: "Segoe UI"
 
+    // --- GLOBAL FUNCTION TO OPEN KEYPAD ---
+    function showKeypad(targetTextField) {
+        globalKeypad.x = (appWindow.width - globalKeypad.width) / 2
+        globalKeypad.y = (appWindow.height - globalKeypad.height) / 2
+        globalKeypad.openFor(targetTextField)
+    }
+
+    // --- KEYPAD INSTANCE ---
+    VirtualKeypad {
+        id: globalKeypad
+    }
+
     // --- MAIN LAYOUT ---
     RowLayout {
         anchors.fill: parent
@@ -38,13 +51,12 @@ ApplicationWindow {
         LeftPanel {
             Layout.preferredWidth: parent.width * 0.5
             Layout.fillHeight: true
-            // FIX: Reference the ID 'rightPanelControl' defined below
             currentCoordinateSystem: rightPanelControl.jogTab
         }
 
         // 2. Right Panel
         RightPanel {
-            id: rightPanelControl // <--- ADDED ID HERE
+            id: rightPanelControl
             Layout.preferredWidth: parent.width * 0.5
             Layout.fillHeight: true
         }
